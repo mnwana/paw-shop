@@ -1,6 +1,6 @@
 
 // IMPORTS
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
 
 import {StoreProvider} from './utils/GlobalState';
 
@@ -26,9 +26,9 @@ export default function App() {
                 <LoginSignupModal />  {/* UPDATE LATER to only render when logged in */}
                 
                 <Routes>
-                    <Route path='/' element={<Home />} />
+                    <Route path='/listings' element={<Home />} />
                     <Route path='/account' element={<MyAccount />} />
-                    <Route path='*' element={<h2 className='display-2'>Wrong page!</h2>} />  {/* UPDATE LATER */}
+                    <Route path='*' element={<Navigate to='/listings' />} />
                 </Routes>
                 
                 <Footer />
