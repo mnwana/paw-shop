@@ -22,14 +22,17 @@ export default function App() {
     return (
         <Router>
             <StoreProvider>
-                <Navbar />
                 <LoginSignupModal />  {/* UPDATE LATER to only render when logged in */}
+
+                <Navbar />
                 
-                <Routes>
-                    <Route path='/listings' element={<Home />} />
-                    <Route path='/account' element={<MyAccount />} />
-                    <Route path='*' element={<Navigate to='/listings' />} />
-                </Routes>
+                <main>
+                    <Routes>
+                        <Route path='/listings' element={<Home />} />
+                        <Route path='/account' element={<MyAccount />} />
+                        <Route path='*' element={<Navigate to='/listings' />} />
+                    </Routes>
+                </main>
                 
                 <Footer />
             </StoreProvider>
