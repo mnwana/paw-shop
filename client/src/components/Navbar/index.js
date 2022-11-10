@@ -3,6 +3,8 @@
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
 
+import {modalId} from '../LoginSignupModal';
+
 import './index.css';
 
 
@@ -22,32 +24,26 @@ export default function Navbar(){
         {
             name: 'Listings',
             link: '/',
-            reqsLogin: null,
-            isPage: true
+            reqsLogin: null
         },
         {
             name: 'Post an item',
             link: '/post-item',
-            reqsLogin: true,
-            isPage: true
+            reqsLogin: true
         },
         {
             name: 'My account',
             link: '/account',
-            reqsLogin: true,
-            isPage: true
+            reqsLogin: true
         },
         {
             name: 'Sign up / log in',
-            link: null,  // UPDATE LATER to activate modal
             reqsLogin: false,
-            isPage: false
         },
         {
-            name: 'Log out',
-            link: null,  // UPDATE LATER to log user out
-            reqsLogin: true,
-            isPage: false
+            name: 'Log out',  // UPDATE LATER to log user out
+            link: null,
+            reqsLogin: true
         }
     ];
 
@@ -66,9 +62,15 @@ export default function Navbar(){
                                 key={item.name}
                                 className={`${activePage === item.name ? 'active' : ''}`}
                             >
-                                <Link to={item.link} page={item.isPage ? item.name : ''} onClick={handleNavClick}>
-                                    {item.name}
-                                </Link>
+                                {item.name === 'Sign up / log in' ? 
+                                        <button type="button" data-bs-toggle="modal" data-bs-target={`#${modalId}`}>
+                                            {item.name}
+                                        </button>
+                                    :
+                                        <Link to={item.link} page={item.link ? item.name : ''} onClick={handleNavClick}>
+                                            {item.name}
+                                        </Link>
+                                }
                             </li>
                         )
                     }

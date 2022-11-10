@@ -5,12 +5,16 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import {StoreProvider} from './utils/GlobalState';
 
 import Navbar from './components/Navbar';
+import LoginSignupModal from './components/LoginSignupModal';
 import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import MyAccount from './pages/MyAccount';
 
+import 'bootstrap';  // Bootstrap JS
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 import './App.css';
+
 
 
 // COMPONENT
@@ -19,6 +23,7 @@ export default function App() {
         <Router>
             <StoreProvider>
                 <Navbar />
+                <LoginSignupModal />  {/* UPDATE LATER to only render when logged in */}
                 
                 <Routes>
                     <Route path='/' element={<Home />} />
