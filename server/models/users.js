@@ -14,6 +14,10 @@ const UsersSchema = new Schema({
       type: String,
       required: true,
     },
+    borough: {
+        type: String,
+        required: true,
+      },
     posts: [postSchema],
     watchlist: [WatchlistSchema]
 },
@@ -27,7 +31,6 @@ const UsersSchema = new Schema({
 
   const WatchlistSchema = new Schema(
     {
-      // set custom id to avoid confusion with parent comment _id
       UserId: {
         type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId()
@@ -36,20 +39,16 @@ const UsersSchema = new Schema({
         type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId()
       },
-      replyBody: {
-        type: String,
-        required: true
       },
       writtenBy: {
         type: String,
         required: true,
-        trim: true
       },
       createdAt: {
         type: Date,
         default: Date.now,
         get: createdAtVal => dateFormat(createdAtVal)
-      }
+    
     },
     {
       toJSON: {

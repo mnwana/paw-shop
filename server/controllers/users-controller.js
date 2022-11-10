@@ -1,4 +1,5 @@
 const { Users } = require('../models');
+
 const usersController = {
 getAllUsers(req, res) {
     Pizza.find({})
@@ -23,6 +24,11 @@ getUserById({ params }, res) {
         res.status(400).json(err);
     });
 },
+    createUsers({ body }, res) {
+        Users.create(body)
+            .then(dbUsersData => res.json(dbUsersData))
+            .catch(err => res.status(400).json(err));
+    },
 }
 
 module.exports = usersController;
