@@ -13,7 +13,7 @@ const {Provider} = StoreContext;
 
 export function StoreProvider({value = [], ...props}){
     const [state, dispatch] = useThisReducer({
-        // initial state goes here
+        siteAuthors: ['Noah Becker', 'Michael Choi', 'Marielle Nwana', 'Claudia Yile']
     });
     
     return (

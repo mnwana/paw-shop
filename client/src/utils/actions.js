@@ -1,0 +1,2 @@
+
+export const SHUFFLE_AUTHORS = 'SHUFFLE_AUTHORS';
