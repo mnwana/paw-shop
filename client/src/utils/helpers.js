@@ -4,11 +4,20 @@ export function validateEmail(email){
 }
 
 export function joinAuthors(authors){
+    function authorLink(author, charsAfter = ''){
+        return (
+            <span key={author.name}>
+                <a href={`https://github.com/${author.github}`} target='_blank'>{author.name}</a>
+                {charsAfter}
+            </span>
+        );
+    }
+
     return (
-            authors.slice(0, authors.length - 1).join(', ')
-        +
-            ' + '
-        +
-            authors[authors.length - 1]
+        <>
+        {authors.slice(0, authors.length - 2).map(author => authorLink(author, ', '))}
+        {authorLink(authors[authors.length - 2], ' + ')}
+        {authorLink(authors[authors.length - 1])}
+        </>
     );
 }
