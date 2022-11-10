@@ -12,7 +12,7 @@ db.once('open', async () => {
     // await User.create(userSeeds);
 
     for (let i = 0; i < commentSeeds.length; i++) {
-      const { _id, commentAuthor } = await Thought.create(commentSeeds[i]);
+      const { _id, commentAuthor } = await Comment.create(commentSeeds[i]);
       const user = await User.findOneAndUpdate(
         { username: commentAuthor },
         {
