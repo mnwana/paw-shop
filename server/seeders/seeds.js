@@ -13,7 +13,9 @@ db.once('open', async () => {
 
     for (let i = 0; i < commentSeeds.length; i++) {
       const { _id, commentAuthor } = await Comment.create(commentSeeds[i]);
-      const user = await User.findOneAndUpdate(
+    // Todo:   should this belong to posts instead?
+    // const user = await Post.findOneAndUpdate(
+    const user = await User.findOneAndUpdate(
         { username: commentAuthor },
         {
           $addToSet: {
