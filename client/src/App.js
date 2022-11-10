@@ -20,7 +20,7 @@ export default function App() {
                 
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='*' render={() => <h1 className='display-2'>Wrong page!</h1>} />  {/* UPDATE LATER */}
+                    <Route path='*' element={<h2 className='display-2'>Wrong page!</h2>} />  {/* UPDATE LATER */}
                 </Routes>
                 
                 <Footer />
