@@ -9,9 +9,9 @@ db.once("open", async () => {
     await Comment.deleteMany({});
 
     for (let i = 0; i < commentSeeds.length; i++) {
-      const { _id, commentAuthor } = await Comment.create(commentSeeds[i]);
+      const { _id, username } = await Comment.create(commentSeeds[i]);
       const post = await Post.findOneAndUpdate(
-        { username: commentAuthor },
+        { username: username },
         {
           $addToSet: {
             comments: _id,
