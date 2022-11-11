@@ -18,7 +18,7 @@ export default function Navbar(){
             setActivePage(page);
     }
 
-    const testerLoggedIn = true;  // UPDATE LATER to pull from client-side `utils/auth.js`
+    const testerLoggedIn = false;  // UPDATE LATER to pull from client-side `utils/auth.js`
 
     const items = [
         {

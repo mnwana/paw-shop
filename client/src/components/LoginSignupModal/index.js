@@ -22,6 +22,13 @@ export default function LoginSignupModal(){
         password: ''
     });
 
+    const [toggleLogin, setToggleLogin] = useState(true);
+
+
+    function handleToggle(){
+        setToggleLogin(!toggleLogin);
+    }
+
 
     function handleLoginChange({target}){
         switch (target.name){
@@ -92,9 +99,19 @@ export default function LoginSignupModal(){
                     </div>
 
                     <div className="modal-body">
-                        <form id="login" onSubmit={handleLoginSubmit}>
-                            <label>Log in</label>
 
+                        <div className="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label className={`btn btn-primary ${toggleLogin ? 'active' : ''}`} htmlFor="login-toggle">
+                                <input className="d-none" type="radio" name="login-signup-toggler" id="login-toggle" defaultChecked onChange={handleToggle} />
+                                Log in
+                            </label>
+
+                            <label className={`btn btn-primary ${toggleLogin ? '' : 'active'}`} htmlFor="signup-toggle">
+                                <input className="d-none" type="radio" name="login-signup-toggler" id="signup-toggle" onChange={handleToggle} />Sign up
+                            </label>
+                        </div>
+
+                        <form className={toggleLogin ? 'd-block' : 'd-none'} id="login" onSubmit={handleLoginSubmit}>
                             <div className="form-floating">
                                 <input className="form-control" value={loginInfo.email} onChange={handleLoginChange} id="login-email" name="login-email" type="email" placeholder="Enter email" required />
                                 <label htmlFor="login-email">Email</label>
@@ -108,9 +125,7 @@ export default function LoginSignupModal(){
                             <button className="btn btn-primary" type="submit" form="login">Log in</button>
                         </form>
 
-                        <form id="signup" onSubmit={handleSignupSubmit}>
-                            <label>Sign up</label>
-
+                        <form className={toggleLogin ? 'd-none' : 'd-block'} id="signup" onSubmit={handleSignupSubmit}>
                             <div className="form-floating">
                                 <input className="form-control" value={signupInfo.username} onChange={handleSignupChange} id="signup-username" name="signup-username" type="text" placeholder="Enter username" required />
                                 <label htmlFor="signup-username">Username</label>
