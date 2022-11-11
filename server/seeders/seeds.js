@@ -1,16 +1,16 @@
 // const faker = require('faker');
 // const userSeeds = require('./userSeed.json');
-const commentSeeds = require('./commentSeed.json');
-const db = require('../config/connection');
-const { Comment } = require('../models');
+const commentSeeds = require("./commentSeed.json");
+const db = require("../config/connection");
+const { Comment } = require("../models");
 
-db.once('open', async () => {
+db.once("open", async () => {
   try {
     await Comment.deleteMany({});
 
     for (let i = 0; i < commentSeeds.length; i++) {
       const { _id, commentAuthor } = await Comment.create(commentSeeds[i]);
-    const post = await Post.findOneAndUpdate(
+      const post = await Post.findOneAndUpdate(
         { username: commentAuthor },
         {
           $addToSet: {
@@ -24,6 +24,6 @@ db.once('open', async () => {
     process.exit(1);
   }
 
-  console.log('all done!');
+  console.log("all done!");
   process.exit(0);
 });

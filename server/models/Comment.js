@@ -1,4 +1,4 @@
-const { Schema, model, Types } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 const ReplySchema = require('./Reply');
 
@@ -10,7 +10,10 @@ const CommentSchema = new Schema(
     },
     commentBody: {
       type: String,
-      required: true
+      required: true,
+      trim: true,
+      minLength: 1, 
+      maxLength: 100
     },
     createdAt: {
       type: Date,
@@ -28,7 +31,4 @@ const CommentSchema = new Schema(
   }
 );
 
-
-const Comment = model('Comment', CommentSchema);
-
-module.exports = Comment;
+module.exports = CommentSchema;

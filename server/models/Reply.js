@@ -3,13 +3,16 @@ const dateFormat = require('../utils/dateFormat');
 
 const ReplySchema = new Schema(
     {
-      replyId: {
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId()
-      },
+      // replyId: {
+      //   type: Schema.Types.ObjectId,
+      //   default: () => new Types.ObjectId()
+      // },
       replyBody: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minLength: 1, 
+        maxLength: 100
       },
       username: {
         type: String,
@@ -25,7 +28,8 @@ const ReplySchema = new Schema(
     {
       toJSON: {
         getters: true
-      }
+      },
+      id: false
     }
   );
 
