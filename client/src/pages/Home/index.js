@@ -1,12 +1,12 @@
 
 // IMPORT
-import ListingInfo from '../../components/ListingInfo';
+import PostInfo from '../../components/PostInfo';
 
 
 // COMPONENT
 export default function Home(){
     return <>
-        <ListingInfo
+        <PostInfo
             name={'Test name'}
             category={'Test category'}
             username={'testusername'}

@@ -28,9 +28,9 @@ export default function App() {
                 
                 <main>
                     <Routes>
-                        <Route path='/listings' element={<Home />} />
+                        <Route path='/posts' element={<Home />} />
                         <Route path='/account' element={<MyAccount />} />
-                        <Route path='*' element={<Navigate to='/listings' />} />
+                        <Route path='*' element={<Navigate to='/posts' />} />
                     </Routes>
                 </main>
                 

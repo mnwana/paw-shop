@@ -9,10 +9,10 @@ export default function MyAccount(){
             <button>Delete account</button>
         </div>
 
-        <div className="your-listings">
-            <h3>Your listings</h3>
+        <div className="your-posts">
+            <h3>Your posts</h3>
 
-            <div className="listings-wrapper"></div>
+            <div className="posts-wrapper"></div>
         </div>
 
         <div className="watched-items">

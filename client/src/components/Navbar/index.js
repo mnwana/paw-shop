@@ -11,7 +11,7 @@ import './index.css';
 
 // COMPONENT
 export default function Navbar(){
-    const [activePage, setActivePage] = useState('Listings');
+    const [activePage, setActivePage] = useState('Posts');
     function handleNavClick({target}){
         const page = target.getAttribute('page');
         if (page)
@@ -22,7 +22,7 @@ export default function Navbar(){
 
     const items = [
         {
-            name: 'Listings',
+            name: 'Posts',
             link: '/',
             reqsLogin: null
         },
@@ -50,7 +50,7 @@ export default function Navbar(){
     return (
         <header>
             <h1>
-                <Link to='/listings' page='Listings' onClick={handleNavClick}>Site title</Link>
+                <Link to='/posts' page='Posts' onClick={handleNavClick}>Site title</Link>
             </h1>
 
             <nav>
