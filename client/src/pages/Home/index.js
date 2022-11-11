@@ -10,7 +10,7 @@ export default function Home(){
             name={'Test name'}
             category={'Test category'}
             username={'testusername'}
-            dateCreated={'Aug 12, 2015 at 5:57PM'}
+            dateCreated={'Aug 12, 2015 at 5:57 PM'}
             active={true}
         />
     </>;

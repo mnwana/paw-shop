@@ -1,13 +1,8 @@
 
-export function validateEmail(email){
-    return !!email.match(/^[a-z0-9._]{3,}@([a-z0-9-]+\.)+?[a-z]{2,3}$/i);
-}
-
-
 export function joinAuthors(authors){
     const authorLink = (author, charsAfter = '') =>
         <span key={author.name}>
-            <a href={`https://github.com/${author.github}`} target='_blank'>{author.name}</a>
+            <a href={author.link} target='_blank'>{author.name}</a>
             {charsAfter}
         </span>
     ;

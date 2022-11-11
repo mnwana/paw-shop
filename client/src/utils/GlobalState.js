@@ -16,19 +16,19 @@ export function StoreProvider({value = [], ...props}){
         siteAuthors: [
             {
                 name: 'Noah Becker',
-                github: 'noah35becker'
+                link: 'https://noah35becker.github.io/portfolio/'
             },
             {
                 name: 'Michael Choi',
-                github: 'jchoi10'
+                link: 'https://github.com/jchoi10?tab=repositories'
             },
             {
                 name: 'Marielle Nwana',
-                github: 'mnwana'
+                link: 'https://www.mariellenwana.com'
             },
             {
                 name: 'Claudia Yile',
-                github: 'claudiayile'
+                link: 'https://market.zora.co/cybele'
             }
         ]
     });
