@@ -9,14 +9,25 @@ const UserSchema = new Schema({
     username: {
       type: String,
       required: true,
+      minLength: 5,
+      maxLength: 16,
+      trim: true
     },
     email: {
       type: String,
       required: true,
+      trim: true
     },
+    cat: {
+      type: Buffer,
+    },
+    dog: {
+      type: Buffer,
+    }
     borough: {
         type: String,
         required: true,
+        trim: true
       },
     posts: [postSchema],
     watchlist: [WatchlistSchema]
