@@ -4,7 +4,7 @@ import PostInfo from '../../components/PostInfo';
 
 
 // COMPONENT
-export default function Home(){
+export default function Posts(){
     return <>
         <PostInfo
             name={'Test name'}

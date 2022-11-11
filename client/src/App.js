@@ -8,7 +8,7 @@ import Navbar from './components/Navbar';
 import LoginSignupModal from './components/LoginSignupModal';
 import Footer from './components/Footer';
 
-import Home from './pages/Home';
+import Posts from './pages/Posts';
 import MyAccount from './pages/MyAccount';
 
 import 'bootstrap';  // Bootstrap JS
@@ -28,7 +28,7 @@ export default function App() {
                 
                 <main>
                     <Routes>
-                        <Route path='/posts' element={<Home />} />
+                        <Route path='/posts' element={<Posts />} />
                         <Route path='/account' element={<MyAccount />} />
                         <Route path='*' element={<Navigate to='/posts' />} />
                     </Routes>
