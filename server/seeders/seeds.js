@@ -7,15 +7,10 @@ const { Comment } = require('../models');
 db.once('open', async () => {
   try {
     await Comment.deleteMany({});
-    // await User.deleteMany({});
-
-    // await User.create(userSeeds);
 
     for (let i = 0; i < commentSeeds.length; i++) {
       const { _id, commentAuthor } = await Comment.create(commentSeeds[i]);
-    // Todo:   should this belong to posts instead?
-    // const user = await Post.findOneAndUpdate(
-    const user = await User.findOneAndUpdate(
+    const post = await Post.findOneAndUpdate(
         { username: commentAuthor },
         {
           $addToSet: {

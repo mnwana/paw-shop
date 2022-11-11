@@ -11,11 +11,8 @@ const resolvers = {
           ...args,
           username: context.user.username,
         });
-        // Todo: should this be post instead?
-        // await Post.findByIdAndUpdate(
-        await User.findByIdAndUpdate(
-          // { _id: postId },
-          { _id: context.user._id },
+        await Post.findByIdAndUpdate(
+          { _id: postId },
           { $push: { comments: comment._id } },
           { new: true }
         );
