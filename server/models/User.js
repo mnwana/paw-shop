@@ -1,11 +1,11 @@
 const { Schema, model } = require('mongoose');
+const { ENUM } = require('sequelize/types');
+const dateFormat = require('../utils/dateFormat');
+const Watchlist = require('./Watchlist')
+const Post = require('./Post')
 
 const UserSchema = new Schema({
     
-    userId: {
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId()
-    },
     username: {
       type: String,
       required: true,
@@ -16,16 +16,12 @@ const UserSchema = new Schema({
     email: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
+      validate: [validateEmail, 'Email address is invalid']
     },
-    cat: {
-      type: Buffer,
-    },
-    dog: {
-      type: Buffer,
-    }
     borough: {
         type: String,
+        enum: ["Manhattan", "Brooklyn", "Queens", "Staten Island", "The Bronx"],
         required: true,
         trim: true
       },
@@ -35,38 +31,9 @@ const UserSchema = new Schema({
 {
     toJSON: {
         virtuals: true, 
-        getters: true
     }, 
     id: false
   });
-
-  const WatchlistSchema = new Schema(
-    {
-      UserId: {
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId()
-      },
-      PostId: {
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId()
-      },
-      },
-      writtenBy: {
-        type: String,
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: createdAtVal => dateFormat(createdAtVal)
-    
-    },
-    {
-      toJSON: {
-        getters: true
-      }
-    }
-  );
 
 const User = model('User', UserSchema);
 
