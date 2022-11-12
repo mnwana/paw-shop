@@ -8,7 +8,7 @@ import {useStoreContext} from '../../utils/GlobalState';
 import {FILTER_SET_ONE} from '../../utils/actions';
 
 import $ from 'jquery';
-import {kebabify, capitalize} from '../../utils/helpers';
+import {kebabify, capitalize, abbreviate} from '../../utils/helpers';
 
 import './index.css';
 
@@ -80,7 +80,7 @@ export default function PostInfo({
     return <div className={`post-info ${active ? 'active' : 'inactive'} mb-3`}>
         <div className="first-row d-flex justify-content-between">
             <button className='item-name' onClick={() => setPostJustClicked(true)}>
-                {name}
+                {abbreviate(name)}
             </button>
 
             {animalType && category ?

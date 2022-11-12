@@ -23,3 +23,8 @@ export function kebabify(string){
 export function capitalize(string){
     return string.substring(0, 1).toUpperCase() + string.substring(1);
 }
+
+
+export function abbreviate(string){
+    return string.length < 35 ? string : string.substring(0, 35) + '…'
+}
