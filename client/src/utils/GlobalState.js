@@ -34,31 +34,6 @@ export function StoreProvider({value = [], ...props}){
         ],
         filterState: [
             {
-                group: 'category',
-                elements: [
-                    {
-                        name: 'food',
-                        checked: true
-                    },
-                    {
-                        name: 'toys',
-                        checked: true
-                    },
-                    {
-                        name: 'furniture',
-                        checked: true
-                    },
-                    {
-                        name: 'cleaning products',
-                        checked: true
-                    },
-                    {
-                        name: 'outdoor',
-                        checked: true
-                    }
-                ]
-            },
-            {
                 group: 'animal type',
                 elements: [
                     {
@@ -79,6 +54,31 @@ export function StoreProvider({value = [], ...props}){
                     },
                     {
                         name: 'rabbit / hamster',
+                        checked: true
+                    }
+                ]
+            },
+            {
+                group: 'category',
+                elements: [
+                    {
+                        name: 'food',
+                        checked: true
+                    },
+                    {
+                        name: 'toys',
+                        checked: true
+                    },
+                    {
+                        name: 'furniture',
+                        checked: true
+                    },
+                    {
+                        name: 'cleaning products',
+                        checked: true
+                    },
+                    {
+                        name: 'outdoor',
                         checked: true
                     }
                 ]

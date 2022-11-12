@@ -11,8 +11,10 @@ export default function Posts(){
         <FilterPanel />
         
         <PostInfo
+            postId={123123}
             name={'Test name'}
-            category={'Test category'}
+            animalType={'Rabbit / hamster'}
+            category={'Furniture'}
             username={'testusername'}
             dateCreated={'Aug 12, 2015 at 5:57 PM'}
             active={true}
