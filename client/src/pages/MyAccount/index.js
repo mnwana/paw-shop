@@ -1,6 +1,9 @@
 
-// IMPORT
-import {kebabify} from '../../utils/helpers';
+// IMPORTS
+import PostInfo from '../../components/PostInfo';
+
+import {kebabify, capitalize} from '../../utils/helpers';
+import {AcctMngmntModalTypes} from '../../components/AcctMngmntModals';
 
 
 
@@ -8,24 +11,75 @@ import {kebabify} from '../../utils/helpers';
 export default function MyAccount(){
     return <>
         <div className="acct-mngmt-btns-wrapper">
-            <button data-bs-toggle="modal" data-bs-target='#update-email-modal'>Update email</button>
-            <button data-bs-toggle="modal" data-bs-target='#update-username-modal'>Update username</button>
-            <button data-bs-toggle="modal" data-bs-target='#update-password-modal'>Update password</button>
-            <button data-bs-toggle="modal" data-bs-target='#delete-account-modal'>Delete account</button>
+            {AcctMngmntModalTypes.map(type => 
+                <button
+                    data-bs-toggle="modal"
+                    data-bs-target={`#${kebabify(type)}-modal`}
+                    key={type}
+                >
+                    {capitalize(type)}
+                </button>    
+            )}
         </div>
 
         <div className="your-posts">
             <h3>Your posts</h3>
 
-            <div className="posts-wrapper"></div>
+            <div className='your-active-posts-wrapper posts-wrapper'>
+                <h4>Active</h4>
+
+                {/* Sample post info */}
+                <PostInfo
+                    postId={123456}
+                    name={'Test active name'}
+                    dateCreated={'Sep 8, 2021 at 7:40 AM'}
+                    watchCount={1}
+                    toggleBtn={true}
+                    active={true}
+                />
+            </div>
+            
+            <div className='your-inactive-posts-wrapper posts-wrapper'>
+                <h4 className='fst-italic'>Inactive</h4>
+
+                {/* Sample post info */}
+                <PostInfo
+                    postId={123456990}
+                    name={'Test inactive name'}
+                    dateCreated={'Jan 12, 2020 at 7:19 PM'}
+                    watchCount={0}
+                    toggleBtn={true}
+                    active={false}
+                />
+            </div>
         </div>
 
         <div className="watched-items">
             <h3>Items you're watching</h3>
 
-            <div className="active-watched-items watched-items"></div>
+            <div className="active-watched-items-wrapper watched-items-wrapper">
+                <h4>Active</h4>
 
-            <div className="inactive-watched-items watched-items"></div>
+                {/* Sample post info */}
+                <PostInfo
+                    postId={87213}
+                    name={'Test watching active name'}
+                    watchCount={4}
+                    active={true}
+                />
+            </div>
+
+            <div className="inactive-watched-items watched-items-wrapper">
+                <h4 className='fst-italic'>Inactive</h4>
+
+                {/* Sample post info */}
+                <PostInfo
+                    postId={45790}
+                    name={'Test watching inactive name'}
+                    watchCount={39}
+                    active={false}
+                />
+            </div>
         </div>
     </>;
 }

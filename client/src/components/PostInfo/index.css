@@ -1,0 +1,11 @@
+
+.post-info.inactive .item-name,
+.post-info.inactive .second-row
+{
+    opacity: .7;
+}
+
+.post-info.inactive .first-row button,
+.post-info.inactive .second-row{
+    font-style: italic;
+}

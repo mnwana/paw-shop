@@ -4,6 +4,12 @@ import AcctMngmntModal from './Single';
 
 import {useStoreContext} from '../../utils/GlobalState';
 
+export const AcctMngmntModalTypes = [
+    'update email',
+    'update username',
+    'update password',
+    'delete account'
+];
 
 // COMPONENT
 export default function AcctMngmntModals(){
@@ -11,10 +17,9 @@ export default function AcctMngmntModals(){
 
     if (activePage === 'My account')
         return <>
-            <AcctMngmntModal type='update email' />
-            <AcctMngmntModal type='update username' />
-            <AcctMngmntModal type='update password' />
-            <AcctMngmntModal type='delete account' />       
+            {AcctMngmntModalTypes.map(type => 
+                <AcctMngmntModal type={type} key={type} />
+            )} 
         </>;
     
     return <></>;
