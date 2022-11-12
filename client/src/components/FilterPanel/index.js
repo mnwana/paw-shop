@@ -33,8 +33,8 @@ export default function FilterPanel(){
     return (
         <div className="filter-panel">
             <div className='global-filter-btns-wrapper'>
-                <button className='apply-btn btn btn-success' onClick={handleApply}>Apply</button>
-                <button className='clear-all-btn btn btn-info' onClick={handleClearAll}>Clear all</button>
+                <button id='apply-btn' className='btn btn-success' onClick={handleApply}>Apply</button>
+                <button id='clear-all-btn' className='btn btn-info' onClick={handleClearAll}>Clear all</button>
             </div>
 
             {filterState.map(({group, elements}) => <FilterGroup group={group} elements={elements} key={group}/>)}

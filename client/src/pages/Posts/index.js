@@ -13,10 +13,11 @@ export default function Posts(){
         <PostInfo
             postId={123123}
             name={'Test name'}
-            animalType={'Rabbit / hamster'}
-            category={'Furniture'}
+            animalType={'rabbit / hamster'}
+            category={'furniture'}
             username={'testusername'}
             dateCreated={'Aug 12, 2015 at 5:57 PM'}
+            watchCount={17}
             active={true}
         />
     </>;

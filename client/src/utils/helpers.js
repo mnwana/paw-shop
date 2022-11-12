@@ -16,7 +16,7 @@ export function joinAuthors(authors){
 
 
 export function kebabify(string){
-    return string.replace('/', '').split(' ').join('-');
+    return string.replace('/ ', '').split(' ').join('-');
 }
 
 
