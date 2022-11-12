@@ -6,6 +6,7 @@ import {StoreProvider} from './utils/GlobalState';
 
 import Navbar from './components/Navbar';
 import LoginSignupModal from './components/LoginSignupModal';
+import AcctMngmntModals from './components/AcctMngmntModals';
 import Footer from './components/Footer';
 
 import Posts from './pages/Posts';
@@ -25,6 +26,8 @@ export default function App() {
                 <LoginSignupModal />  {/* UPDATE LATER to only render when logged in */}
 
                 <Navbar />
+
+                <AcctMngmntModals />
                 
                 <main>
                     <Routes>

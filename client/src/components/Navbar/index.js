@@ -1,9 +1,13 @@
 
 // IMPORTS
-import {Link} from 'react-router-dom';
-import {useState} from 'react';
+import {useEffect} from 'react';
 
-import {modalId} from '../LoginSignupModal';
+import {Link} from 'react-router-dom';
+
+import {useStoreContext} from '../../utils/GlobalState';
+import {SET_ACTIVE_PAGE} from '../../utils/actions';
+
+import {loginSignupModalId} from '../LoginSignupModal';
 
 import './index.css';
 
@@ -11,19 +15,25 @@ import './index.css';
 
 // COMPONENT
 export default function Navbar(){
-    const [activePage, setActivePage] = useState('Posts');
+    const [{activePage}, dispatch] = useStoreContext();
+
     function handleNavClick({target}){
         const page = target.getAttribute('page');
         if (page)
-            setActivePage(page);
+            dispatch({
+                type: SET_ACTIVE_PAGE,
+                activePage: page
+            });
     }
 
-    const testerLoggedIn = false;  // UPDATE LATER to pull from client-side `utils/auth.js`
+
+    const testerLoggedIn = true;  // UPDATE LATER to pull from client-side `utils/auth.js`
+
 
     const items = [
         {
             name: 'Posts',
-            link: '/',
+            link: '/posts',
             reqsLogin: null
         },
         {
@@ -47,6 +57,16 @@ export default function Navbar(){
         }
     ];
 
+
+    useEffect(
+        () => {dispatch({
+            type: SET_ACTIVE_PAGE,
+            activePage: items.find(({link}) => link === `/${document.location.href.split('/')[3]}`).name  // UPDATE LATER if and when URLs become more complicated…
+        })},
+        []
+    );
+
+
     return (
         <header>
             <h1>
@@ -63,7 +83,7 @@ export default function Navbar(){
                                 className={`${activePage === item.name ? 'active' : ''}`}
                             >
                                 {item.name === 'Sign up / log in' ? 
-                                        <button type="button" data-bs-toggle="modal" data-bs-target={`#${modalId}`}>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target={`#${loginSignupModalId}`}>
                                             {item.name}
                                         </button>
                                     :

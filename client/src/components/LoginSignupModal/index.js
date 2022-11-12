@@ -5,7 +5,7 @@ import {useState} from "react";
 
 
 // MODAL ID
-export const modalId = 'login-signup-modal';
+export const loginSignupModalId = 'login-signup-modal';
 
 
 
@@ -90,7 +90,7 @@ export default function LoginSignupModal(){
 
 
     return (
-        <div className="modal fade" id={modalId} tabIndex="-1" aria-labelledby="Log in / sign up window" aria-hidden="true">
+        <div className="modal fade" id={loginSignupModalId} tabIndex="-1" aria-labelledby="Log in / sign up window" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">

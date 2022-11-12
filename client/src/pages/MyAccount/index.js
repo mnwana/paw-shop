@@ -1,12 +1,17 @@
 
+// IMPORT
+import {kebabify} from '../../utils/helpers';
+
+
+
 // COMPONENT
 export default function MyAccount(){
     return <>
-        <div className="account-management-buttons-wrapper">
-            <button>Update email</button>
-            <button>Update username</button>
-            <button>Update password</button>
-            <button>Delete account</button>
+        <div className="acct-mngmt-btns-wrapper">
+            <button data-bs-toggle="modal" data-bs-target='#update-email-modal'>Update email</button>
+            <button data-bs-toggle="modal" data-bs-target='#update-username-modal'>Update username</button>
+            <button data-bs-toggle="modal" data-bs-target='#update-password-modal'>Update password</button>
+            <button data-bs-toggle="modal" data-bs-target='#delete-account-modal'>Delete account</button>
         </div>
 
         <div className="your-posts">

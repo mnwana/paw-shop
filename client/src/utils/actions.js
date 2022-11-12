@@ -1,4 +1,6 @@
 
+export const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
+
 export const SHUFFLE_AUTHORS = 'SHUFFLE_AUTHORS';
 
 export const FILTER_TOGGLE_ONE = 'FILTER_TOGGLE_ONE';

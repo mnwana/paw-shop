@@ -13,6 +13,7 @@ const {Provider} = StoreContext;
 
 export function StoreProvider({value = [], ...props}){
     const initialState = {
+        activePage: 'Posts',
         siteAuthors: [
             {
                 name: 'Noah Becker',
