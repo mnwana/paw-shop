@@ -10,6 +10,7 @@ import AcctMngmntModals from './components/AcctMngmntModals';
 import Footer from './components/Footer';
 
 import Posts from './pages/Posts';
+import PostAnItem from './pages/PostAnItem';
 import MyAccount from './pages/MyAccount';
 
 import 'bootstrap';  // Bootstrap JS
@@ -32,6 +33,7 @@ export default function App() {
                 <main>
                     <Routes>
                         <Route path='/posts' element={<Posts />} />
+                        <Route path='/post-an-item' element={<PostAnItem />} />
                         <Route path='/account' element={<MyAccount />} />
                         <Route path='*' element={<Navigate to='/posts' />} />
                     </Routes>

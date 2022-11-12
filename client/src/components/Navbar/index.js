@@ -38,7 +38,7 @@ export default function Navbar(){
         },
         {
             name: 'Post an item',
-            link: '/post-item',
+            link: '/post-an-item',
             reqsLogin: true
         },
         {
