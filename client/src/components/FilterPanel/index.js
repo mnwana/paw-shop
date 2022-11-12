@@ -1,5 +1,5 @@
 
-// IMPORT
+// IMPORTS
 import $ from 'jquery';
 import FilterGroup from '../FilterGroup';
 import {useStoreContext} from '../../utils/GlobalState';
@@ -17,16 +17,17 @@ export default function FilterPanel(){
 
     function handleApply(){  // UPDATE LATER
         const output = ['Getting ready to apply this filter state:', ''];
-        let atLeastOneChecked = false;
 
-        for (const group of filterState)
+        for (const group of filterState){
             for (const element of group.elements){
-                if (!atLeastOneChecked && element.checked)
-                    atLeastOneChecked = true;
-                output.push(`Name: ${element.name}   ||   Checked: ${element.checked}`);
+                output.push(`${element.name}   ||   ${element.checked}`);
             }
+            output.push('');
+        }
 
-        alert(atLeastOneChecked ? output.join('\n') : 'At least one filter field must be checked!');
+        output.push('(*NOTE: A query with all `false`s should be treated the same as a query with all `true`s by GraphQL)');
+
+        alert(output.join('\n'));
     }
 
 

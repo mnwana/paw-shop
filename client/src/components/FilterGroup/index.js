@@ -1,47 +1,43 @@
 
-// IMPORT
+// IMPORTS
 import $ from 'jquery';
 
 import {kebabify, capitalize} from '../../utils/helpers';
 
 import {useStoreContext} from '../../utils/GlobalState';
-import {FILTER_TOGGLE_ONE, FILTER_SELECT_ALL, FILTER_SELECT_NONE} from '../../utils/actions';
-import {useEffect} from 'react';
+import {FILTER_SET_ONE, FILTER_SELECT_ALL, FILTER_SELECT_NONE} from '../../utils/actions';
+
 
 
 // COMPONENT
 export default function FilterGroup({group, elements}){
-    const [{filterState}, dispatch] = useStoreContext();
+    const [, dispatch] = useStoreContext();
 
-    useEffect(
-        () => {},
-        [filterState, dispatch]
-    );
 
-    function handleSelectAll({target}){
+    async function handleSelectAll({target}){
         $(`input[group="${$(target).attr('group')}"]`)
             .prop('checked', true);
             
-        dispatch({
+        await dispatch({
             type: FILTER_SELECT_ALL,
             group: $(target).attr('group')
         });
     }
 
-    function handleSelectNone({target}){
+    async function handleSelectNone({target}){
         $(`input[group="${$(target).attr('group')}"]`)
             .prop('checked', false);
         
-        dispatch({
+        await dispatch({
             type: FILTER_SELECT_NONE,
             group: $(target).attr('group')
         });
     }
 
     
-    function handleChange({target}){
-        dispatch({
-                type: FILTER_TOGGLE_ONE,
+    async function handleToggleOne({target}){
+        await dispatch({
+                type: FILTER_SET_ONE,
                 group: $(target).attr('group'),
                 element: $(target).attr('name'),
                 newCheckedState: $(target).prop('checked')
@@ -67,7 +63,7 @@ export default function FilterGroup({group, elements}){
                             name={name}
                             group={group}
                             id={`${kebabify(name)}-selector`}
-                            onChange={handleChange}
+                            onClick={handleToggleOne}
                             defaultChecked={checked}
                         />
 

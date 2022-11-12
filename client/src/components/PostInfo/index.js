@@ -4,6 +4,9 @@ import {useState} from 'react';
 
 import {Navigate} from 'react-router-dom';
 
+import {useStoreContext} from '../../utils/GlobalState';
+import {FILTER_SET_ONE} from '../../utils/actions';
+
 import $ from 'jquery';
 import {kebabify, capitalize} from '../../utils/helpers';
 
@@ -25,6 +28,8 @@ export default function PostInfo({
 }){
     const [postJustClicked, setPostJustClicked] = useState(false);
 
+    const [, dispatch] = useStoreContext();
+
 
     if (postJustClicked){
         alert(`Geting ready to navigate to /post/${postId}`);  // UPDATE LATER
@@ -43,12 +48,32 @@ export default function PostInfo({
     }
 
 
-    function handleFilterClick(){
+    async function handleFilterClick(){
         $('.select-none-btn[group="animal type"]').trigger('click');
         $('.select-none-btn[group="category"]').trigger('click');
 
+        /* The two click events below don't automatically trigger the `dispatch`es that follow (via `FilterGroup`),
+            likely because triggering a click event via jQuery (or even native JS) doesn't actually trigger a click event
+            on HTML <input>s INSIDE OF REACT--it does on <button>s, thus the two `.select-none-btn` click events above do
+            trigger their corresponding `dispatch`es--therefore, the `dispatch`es below MUST be called manually here
+        */
         $(`#${kebabify(animalType)}-selector`).trigger('click');
         $(`#${kebabify(category)}-selector`).trigger('click');
+        
+        await dispatch({
+            type: FILTER_SET_ONE,
+            group: 'animal type',
+            element: animalType,
+            newCheckedState: true
+        });
+        await dispatch({
+            type: FILTER_SET_ONE,
+            group: 'category',
+            element: category,
+            newCheckedState: true
+        });
+
+        $('#apply-btn').trigger('click');
     }
 
 

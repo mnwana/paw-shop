@@ -5,7 +5,7 @@ import {useReducer} from 'react';
 import {
     SET_ACTIVE_PAGE,
     SHUFFLE_AUTHORS,
-    FILTER_TOGGLE_ONE,
+    FILTER_SET_ONE,
     FILTER_SELECT_ALL,
     FILTER_SELECT_NONE
 } from './actions';
@@ -26,7 +26,7 @@ export function reducer(state, action){
                 ...state,
                 siteAuthors: shuffle(state.siteAuthors)
             };
-        case FILTER_TOGGLE_ONE:
+        case FILTER_SET_ONE:
             function filterToggleOne(){
                 const newFilterState = [...state.filterState];
                 const group = newFilterState.find(({group}) => group === action.group);
