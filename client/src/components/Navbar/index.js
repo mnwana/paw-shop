@@ -61,7 +61,7 @@ export default function Navbar(){
     useEffect(
         () => {dispatch({
             type: SET_ACTIVE_PAGE,
-            activePage: items.find(({link}) => link === `/${document.location.href.split('/')[3]}`).name  // UPDATE LATER if and when URLs become more complicated…
+            activePage: items.find(({link}) => link === `/${document.location.href.split('/')[3]}`)?.name || 'Posts' // UPDATE LATER if and when URLs become more complicated…
         })},
         []
     );
