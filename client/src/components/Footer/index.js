@@ -19,8 +19,8 @@ export default function Footer(){
     return (
         <footer>
             Designed and coded by {joinAuthors(siteAuthors)}
-            <span></span> {/* UPDATE LATER: Add a border */}
-            &copy;&nbsp;{new Date().getFullYear()}
+            &ensp;<span className='border border-start border-dark border-0'></span>
+            &ensp;&copy;&nbsp;{new Date().getFullYear()}
         </footer>
     );
 }
