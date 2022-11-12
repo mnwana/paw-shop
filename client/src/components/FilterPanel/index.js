@@ -1,8 +1,12 @@
 
 // IMPORTS
 import $ from 'jquery';
+
 import FilterGroup from '../FilterGroup';
+import ResultsSelector from '../ResultsSelector';
+
 import {useStoreContext} from '../../utils/GlobalState';
+
 
 
 // COMPONENT
@@ -32,13 +36,15 @@ export default function FilterPanel(){
 
 
     return (
-        <div className="filter-panel">
+        <div className="filter-panel d-flex flex-column">
             <div className='global-filter-btns-wrapper'>
                 <button id='apply-btn' className='btn btn-success' onClick={handleApply}>Apply</button>
                 <button id='clear-all-btn' className='btn btn-info' onClick={handleClearAll}>Clear all</button>
             </div>
 
             {filterState.map(({group, elements}) => <FilterGroup group={group} elements={elements} key={group}/>)}
+
+            <ResultsSelector totalPages={7} /> {/* UPDATE LATER */}
         </div>
     );
 }

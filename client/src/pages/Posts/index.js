@@ -1,8 +1,7 @@
 
-// IMPORT
+// IMPORTS
 import FilterPanel from '../../components/FilterPanel';
 import PostInfo from '../../components/PostInfo';
-
 
 
 // COMPONENT
