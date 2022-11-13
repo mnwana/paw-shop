@@ -36,7 +36,7 @@ export default function AcctMngmntModal({type}){
 
 
     const [formData, setFormData] = useState({
-        updateField: updateFieldName === 'borough' ? 'Manhattan' : '',
+        updateField: updateFieldName === 'borough' ? 'manhattan' : '',
         password: ''
     });
 
@@ -60,7 +60,7 @@ export default function AcctMngmntModal({type}){
         `);
 
         setFormData({
-            updateField: '',
+            updateField: updateFieldName === 'borough' ? 'manhattan' : '',  // UPDATE LATER
             password: ''
         });
     }
@@ -100,7 +100,7 @@ export default function AcctMngmntModal({type}){
                                             tabIndex='2'
                                         >
                                             {boroughs.map(borough => 
-                                                <option key={borough}>
+                                                <option value={borough} key={borough}>
                                                     {capitalizeEachWord(borough)}
                                                 </option>
                                             )}
