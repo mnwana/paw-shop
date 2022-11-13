@@ -17,7 +17,7 @@ export default function Posts(){
                 animalType={'rabbit / hamster'}
                 category={'furniture'}
                 username={'testusername'}
-                userId={2077}
+                borough={'manhattan'}
                 dateCreated={'Aug 12, 2015 at 5:57 PM'}
                 watchCount={17}
                 active={true}

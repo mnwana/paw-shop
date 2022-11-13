@@ -6,7 +6,7 @@ import {useStoreContext} from '../../utils/GlobalState';
 import {FILTER_SET_ONE} from '../../utils/actions';
 
 import $ from 'jquery';
-import {kebabify, capitalize, abbreviate} from '../../utils/helpers';
+import {kebabify, capitalize, capitalizeEachWord, abbreviate} from '../../utils/helpers';
 
 import './index.css';
 
@@ -19,7 +19,7 @@ export default function PostInfo({
     animalType = null,
     category = null,
     username = null,
-    userId = null,
+    borough = null,
     dateCreated = null,
     watchCount,
     toggleBtn = false,
@@ -99,8 +99,12 @@ export default function PostInfo({
             {dateCreated ?
                 <span>
                     Posted{' '}
-                    {username && userId ?
-                        <>by <Link to={`/user/${userId}`}>{username}</Link>{' '}</>
+                    {username && borough ?
+                        <>
+                            by{' '}
+                            <Link to={`/user/${username}`}>{username}</Link>{' '}
+                            <span>{'('}{capitalizeEachWord(borough)}{')'}</span>{' '}
+                        </>
                     :
                         <></>
                     }

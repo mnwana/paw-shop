@@ -7,10 +7,10 @@ import PostInfo from '../../components/PostInfo';
 
 // COMPONENT
 export default function User(){
-    const {userId} = useParams();
+    const {username} = useParams();
 
 
-    if (userId === "logged-in user's id")  // UPDATE LATER
+    if (username === "logged-in user's username")  // UPDATE LATER
         return <Navigate to='/account' />;
 
 

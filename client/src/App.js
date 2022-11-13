@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import Posts from './pages/Posts';
 import PostAnItem from './pages/PostAnItem';
 import MyAccount from './pages/MyAccount';
+import SinglePost from './pages/SinglePost';
 import User from './pages/User';
 
 import 'bootstrap';  // Bootstrap JS
@@ -36,7 +37,8 @@ export default function App() {
                         <Route path='/posts' element={<Posts />} />
                         <Route path='/post-an-item' element={<PostAnItem />} />
                         <Route path='/account' element={<MyAccount />} />
-                        <Route path='/user/:userId' element={<User />} />
+                        <Route path='/post/:postId' element={<SinglePost />} />
+                        <Route path='/user/:username' element={<User />} />
                         <Route path='*' element={<Navigate to='/posts' />} />
                     </Routes>
                 </main>
