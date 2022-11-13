@@ -7,7 +7,7 @@ const typeDefs = gql`
     animalType: String
     category: String
     condition: String
-    watching: String
+    watching: Int
     createdAt: String
     username: String
     email: String
