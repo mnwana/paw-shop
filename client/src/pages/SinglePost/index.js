@@ -38,19 +38,27 @@ export default function SinglePost(){
         <div className='comments-wrapper'>
             <div className='comments'>
                 {/* Sample comments */}
+                {/* UPDATE LATER:
+                    If the original poster is logged in, query all comments;
+                    otherwise, only query/display comments for which the commenter is the user who's logged in
+                    (and if nobody's logged in, don't show any comments; instead, show a message like 'Log in to comment and communicate with {username} about this item')
+                */}
                 <Comment
-                    username={'testuser091'}
+                    commenterUsername={'testuser091'}
+                    origPostUsername={username}
                     content={'This is another test comment'}
                     dateCreated={'Jun 24, 2016 at 1:46 PM'}
                 />
 
                 <Comment
-                    username={'testuser229'}
+                    commenterUsername={'testuser229'}
+                    origPostUsername={username}
                     content={'This is a test comment'}
                     dateCreated={'Jun 8, 2012 at 10:01 PM'}
                 />
             </div>
-
+            
+            {/* UPDATE LATER: only show `NewComment` if a user is logged in, and that user is NOT the original post-er */}
             <NewComment postUsername={username} />
         </div>
     </>;
