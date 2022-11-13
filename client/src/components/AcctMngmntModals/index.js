@@ -7,6 +7,7 @@ import {useStoreContext} from '../../utils/GlobalState';
 export const AcctMngmntModalTypes = [
     'update email',
     'update username',
+    'update borough',
     'update password',
     'delete account'
 ];

@@ -1,14 +1,23 @@
 
-// IMPORT
+// IMPORTS
 import $ from 'jquery';
+
 import {useState} from 'react';
-import {kebabify, capitalize} from '../../../utils/helpers';
+
+import {useStoreContext} from '../../../utils/GlobalState';
+
+import {kebabify, capitalize, capitalizeEachWord} from '../../../utils/helpers';
 
 
 
 
 // COMPONENT
 export default function AcctMngmntModal({type}){
+    const [{filterState}] = useStoreContext();
+    const boroughs = filterState
+        .find(({group}) => group === 'borough')
+        .elements.map(({name}) => name);
+
     let updateFieldName;
     switch (type){
         case 'update email':
@@ -17,6 +26,9 @@ export default function AcctMngmntModal({type}){
         case 'update username':
             updateFieldName = 'username';
             break;
+        case 'update borough':
+            updateFieldName = 'borough';  // UPDATE LATER: in the <select> below, make the default value the user's current borough
+            break;
         case 'update password':
             updateFieldName = 'password';
             break;
@@ -24,7 +36,7 @@ export default function AcctMngmntModal({type}){
 
 
     const [formData, setFormData] = useState({
-        updateField: '',
+        updateField: updateFieldName === 'borough' ? 'Manhattan' : '',
         password: ''
     });
 
@@ -76,29 +88,43 @@ export default function AcctMngmntModal({type}){
                         >
                             <div className='focus-guard' tabIndex={1} onFocus={focusGuard}></div>
                             <div className={`form-elements-wrapper d-flex flex-wrap flex-column${updateFieldName === 'password' ? '-reverse' : ''}`}>
-                                {updateFieldName ?
-                                        <div className="form-floating">
-                                            <input
-                                                className="form-control"
-                                                value={formData.updateField}
-                                                onChange={handleFormChange}
-                                                id={kebabify(type)}
-                                                name="updateField"
-                                                type={updateFieldName === 'username' ? 'text' : updateFieldName}
-                                                placeholder={`Enter ${updateFieldName}`}
-                                                tabIndex={updateFieldName === 'password' ? 3 : 2}
-                                                required
-                                                autoFocus
-                                            />
-                                            <label htmlFor={kebabify(type)}>New {updateFieldName}</label>
-                                        </div>
-                                    :
-                                        <p>Enter password to confirm account deletion</p>
+                                {updateFieldName === 'borough' ?
+                                    <select
+                                        className='borough-selector form-select form-select-sm'
+                                        aria-label='borough selector'
+                                        name='updateField'
+                                        value={formData.updateField}
+                                        onChange={handleFormChange}
+                                        tabIndex='2'
+                                    >
+                                        {boroughs.map(borough => 
+                                            <option key={borough}>
+                                                {capitalizeEachWord(borough)}
+                                            </option>
+                                        )}
+                                    </select>
+                                : updateFieldName ?
+                                    <div className="form-floating">
+                                        <input
+                                            className="form-control form-control-sm"
+                                            value={formData.updateField}
+                                            onChange={handleFormChange}
+                                            id={kebabify(type)}
+                                            name="updateField"
+                                            type={updateFieldName === 'username' ? 'text' : updateFieldName}
+                                            placeholder={`Enter ${updateFieldName}`}
+                                            tabIndex={updateFieldName === 'password' ? 3 : 2}
+                                            required
+                                        />
+                                        <label htmlFor={kebabify(type)}>New {updateFieldName}</label>
+                                    </div>
+                                :
+                                    <p>Enter password to confirm account deletion</p>
                                 }
                                 
                                 <div className="form-floating">
                                     <input
-                                        className="form-control"
+                                        className="form-control form-control-sm"
                                         value={formData.password}
                                         onChange={handleFormChange}
                                         id={`${kebabify(type)}-verify-password`}
