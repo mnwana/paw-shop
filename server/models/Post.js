@@ -12,12 +12,12 @@ const postSchema = new Schema(
         },
         animalType: {
             type: String,
-            enum: ['Dog', 'Cat', 'Bird', 'Fish', 'Hamster'],
+            enum: ['Dog', 'Cat', 'Bird', 'Fish', 'Rabbit / Hamster'],
             required: true
         },
         category: {
             type: String,
-            enum: ['Food', 'Toys', 'Furniture', 'Cleaning product', 'Outdoor'],
+            enum: ['Food', 'Toys', 'Furniture', 'Cleaning products', 'Outdoor'],
             required: true
         },
         condition: {
