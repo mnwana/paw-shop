@@ -2,7 +2,7 @@
 // IMPORTS
 import $ from 'jquery';
 
-import {kebabify, capitalize} from '../../utils/helpers';
+import {kebabify, capitalize, capitalizeEachWord} from '../../utils/helpers';
 
 import {useStoreContext} from '../../utils/GlobalState';
 import {FILTER_SET_ONE, FILTER_SELECT_ALL, FILTER_SELECT_NONE} from '../../utils/actions';
@@ -68,7 +68,7 @@ export default function FilterGroup({group, elements}){
                         />
 
                         <label className="btn btn-outline-primary" htmlFor={`${kebabify(name)}-selector`} aria-label={`${name} selector`}>
-                            {capitalize(name)}
+                            {group === 'borough' ? capitalizeEachWord(name) : capitalize(name)}
                         </label>
                     </div>
                 ))}

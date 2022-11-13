@@ -107,6 +107,31 @@ export function StoreProvider({value = [], ...props}){
                         checked: true
                     }
                 ]
+            },
+            {
+                group: 'borough',
+                elements: [
+                    {
+                        name: 'manhattan',
+                        checked: true
+                    },
+                    {
+                        name: 'brooklyn',
+                        checked: true
+                    },
+                    {
+                        name: 'queens',
+                        checked: true
+                    },
+                    {
+                        name: 'staten island',
+                        checked: true
+                    },
+                    {
+                        name: 'the bronx',
+                        checked: true
+                    }
+                ]
             }
         ]
     };

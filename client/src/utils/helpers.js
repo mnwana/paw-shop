@@ -26,5 +26,9 @@ export function capitalize(string){
 
 
 export function abbreviate(string){
-    return string.length < 35 ? string : string.substring(0, 35) + '…'
+    return string.length < 35 ? string : string.substring(0, 35) + '…';
+}
+
+export function capitalizeEachWord(string){
+    return string.split(' ').map(word => capitalize(word)).join(' ');
 }

@@ -29,9 +29,10 @@ export default function FilterPanel(){
             output.push('');
         }
 
-        output.push('(*NOTE: A query with all `false`s should be treated the same as a query with all `true`s by GraphQL)');
+        output.push('(*NOTE: A query with all `false`s for any given filter group should be treated the same as all `true`s by GraphQL)');
 
-        alert(output.join('\n'));
+        console.log(output.join('\n'));
+        alert("Check the console for details on the `filterState` that's ready to send to a GraphQL query");
     }
 
 
