@@ -10,7 +10,6 @@ const typeDefs = gql`
     watching: Int
     createdAt: String
     username: String
-    email: String
     comments: [Comment]
   }
 
