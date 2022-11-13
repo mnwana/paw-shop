@@ -2,7 +2,7 @@
 // IMPORTS
 import {useState} from 'react';
 
-import {Navigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import {useStoreContext} from '../../utils/GlobalState';
 import {FILTER_SET_ONE} from '../../utils/actions';
@@ -21,9 +21,10 @@ export default function PostInfo({
     animalType = null,
     category = null,
     username = null,
+    userId = null,
     dateCreated = null,
     watchCount,
-    toggleBtn = true,
+    toggleBtn = false,
     active
 }){
     const [postJustClicked, setPostJustClicked] = useState(false);
@@ -88,13 +89,15 @@ export default function PostInfo({
                     in{' '}
                     <button className='update-filter-view-btn' onClick={handleFilterClick}>{capitalize(animalType)} <b>•</b> {capitalize(category)}</button>
                 </span>
-            :
-                dateCreated && toggleBtn ?
+            : dateCreated ?
+                toggleBtn ?
                     <button className='active-inactive-toggle-btn btn btn-primary'>
                         {active ? 'Deactivate' : 'Reactivate'}
                     </button>
                 :
-                    getWatchCountText()
+                    <></>
+            :
+                getWatchCountText()
             }
         </div>
 
@@ -103,7 +106,13 @@ export default function PostInfo({
         <div className='second-row d-flex justify-content-between'>
             {dateCreated ?
                 <span>
-                    Posted {username ? <>by <a>{username}</a> </> : <></>}on <span>{dateCreated}</span>
+                    Posted{' '}
+                    {username && userId ?
+                        <>by <Link to={`/user/${userId}`}>{username}</Link>{' '}</>
+                    :
+                        <></>
+                    }
+                    on <span>{dateCreated}</span>
                 </span>
             :
                 <></>

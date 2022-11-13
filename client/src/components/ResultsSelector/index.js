@@ -22,7 +22,7 @@ export default function ResultsSelector({totalPages}){
         () => {
             console.log('re-query GraphQL');  // UPDATE LATER: Re-query GraphQL, update results on page
         },
-        [pageNum, setPageNum, resultsPerPage, setResultsPerPage]
+        [sortOrder, setSortOrder, pageNum, setPageNum, resultsPerPage, setResultsPerPage]
     );
     
     function handlePageNumBlur({target}){

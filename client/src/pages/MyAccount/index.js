@@ -10,7 +10,7 @@ import {AcctMngmntModalTypes} from '../../components/AcctMngmntModals';
 // COMPONENT
 export default function MyAccount(){
     return <>
-        <h2 className='welcome-user'>
+        <h2 className='welcome-user user-header'>
             Welcome, username <span className='fst-italic fs-3'>(Current Borough)</span> {/* UPDATE LATER to pull username and borough from query */}
         </h2>
 
@@ -29,7 +29,7 @@ export default function MyAccount(){
         <div className="your-posts">
             <h3>Your posts</h3>
 
-            <div className='your-active-posts-wrapper posts-wrapper'>
+            <div className='your-active-posts-wrapper active-posts-wrapper posts-wrapper'>
                 <h4>Active</h4>
 
                 {/* Sample post info */}
@@ -43,7 +43,7 @@ export default function MyAccount(){
                 />
             </div>
             
-            <div className='your-inactive-posts-wrapper posts-wrapper'>
+            <div className='your-inactive-posts-wrapper inactive-posts-wrapper posts-wrapper'>
                 <h4 className='fst-italic'>Inactive</h4>
 
                 {/* Sample post info */}
@@ -61,7 +61,7 @@ export default function MyAccount(){
         <div className="watched-items">
             <h3>Items you're watching</h3>
 
-            <div className="active-watched-items-wrapper watched-items-wrapper">
+            <div className="active-watched-items-wrapper watched-items-wrapper active-posts-wrapper posts-wrapper">
                 <h4>Active</h4>
 
                 {/* Sample post info */}
@@ -73,7 +73,7 @@ export default function MyAccount(){
                 />
             </div>
 
-            <div className="inactive-watched-items watched-items-wrapper">
+            <div className="inactive-watched-items watched-items-wrapper inactive-posts-wrapper posts-wrapper">
                 <h4 className='fst-italic'>Inactive</h4>
 
                 {/* Sample post info */}
