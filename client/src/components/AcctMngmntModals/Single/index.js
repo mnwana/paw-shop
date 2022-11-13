@@ -89,20 +89,24 @@ export default function AcctMngmntModal({type}){
                             <div className='focus-guard' tabIndex={1} onFocus={focusGuard}></div>
                             <div className={`form-elements-wrapper d-flex flex-wrap flex-column${updateFieldName === 'password' ? '-reverse' : ''}`}>
                                 {updateFieldName === 'borough' ?
-                                    <select
-                                        className='borough-selector form-select form-select-sm'
-                                        aria-label='borough selector'
-                                        name='updateField'
-                                        value={formData.updateField}
-                                        onChange={handleFormChange}
-                                        tabIndex='2'
-                                    >
-                                        {boroughs.map(borough => 
-                                            <option key={borough}>
-                                                {capitalizeEachWord(borough)}
-                                            </option>
-                                        )}
-                                    </select>
+                                    <div className='form-floating'>
+                                        <select
+                                            className='form-select form-select-sm'
+                                            id='borough-selector'
+                                            aria-label='borough selector'
+                                            name='updateField'
+                                            value={formData.updateField}
+                                            onChange={handleFormChange}
+                                            tabIndex='2'
+                                        >
+                                            {boroughs.map(borough => 
+                                                <option key={borough}>
+                                                    {capitalizeEachWord(borough)}
+                                                </option>
+                                            )}
+                                        </select>
+                                        <label htmlFor='borough-selector'>Borough</label>
+                                    </div>
                                 : updateFieldName ?
                                     <div className="form-floating">
                                         <input

@@ -37,18 +37,22 @@ export default function ResultsSelector({totalPages}){
     }
 
     return <>
-        <select
-            className="filter-sort form-select form-select-sm"
-            aria-label="filter sort"
-            value={sortOrder}
-            onChange={({target}) => setSortOrder(target.value)}
-        >
-            {sortOptions.map(option => 
-                <option key={option}>
-                    {option}
-                </option>
-            )}
-        </select>
+        <div className="form-floating">
+            <select
+                className="form-select form-select-sm"
+                id='filter-sort'
+                aria-label="filter sort"
+                value={sortOrder}
+                onChange={({target}) => setSortOrder(target.value)}
+            >
+                {sortOptions.map(option => 
+                    <option key={option}>
+                        {option}
+                    </option>
+                )}
+            </select>
+            <label htmlFor="filter-sort">Sort by</label>
+        </div>
 
         <div className="page-selector">
             <label htmlFor="page-number" className="form-label">Page</label>
