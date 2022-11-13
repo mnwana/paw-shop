@@ -10,6 +10,10 @@ import {AcctMngmntModalTypes} from '../../components/AcctMngmntModals';
 // COMPONENT
 export default function MyAccount(){
     return <>
+        <h2 className='welcome-user'>
+            Welcome, username <span className='fst-italic fs-3'>(Current Borough)</span> {/* UPDATE LATER to pull username and borough from query */}
+        </h2>
+
         <div className="acct-mngmt-btns-wrapper">
             {AcctMngmntModalTypes.map(type => 
                 <button
