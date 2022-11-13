@@ -13,7 +13,7 @@ const WatchlistSchema = new Schema(
     id: false
   });
 
-  Watchlist.virtual('Watched').get(function() {
+  Watchlist.virtual('watchedCount').get(function() {
     return this.postId.length;
 });
 
