@@ -107,7 +107,7 @@ export default function ResultsSelector({totalPages}){
                             name={option}
                             id={`${option}-option`}
                             defaultChecked={option === resultsPerPageOptions[0]}
-                            onClick={({target}) => setResultsPerPage(+target.getAttribute('name'))}
+                            onClick={({target}) => {setResultsPerPage(+target.getAttribute('name')); setPageNumMidEdit(1); setPageNum(1);}}
                         />
                         {option}
                     </label>    
