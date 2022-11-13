@@ -1,8 +1,8 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
-const ReplySchema = require('./Reply');
+const replySchema = require('./Reply');
 
-const CommentSchema = new Schema(
+const commentSchema = new Schema(
   {
     username: {
       type: String,
@@ -20,7 +20,7 @@ const CommentSchema = new Schema(
       default: Date.now,
       get: createdAtVal => dateFormat(createdAtVal)
     },
-    replies: [ReplySchema]
+    replies: [replySchema]
   },
   {
     toJSON: {
@@ -31,4 +31,4 @@ const CommentSchema = new Schema(
   }
 );
 
-module.exports = CommentSchema;
+module.exports = commentSchema;

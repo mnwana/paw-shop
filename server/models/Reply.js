@@ -1,12 +1,8 @@
 const { Schema } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const ReplySchema = new Schema(
+const replySchema = new Schema(
     {
-      // replyId: {
-      //   type: Schema.Types.ObjectId,
-      //   default: () => new Types.ObjectId()
-      // },
       replyBody: {
         type: String,
         required: true,
@@ -33,5 +29,4 @@ const ReplySchema = new Schema(
     }
   );
 
-
-module.exports = ReplySchema;
+module.exports = replySchema;
