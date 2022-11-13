@@ -1,10 +1,46 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { Comment } = require("../models");
+const { Comment, User, Post } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
-  Query: {},
+  Query: {
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({_id: context.user.id})
+          .select('-__v -password')
+          .populate('posts');
+          // if we want to add friends componant
+          // .populate('friends');
+
+        return userData
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+    posts: async (parent, {username}) => {
+      const params = username ? {username} : {};
+      return Post.find(params).sort({ createAt: -1 });
+    },
+    posts: async (parent, {_id}) => {
+      return Post.findOne({_id});
+    }
+  },
+
   Mutation: {
+    addPost: async (parent, args, context) => {
+      if (context.user) {
+        const post = await Post.create({...args, username: context.user.username});
+
+        await User.findByIdAndUpdate(
+          {_id: context.user._id},
+          {$push: {posts: post._id}},
+          {new: true}
+        );
+
+        return post;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     addComment: async (parent, args, context) => {
       if (context.user) {
         const comment = await Comment.create({
