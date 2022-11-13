@@ -1,7 +1,5 @@
 
 // IMPORTS
-import {useState} from 'react';
-
 import {Link} from 'react-router-dom';
 
 import {useStoreContext} from '../../utils/GlobalState';
@@ -27,15 +25,7 @@ export default function PostInfo({
     toggleBtn = false,
     active
 }){
-    const [postJustClicked, setPostJustClicked] = useState(false);
-
     const [, dispatch] = useStoreContext();
-
-
-    if (postJustClicked){
-        alert(`Geting ready to navigate to /post/${postId}`);  // UPDATE LATER
-        return <Navigate to={`/post/${postId}`} />
-    }
 
 
     function getWatchCountText(){
@@ -80,9 +70,11 @@ export default function PostInfo({
 
     return <div className={`post-info ${active ? 'active' : 'inactive'} mb-3`}>
         <div className="first-row d-flex justify-content-between">
-            <button className='item-name' onClick={() => setPostJustClicked(true)}>
-                {abbreviate(name)}
-            </button>
+            <Link to={`/post/${postId}`}>
+                <button className='item-name'>
+                    {abbreviate(name)}
+                </button>
+            </Link>
 
             {animalType && category ?
                 <span>
