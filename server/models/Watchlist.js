@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 
 const WatchlistSchema = new Schema(
     
-    PostId: {
+    postId: {
       type: Schema.Types.ObjectId,
       ref: "Post"
     },
