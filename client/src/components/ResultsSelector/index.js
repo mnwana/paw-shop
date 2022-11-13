@@ -43,7 +43,7 @@ export default function ResultsSelector({totalPages}){
                 id='filter-sort'
                 aria-label="filter sort"
                 value={sortOrder}
-                onChange={({target}) => setSortOrder(target.value)}
+                onChange={({target}) => {setSortOrder(target.value); setPageNumMidEdit(1); setPageNum(1);}}
             >
                 {sortOptions.map(option => 
                     <option key={option}>
