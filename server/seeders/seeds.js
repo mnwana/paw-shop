@@ -1,17 +1,22 @@
-const userSeed = require('./userSeed.json');
-const postSeed = require('./postSeed.json');
+// IMPORTS
+// const faker = require('faker');
+const userSeeds = require('./userSeed.json');
+const postSeeds = require('./postSeed.json');
+const commentSeeds = require("./commentSeed.json");
 const db = require('../config/connection');
-const { User, Post } = require('../models');
+const { User, Post, Comment } = require('../models');
 
+// SEED
 db.once('open', async () => {
     try {
-        await Post.deleteMany({});
         await User.deleteMany({});
+        await Post.deleteMany({});
+        await Comment.deleteMany({});
 
-        await User.create(userSeed);
+        await User.create(userSeeds);
 
-        for (let i = 0; i < postSeed.length; i++) {
-            const {_id, postAuthor} = await Post.create(postSeed[i]);
+        for (let i = 0; i < postSeeds.length; i++) {
+            const {_id, postAuthor} = await Post.create(postSeeds[i]);
             const user = await User.findOneAndUpdate(
                 {username: postAuthor},
                 {
@@ -21,11 +26,23 @@ db.once('open', async () => {
                 }
             );
         }
+        
+        for (let i = 0; i < commentSeeds.length; i++) {
+          const { _id, username } = await Comment.create(commentSeeds[i]);
+          const post = await Post.findOneAndUpdate(
+            { username },
+            {
+              $addToSet: {
+                comments: _id,
+              },
+            }
+          );
+        }
     } catch (err) {
         console.error(err);
         process.exit(1);
     }
 
-    console.log('All done!');
+    console.log('Seeding completed!');
     process.exit(0);
 });
