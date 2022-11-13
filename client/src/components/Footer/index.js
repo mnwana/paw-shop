@@ -1,20 +1,31 @@
 
 // IMPORT
-import {useEffect} from 'react';
-import {useStoreContext} from '../../utils/GlobalState';
-import {SHUFFLE_AUTHORS} from '../../utils/actions';
+
+const shuffle = require('lodash.shuffle');
 
 import {joinAuthors} from '../../utils/helpers';
 
 
 // COMPONENT
 export default function Footer(){
-    const [{siteAuthors}, dispatch] = useStoreContext();
-
-    useEffect(
-        () => {dispatch({type: SHUFFLE_AUTHORS})},
-        []    
-    );
+    const siteAuthors = shuffle([
+        {
+            name: 'Noah Becker',
+            link: 'https://noah35becker.github.io/portfolio/'
+        },
+        {
+            name: 'Michael Choi',
+            link: 'https://github.com/jchoi10?tab=repositories'
+        },
+        {
+            name: 'Marielle Nwana',
+            link: 'https://www.mariellenwana.com'
+        },
+        {
+            name: 'Claudia Yile',
+            link: 'https://market.zora.co/cybele'
+        }
+    ]);
 
     return (
         <footer>

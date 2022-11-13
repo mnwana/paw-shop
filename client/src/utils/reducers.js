@@ -4,13 +4,10 @@ import {useReducer} from 'react';
 
 import {
     SET_ACTIVE_PAGE,
-    SHUFFLE_AUTHORS,
     FILTER_SET_ONE,
     FILTER_SELECT_ALL,
     FILTER_SELECT_NONE
 } from './actions';
-
-const shuffle = require('lodash.shuffle');
 
 
 // REDUCER LOGIC
@@ -20,11 +17,6 @@ export function reducer(state, action){
             return {
                 ...state,
                 activePage: action.activePage
-            }
-        case SHUFFLE_AUTHORS:
-            return {
-                ...state,
-                siteAuthors: shuffle(state.siteAuthors)
             };
         case FILTER_SET_ONE:
             function filterToggleOne(){
