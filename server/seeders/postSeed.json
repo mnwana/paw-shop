@@ -1,0 +1,22 @@
+[
+    {
+        "postText": "Slightly used cat toy with String",
+        "username": "michaelC",
+        "comments": [
+            {
+                "commentBody": "Why do you want to exchange this?",
+                "username": "johnnyB"
+            }
+        ]
+    },
+    {
+        "postText": "Looking for dog chewing toy",
+        "username": "doggo",
+        "comments": [
+            {
+                "commentBody": "How old is your dog?",
+                "username": "MMC"
+            }
+        ]
+    }
+]
