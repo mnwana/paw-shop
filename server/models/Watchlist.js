@@ -1,21 +1,18 @@
-
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const WatchlistSchema = new Schema(
-    {
+  {
     postId: {
       type: Schema.Types.ObjectId,
-      ref: "Post"
+      ref: "Post",
     },
-    },
+  },
   {
-    toJSON: {
-    }, 
-    id: false
+    toJSON: {},
+    id: false,
   }
 );
 
-  Watchlist.virtual('watchedCount').get(function() {
-    return this.postId.length;
+Watchlist.virtual("watchedCount").get(function () {
+  return this.postId.length;
 });
-

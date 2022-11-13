@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const { enum } = require("sequelize/types");
 const dateFormat = require("../utils/dateFormat");
 const Watchlist = require("./Watchlist");
 const Post = require("./Post");
