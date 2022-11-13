@@ -37,10 +37,9 @@ const postSchema = new Schema(
       default: Date.now,
       get: (timestamp) => dateFormat(timestamp),
     },
-    username: {
-      type: String,
-      required: true,
-      trim: true,
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     },
     comments: [commentSchema],
   },

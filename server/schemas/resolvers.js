@@ -22,14 +22,14 @@ const resolvers = {
         .populate("posts")
         .populate("watchlist");
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username })
+    user: async (parent, { _id }) => {
+      return User.findOne({ _id })
         .select("-__v -password")
         .populate("posts")
         .populate("watchlist");
     },
-    posts: async (parent, { username }) => {
-      const params = username ? { username } : {};
+    posts: async (parent, { userId }) => {
+      const params = userId ? { userId } : {};
       return Post.find(params).sort({ createdAt: -1 });
     },
     post: async (parent, { _id }) => {
@@ -64,7 +64,7 @@ const resolvers = {
       if (context.user) {
         const post = await Post.create({
           ...args,
-          username: context.user.username,
+          userId: context.user._id,
         });
 
         await User.findByIdAndUpdate(
@@ -94,7 +94,7 @@ const resolvers = {
       if (context.user) {
         const comment = await Comment.create({
           ...args,
-          username: context.user.username,
+          userId: context.user._id,
         });
         await Post.findByIdAndUpdate(
           { _id: postId },
@@ -112,7 +112,7 @@ const resolvers = {
         const updatedComment = await Comment.findOneAndUpdate(
           { _id: commentId },
           {
-            $push: { replies: { replyBody, username: context.user.username } },
+            $push: { replies: { replyBody, userId: context.user._id } },
           },
           { new: true, runValidators: true }
         );

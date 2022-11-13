@@ -4,9 +4,9 @@ const replySchema = require('./Reply');
 
 const commentSchema = new Schema(
   {
-    username: {
-      type: String,
-      required: true
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     },
     commentBody: {
       type: String,

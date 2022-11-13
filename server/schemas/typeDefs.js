@@ -18,7 +18,7 @@ const typeDefs = gql`
     category: String
     condition: String
     createdAt: String
-    username: String
+    userId: String
     watching: [User]
     commentCount: Int
   }
@@ -32,7 +32,7 @@ const typeDefs = gql`
     _id: ID
     commentBody: String
     createdAt: String
-    username: String
+    userId: String
     replies: [Reply]
   }
 
@@ -40,7 +40,7 @@ const typeDefs = gql`
     _id: ID
     replyBody: String
     createdAt: String
-    username: String
+    userId: String
   }
 
   type Mutation {
