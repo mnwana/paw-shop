@@ -4,10 +4,13 @@ import {useParams, Link} from 'react-router-dom';
 
 import {capitalizeEachWord} from '../../utils/helpers';
 
+import Comment from '../../components/Comment';
+import NewComment from '../../components/NewComment';
+
 
 // COMPONENT
 export default function SinglePost(){
-    const {postId} = useParams();
+    const {postId} = useParams();  // UPDATE LATER
 
     // Sample post content
     const
@@ -30,6 +33,25 @@ export default function SinglePost(){
             </p>
 
             <p className='description'>{description}</p>
+        </div>
+
+        <div className='comments-wrapper'>
+            <div className='comments'>
+                {/* Sample comments */}
+                <Comment
+                    username={'testuser091'}
+                    content={'This is another test comment'}
+                    dateCreated={'Jun 24, 2016 at 1:46 PM'}
+                />
+
+                <Comment
+                    username={'testuser229'}
+                    content={'This is a test comment'}
+                    dateCreated={'Jun 8, 2012 at 10:01 PM'}
+                />
+            </div>
+
+            <NewComment postUsername={username} />
         </div>
     </>;
 }
