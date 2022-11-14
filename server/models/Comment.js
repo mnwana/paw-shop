@@ -15,6 +15,16 @@ const commentSchema = new Schema(
       minLength: 1, 
       maxLength: 100
     },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: createdAtVal => dateFormat(createdAtVal)
+    },
+    updatedAt: {
+      type: Date,
+      default: Date.now,
+      get: createdAtVal => dateFormat(createdAtVal)
+    },
     replies: [replySchema]
   },
   {
@@ -22,9 +32,16 @@ const commentSchema = new Schema(
       virtuals: true,
       getters: true
     },
-    timestamps: { createdAt: true, updatedAt: true },
     id: false
   }
 );
+
+postSchema.pre("save", async function (next) {
+  if (this.isNew || this.isModified("replies")) {
+    this.updatedAt = Date.now;
+  }
+
+  next();
+});
 
 module.exports = commentSchema;
