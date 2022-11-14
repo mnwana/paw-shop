@@ -19,7 +19,7 @@ const userSchema = new Schema(
     },
     borough: {
       type: String,
-      enum: ["Manhattan", "Brooklyn", "Queens", "Staten Island", "The Bronx"],
+      enum: ["manhattan", "brooklyn", "queens", "staten island", "the bronx"],
       required: true,
       trim: true,
     },
