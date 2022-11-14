@@ -6,9 +6,8 @@ const typeDefs = gql`
     username: String
     email: String
     borough: String
-    friendCount: Int
     posts: [Post]
-    watchlist: [WatchList]
+    watchlist: [Post]
   }
 
   type Post {
@@ -32,7 +31,7 @@ const typeDefs = gql`
     _id: ID
     commentBody: String
     createdAt: String
-    userId: String
+    userId: ID
     replies: [Reply]
   }
 
@@ -40,7 +39,7 @@ const typeDefs = gql`
     _id: ID
     replyBody: String
     createdAt: String
-    userId: String
+    userId: ID
   }
 
   type Mutation {
