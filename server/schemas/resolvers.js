@@ -82,7 +82,7 @@ const resolvers = {
       if (context.user) {
         const user = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { watching: postId } },
+          { $push: { watchlist: postId } },
           { new: true }
         );
         return user;
