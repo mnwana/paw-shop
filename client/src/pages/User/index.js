@@ -26,7 +26,7 @@ export default function User(){
                 {/* Sample post info */}
                 <PostInfo
                     postId={1234569963}
-                    name={'Test active name'}
+                    title={'Test active title'}
                     dateCreated={'May 17, 2014 at 11:51 AM'}
                     watchCount={6}
                     active={true}

@@ -30,7 +30,7 @@ export default function Navbar(){
     const testerLoggedIn = true;  // UPDATE LATER to pull from client-side `utils/auth.js`
 
 
-    const items = [
+    const navItems = [
         {
             name: 'Posts',
             link: '/posts',
@@ -61,7 +61,7 @@ export default function Navbar(){
     useEffect(
         () => {dispatch({
             type: SET_ACTIVE_PAGE,
-            activePage: items.find(({link}) => link === `/${document.location.href.split('/')[3]}`)?.name || 'Posts' // UPDATE LATER if and when URLs become more complicated…
+            activePage: navItems.find(({link}) => link === `/${document.location.href.split('/')[3]}`)?.name || 'Posts' // UPDATE LATER if and when URLs become more complicated…
         })},
         []
     );
@@ -75,7 +75,7 @@ export default function Navbar(){
 
             <nav>
                 <ul>
-                    {items
+                    {navItems
                         .filter(item => item.reqsLogin === null || item.reqsLogin === testerLoggedIn)
                         .map(item =>
                             <li

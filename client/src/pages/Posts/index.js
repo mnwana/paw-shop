@@ -13,7 +13,7 @@ export default function Posts(){
             {/* Sample active post */}
             <PostInfo
                 postId={123123}
-                name={'Test name, long, so therefore abbreviated'}
+                title={'Test title, long, so therefore abbreviated'}
                 animalType={'rabbit / hamster'}
                 category={'furniture'}
                 username={'testusername'}

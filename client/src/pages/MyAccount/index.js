@@ -38,7 +38,7 @@ export default function MyAccount(){
                 {/* Sample post info */}
                 <PostInfo
                     postId={123456}
-                    name={'Test active name'}
+                    title={'Test active title'}
                     dateCreated={'Sep 8, 2021 at 7:40 AM'}
                     watchCount={1}
                     toggleBtn={true}
@@ -53,7 +53,7 @@ export default function MyAccount(){
                 {/* Sample post info */}
                 <PostInfo
                     postId={123456990}
-                    name={'Test inactive name'}
+                    title={'Test inactive title'}
                     dateCreated={'Jan 12, 2020 at 7:19 PM'}
                     watchCount={0}
                     toggleBtn={true}
@@ -72,7 +72,7 @@ export default function MyAccount(){
                 {/* Sample post info */}
                 <PostInfo
                     postId={87213}
-                    name={'Test watching active name'}
+                    title={'Test watching active title'}
                     watchCount={4}
                     active={true}
                 />
@@ -84,7 +84,7 @@ export default function MyAccount(){
                 {/* Sample post info */}
                 <PostInfo
                     postId={45790}
-                    name={'Test watching inactive name'}
+                    title={'Test watching inactive title'}
                     watchCount={39}
                     active={false}
                 />

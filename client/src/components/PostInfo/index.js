@@ -18,7 +18,7 @@ import './index.css';
 // COMPONENT
 export default function PostInfo({
     postId,
-    name,
+    title,
     animalType = null,
     category = null,
     username = null,
@@ -77,7 +77,7 @@ export default function PostInfo({
             <div className={`post-title-${showDeleteBtn ? 'and-delete-btn-' : ''}wrapper`}>
                 <Link className='d-inline-block' to={`/post/${postId}`}>
                     <button className='post-info-title'>
-                        {abbreviate(name)}
+                        {abbreviate(title)}
                     </button>
                 </Link>
                 {showDeleteBtn ?

@@ -6,7 +6,7 @@ import {useState} from "react";
 // COMPONENT
 export default function PostAnItem(){
     const [newPostData, setNewPostData] = useState({
-        name: '',
+        title: '',
         description: ''
     });
 
@@ -20,12 +20,12 @@ export default function PostAnItem(){
         e.preventDefault();
 
         alert(`New post submitted:
-            Name: ${newPostData.name}
+            Title: ${newPostData.title}
             Description: ${newPostData.description}
         `);
 
         setNewPostData({
-            name: '',
+            title: '',
             description: ''
         });
     }
@@ -35,14 +35,14 @@ export default function PostAnItem(){
             <div className="form-floating">
                 <input
                     className="form-control"
-                    value={newPostData.name}
+                    value={newPostData.title}
                     onChange={handleChange}
                     id="new-post-name"
-                    name="name"
-                    placeholder="Enter name"
+                    name="title"
+                    placeholder="Enter title"
                     required
                 />
-                <label htmlFor="new-post-name">Enter name</label>
+                <label htmlFor="new-post-title">Enter title</label>
             </div>
 
             <div className="form-floating">
