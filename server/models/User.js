@@ -1,40 +1,73 @@
-const { Schema, model } = require('mongoose');
-const { enum } = require('sequelize/types');
-const dateFormat = require('../utils/dateFormat');
-const Watchlist = require('./Watchlist')
-const Post = require('./Post')
+const { Schema, model } = require("mongoose");
+const dateFormat = require("../utils/dateFormat");
+const bcrypt = require('bcrypt');
 
-const UserSchema = new Schema({
-    
+const userSchema = new Schema(
+  {
     username: {
       type: String,
       required: true,
       minLength: 5,
       maxLength: 16,
-      trim: true
+      trim: true,
     },
     email: {
       type: String,
       required: true,
       trim: true,
-      validate: [validateEmail, 'Email address is invalid']
+      validate: [validateEmail, "Email address is invalid"],
     },
     borough: {
-        type: String,
-        enum: ["manhattan", "brooklyn", "queens", "staten island", "the bronx"],
-        required: true,
-        trim: true
+      type: String,
+      enum: ["manhattan", "brooklyn", "queens", "staten island", "the bronx"],
+      required: true,
+      trim: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (timestamp) => dateFormat(timestamp),
+    },
+    posts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
       },
-    posts: [postSchema],
-    watchlist: [WatchlistSchema]
-},
-{
+    ],
+    watchlist: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
+  },
+  {
     toJSON: {
-        virtuals: true, 
-    }, 
-    id: false
-  });
+      virtuals: true,
+    },
+    id: false,
+  }
+);
 
-const User = model('User', UserSchema);
+// set up pre-save middleware to create password
+userSchema.pre("save", async function (next) {
+  if (this.isNew || this.isModified("password")) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+
+  next();
+});
+
+// compare the incoming password with the hashed password
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
+userSchema.virtual("watchedCount").get(function () {
+  return this.watchlist.length;
+});
+
+const User = model("User", userSchema);
 
 module.exports = User;
