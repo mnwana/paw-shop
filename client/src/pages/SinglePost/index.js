@@ -32,7 +32,7 @@ export default function SinglePost(){
     ;
 
     useEffect(
-        () => {document.title = `Paw Shop | ${title}`},
+        () => {document.title = `Paw Shop | ${title} (posted by ${username})`},
         []
     );
 

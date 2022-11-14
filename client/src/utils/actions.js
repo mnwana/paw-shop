@@ -1,6 +1,4 @@
 
-export const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
-
 export const FILTER_SET_ONE = 'FILTER_SET_ONE';
 export const FILTER_SELECT_ALL = 'FILTER_SELECT_ALL';
 export const FILTER_SELECT_NONE = 'FILTER_SELECT_NONE';

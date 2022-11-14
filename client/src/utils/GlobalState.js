@@ -13,7 +13,6 @@ const {Provider} = StoreContext;
 
 export function StoreProvider({value = [], ...props}){
     const initialState = {
-        activePage: 'Posts',
         filterState: [
             {
                 group: 'animal type',

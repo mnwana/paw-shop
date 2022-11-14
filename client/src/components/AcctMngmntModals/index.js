@@ -2,8 +2,8 @@
 // IMPORTS
 import AcctMngmntModal from './Single';
 
-import {useStoreContext} from '../../utils/GlobalState';
 
+// ACCOUNT MANAGEMENT MODAL TYPES
 export const AcctMngmntModalTypes = [
     'update email',
     'update username',
@@ -12,16 +12,12 @@ export const AcctMngmntModalTypes = [
     'delete account'
 ];
 
+
 // COMPONENT
 export default function AcctMngmntModals(){
-    const [{activePage}] = useStoreContext();
-
-    if (activePage === 'My account')
-        return <>
-            {AcctMngmntModalTypes.map(type => 
-                <AcctMngmntModal type={type} key={type} />
-            )} 
-        </>;
-    
-    return <></>;
+    return <>
+        {AcctMngmntModalTypes.map(type => 
+            <AcctMngmntModal type={type} key={type} />
+        )} 
+    </>;
 }

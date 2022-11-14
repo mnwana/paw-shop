@@ -3,7 +3,6 @@
 import {useReducer} from 'react';
 
 import {
-    SET_ACTIVE_PAGE,
     FILTER_SET_ONE,
     FILTER_SELECT_ALL,
     FILTER_SELECT_NONE
@@ -13,11 +12,6 @@ import {
 // REDUCER LOGIC
 export function reducer(state, action){
     switch (action.type){
-        case SET_ACTIVE_PAGE:
-            return {
-                ...state,
-                activePage: action.activePage
-            };
         case FILTER_SET_ONE:
             function filterToggleOne(){
                 const newFilterState = [...state.filterState];

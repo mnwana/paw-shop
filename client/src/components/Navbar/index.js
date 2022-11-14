@@ -1,11 +1,10 @@
 
 // IMPORTS
-import {useEffect} from 'react';
+import {useState, useEffect} from 'react';
 
 import {Link} from 'react-router-dom';
 
-import {useStoreContext} from '../../utils/GlobalState';
-import {SET_ACTIVE_PAGE} from '../../utils/actions';
+
 
 import {loginSignupModalId} from '../LoginSignupModal';
 
@@ -15,18 +14,6 @@ import './index.css';
 
 // COMPONENT
 export default function Navbar(){
-    const [{activePage}, dispatch] = useStoreContext();
-
-    function handleNavClick({target}){
-        const page = target.getAttribute('page');
-        if (page)
-            dispatch({
-                type: SET_ACTIVE_PAGE,
-                activePage: page
-            });
-    }
-
-
     const testerLoggedIn = true;  // UPDATE LATER to pull from client-side `utils/auth.js`
 
 
@@ -57,18 +44,21 @@ export default function Navbar(){
         }
     ];
 
-
-    useEffect(
-        () => {dispatch({
-            type: SET_ACTIVE_PAGE,
-            activePage: navItems.find(({link}) => link === `/${document.location.href.split('/')[3]}`)?.name || 'Posts' // UPDATE LATER if and when URLs become more complicated…
-        })},
-        []
+    const [activePage, setActivePage] = useState(
+            navItems.find(({link}) => link === `/${document.location.href.split('/')[3]}`)?.name  // UPDATE LATER if and when URLs become more complicated…
+        ||
+            'Posts'
     );
+
+    function handleNavClick({target}){
+        const page = target.getAttribute('page');
+        if (page)
+            setActivePage(page);
+    }
 
     useEffect(
         () => {document.title = `Paw Shop | ${activePage}`},
-        [activePage, dispatch]
+        [activePage, setActivePage]
     );
 
 
