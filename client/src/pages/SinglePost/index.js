@@ -8,13 +8,16 @@ import {useState} from 'react';
 
 import {capitalizeEachWord} from '../../utils/helpers';
 
-import Comment from '../../components/Comment';
-import NewComment from '../../components/NewComment';
-import ResultsSelector from '../../components/ResultsSelector';
 import DeletePostBtnAndModal from '../../components/DeletePostBtnAndModal';
+import Comment from '../../components/Comment';
+import Reply from '../../components/Reply';
+import NewReply from '../../components/NewReply';
+import ResultsSelector from '../../components/ResultsSelector';
+import NewComment from '../../components/NewComment';
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPenNib} from '@fortawesome/free-solid-svg-icons';
+
 
 
 
@@ -134,25 +137,54 @@ export default function SinglePost(){
 
         <div className='comments-wrapper'>
             <div className='comments'>
-                {/* Sample comments */}
+                {/* Sample comments and replies */}
                 {/* UPDATE LATER:
                     If the original poster is logged in, query all comments;
                     otherwise, only query/display comments for which the commenter is the user who's logged in
                     (and if nobody's logged in, don't show any comments; instead, show a message like 'Log in to comment and communicate with {username} about this item')
                 */}
-                <Comment
-                    commenterUsername={'testuser091'}
-                    origPostUsername={username}
-                    content={'This is another test comment'}
-                    dateCreated={'Jun 24, 2016 at 1:46 PM'}
-                />
+                <div className='comment-and-reply-wrapper'>
+                    <Comment
+                        commentId={20063}
+                        commenterUsername={'testuser091'}
+                        origPostUsername={username}
+                        content={'This is another test comment'}
+                        dateCreated={'Jun 24, 2016 at 1:46 PM'}
+                    />
 
-                <Comment
-                    commenterUsername={'testuser229'}
-                    origPostUsername={username}
-                    content={'This is a test comment'}
-                    dateCreated={'Jun 8, 2012 at 10:01 PM'}
-                />
+                    <Reply
+                        replierUsername={username}
+                        content={'Hey testuser091, thanks for writing--should we meet?'}
+                        dateCreated={'Jun 25, 2016 at 2:12 PM'}
+                    />
+
+                    <Reply
+                        replierUsername={username}
+                        content={"I can come towards you if you're down"}
+                        dateCreated={'Jun 25, 2016 at 2:15 PM'}
+                    />
+
+                    <Reply
+                        replierUsername={'testuser091'}
+                        content={"Hey, great, let's do it! My number is 212-449-6831, shoot me a text"}
+                        dateCreated={'Jun 26, 2016 at 8:30 AM'}
+                    />
+
+                    <NewReply
+                        commentId={20063}
+                        otherUsername={username}
+                    />
+                </div>
+
+                <div className='comment-and-reply-wrapper'>
+                    <Comment
+                        commentId={20067}
+                        commenterUsername={'testuser229'}
+                        origPostUsername={username}
+                        content={'This is a test comment'}
+                        dateCreated={'Jun 8, 2012 at 10:01 PM'}
+                    />
+                </div>
             </div>
 
             <ResultsSelector totalPages={11} /> {/* UPDATE LATER */}

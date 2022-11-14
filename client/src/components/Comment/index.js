@@ -1,23 +1,32 @@
 
-// IMPORTS
-
-
 // COMPONENT
-export default function Comment({commenterUsername, origPostUsername, content, dateCreated}){
+export default function Comment({commentId, commenterUsername, origPostUsername, content, dateCreated = null, dateUpdated = null}){
     return <>
-        <div className="comment">
+        <div id={`comment-${commentId}`} className="comment">
             <p>{content}</p>
 
-            <p><span>{commenterUsername} | {dateCreated}</span></p>
+            <p className="comment-meta"><span className="username-meta">{commenterUsername}</span> |{' '}
+                    {dateCreated ?
+                        <>Comment posted on <span className="date-meta">{dateCreated}</span></>
+                    :
+                        <>Most recently replied to on <span className="date-meta">{dateUpdated}</span></>
+                    }
+            </p>
 
-            {commenterUsername === "logged-in user's username" ?  // UPDATE LATER
+            {"logged-in user's username" === commenterUsername || "logged-in user's username" === origPostUsername ?  // UPDATE LATER
                 <p>
                     Only you and{' '}
-                    <span className="orig-post-username">{origPostUsername}</span>
+                    <span className="username-meta">
+                        {"logged-in user's username" === commenterUsername ?
+                            {origPostUsername}
+                        :
+                            {commenterUsername}
+                        }
+                    </span>
                     {' '}can see and reply to this comment
                 </p>
             :
-                <></>  // If the original post-er is logged in, don't display any such message
+                <></>
             }
         </div>
     </>;
