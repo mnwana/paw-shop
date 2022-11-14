@@ -3,13 +3,16 @@
 import PostInfo from '../../components/PostInfo';
 
 import {kebabify, capitalize} from '../../utils/helpers';
-import {AcctMngmntModalTypes} from '../../components/AcctMngmntModals';
+import AcctMngmntModals from '../../components/AcctMngmntModals';
+    import {AcctMngmntModalTypes} from '../../components/AcctMngmntModals';
 
 
 
 // COMPONENT
 export default function MyAccount(){
     return <>
+        <AcctMngmntModals />
+    
         <h2 className='welcome-user user-header'>
             Welcome, username <span className='fst-italic fs-3'>(Current Borough)</span> {/* UPDATE LATER to pull username and borough from query */}
         </h2>
