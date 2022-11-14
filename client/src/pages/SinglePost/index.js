@@ -2,6 +2,8 @@
 // IMPORTS
 import {useParams, Link} from 'react-router-dom';
 
+import {useEffect} from 'react';
+
 import {useState} from 'react';
 
 import {capitalizeEachWord} from '../../utils/helpers';
@@ -13,6 +15,7 @@ import DeletePostBtnAndModal from '../../components/DeletePostBtnAndModal';
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPenNib} from '@fortawesome/free-solid-svg-icons';
+
 
 
 // COMPONENT
@@ -27,6 +30,11 @@ export default function SinglePost(){
         dateCreated = 'Mar 9, 2018 at 6:21 AM',
         description = 'Test description lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
     ;
+
+    useEffect(
+        () => {document.title = `Paw Shop | ${title}`},
+        []
+    );
 
     // UPDATE LATER: Only set up all editing-post-related stuff below if the original post-er is currently logged in
     const [editPost, setEditPost] = useState(false);

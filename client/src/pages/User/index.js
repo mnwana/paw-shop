@@ -1,5 +1,7 @@
 
 // IMPORTS
+import {useEffect} from 'react';
+
 import {useParams, Navigate} from 'react-router-dom';
 
 import PostInfo from '../../components/PostInfo';
@@ -8,6 +10,11 @@ import PostInfo from '../../components/PostInfo';
 // COMPONENT
 export default function User(){
     const {username} = useParams();
+
+    useEffect(
+        () => {document.title = `Paw Shop | ${username}'s active items`},
+        []
+    );
 
 
     if (username === "logged-in user's username")  // UPDATE LATER

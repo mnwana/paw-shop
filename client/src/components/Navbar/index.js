@@ -66,6 +66,11 @@ export default function Navbar(){
         []
     );
 
+    useEffect(
+        () => {document.title = `Paw Shop | ${activePage}`},
+        [activePage, dispatch]
+    );
+
 
     return (
         <header>
