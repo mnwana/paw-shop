@@ -2,31 +2,128 @@
 // IMPORTS
 import {useParams, Link} from 'react-router-dom';
 
+import {useState} from 'react';
+
 import {capitalizeEachWord} from '../../utils/helpers';
 
 import Comment from '../../components/Comment';
 import NewComment from '../../components/NewComment';
 import ResultsSelector from '../../components/ResultsSelector';
+import DeletePostModal from '../../components/DeletePostModal';
+    import {deletePostModalIdBeginning} from '../../components/DeletePostModal';
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTrashCan, faPenNib} from '@fortawesome/free-solid-svg-icons';
 
 
 // COMPONENT
 export default function SinglePost(){
-    const {postId} = useParams();  // UPDATE LATER
+    const {postId} = useParams();  // UPDATE LATER re querying
 
     // Sample post content
     const
-        name = 'Test name',
+        title = 'Test title',
         username = 'testusername',
         borough = 'manhattan',
         dateCreated = 'Mar 9, 2018 at 6:21 AM',
         description = 'Test description lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
     ;
 
-    return <>
-        <div className='post-content'>
-            <h3>{name}</h3>
+    // UPDATE LATER: Only set up all editing-post-related stuff below if the original post-er is currently logged in
+    const [editPost, setEditPost] = useState(false);
+    const [editedPostData, setEditedPostData] = useState({
+        title,
+        description
+    });
 
-            <p>
+
+    function handleEditedPostChange({target}){
+        const updatedPostData = {...editedPostData};
+        updatedPostData[target.name] = target.value;
+        setEditedPostData(updatedPostData);
+    }
+
+    function handleEditPostFormSubmit(){  // UPDATE LATER
+        const updatedTitle = editedPostData.title.trim();
+        const updatedDescription = editedPostData.description.trim();
+
+        if (updatedTitle && updatedDescription)
+            alert(`Ready to submit updated post data:
+                Title: ${editedPostData.title.trim()}
+                Description: ${editedPostData.description.trim()}
+
+                *NOTE: (updating on screen won't happen yet, but it will when the GraphQL mutation is actually sent—
+                make sure to set up the mutation with ApolloCache updating for the initial query on this page!)
+            `);
+        else {
+            alert('Title and description both require values!');
+            setEditedPostData({title, description});
+        }
+
+        setEditPost(false);
+    }
+
+
+    return <>
+        {/* UPDATE LATER: Only render this modal + form in the first place if original post-er is currently logged in */}
+        <DeletePostModal postId={postId} returnToHome={true} />
+
+        <form id='edit-post-form' className={editPost ? '' : 'd-none'} onSubmit={handleEditPostFormSubmit}>
+            <div className='title-editor form-floating'>
+                <input
+                    className="form-control form-control-sm"
+                    id='post-title-editable'
+                    name='title'
+                    placeholder="Enter updated post title"
+                    value={editedPostData.title}
+                    onChange={handleEditedPostChange}
+                    required
+                />
+                <label htmlFor="post-title-editable">Title</label>
+            </div>
+
+            <div className='description-editor form-floating'>
+                <textarea
+                    className='form-control'
+                    id='post-description-editable'
+                    name='description'
+                    placeholder='Enter updated post description'
+                    value={editedPostData.description}
+                    onChange={handleEditedPostChange}
+                    style={{height: '200px'}}
+                    required
+                />
+                <label htmlFor='post-description-editable'>Description</label>
+            </div>
+
+            <button className='btn btn-success' type='submit' form='edit-post-form'>Update</button>
+        </form>
+
+        <div className={`post-content ${editPost ? 'd-none' : ''}`} >
+            <div className='post-title-and-delete-wrapper'>
+                <h3 className='post-title d-inline-block'>{title}</h3>
+
+                {/* UPDATE LATER: only render btns if original post-er is logged in */}
+                <div className='post-btns-wrapper d-inline-block'>
+                    <button
+                        className='edit-btn btn'
+                        onClick={() => setEditPost(true)}
+                    >
+                        <FontAwesomeIcon icon={faPenNib} />
+                    </button>
+
+                    <button
+                        className='delete-btn btn'
+                        data-bs-toggle='modal'
+                        data-bs-target={`#${deletePostModalIdBeginning}${postId}`}
+                    >
+                        <FontAwesomeIcon icon={faTrashCan} />
+                    </button>
+                </div>
+            </div>
+            
+
+            <p className='post-meta'>
                 Posted by{' '}
                 <Link to={`/user/${username}`}>{username}</Link>{' '}
                 <span>{'('}{capitalizeEachWord(borough)}{')'}</span>{' '}

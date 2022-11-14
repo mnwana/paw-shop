@@ -10,7 +10,6 @@ import {kebabify, capitalize, capitalizeEachWord} from '../../../utils/helpers';
 
 
 
-
 // COMPONENT
 export default function AcctMngmntModal({type}){
     const [{filterState}] = useStoreContext();

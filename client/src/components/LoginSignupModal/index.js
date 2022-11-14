@@ -141,7 +141,7 @@ export default function LoginSignupModal(){
                                 <label htmlFor="signup-password">Password</label>
                             </div>
 
-                            <button className="btn btn-primary" type="submit" form="signup" >Sign up</button>
+                            <button className="btn btn-primary" type="submit" form="signup">Sign up</button>
                         </form>
                     </div>
                 </div>
