@@ -31,9 +31,9 @@ export default function DeletePostBtnAndModal({postId, returnToHome}){
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-body">
-                        <p className="confirm-delete-msg">Are you sure you want to delete this post?</p>
+                        <p className="confirm-delete-post-msg confirm-delete-msg">Are you sure you want to delete this post?</p>
 
-                        <div className="confirm-delete-btns-wrapper d-flex justify-content-center">
+                        <div className="confirm-delete-post-btns-wrapper d-flex justify-content-center">
                             <button className="confirm-delete-yes-btn btn btn-danger" onClick={handleYesDelete}>
                                 Yes
                             </button>

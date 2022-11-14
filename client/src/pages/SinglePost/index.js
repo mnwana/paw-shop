@@ -154,18 +154,24 @@ export default function SinglePost(){
                     />
 
                     <Reply
+                        commentId={20063}
+                        replyId={125}
                         replierUsername={username}
-                        content={'Hey testuser091, thanks for writing--should we meet?'}
+                        content={'Hey testuser091, thanks for writing—should we meet?'}
                         dateCreated={'Jun 25, 2016 at 2:12 PM'}
                     />
 
                     <Reply
+                        commentId={20063}
+                        replyId={126}
                         replierUsername={username}
                         content={"I can come towards you if you're down"}
                         dateCreated={'Jun 25, 2016 at 2:15 PM'}
                     />
 
                     <Reply
+                        commentId={20063}
+                        replyId={127}
                         replierUsername={'testuser091'}
                         content={"Hey, great, let's do it! My number is 212-449-6831, shoot me a text"}
                         dateCreated={'Jun 26, 2016 at 8:30 AM'}
