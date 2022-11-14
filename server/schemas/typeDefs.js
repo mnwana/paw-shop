@@ -33,6 +33,7 @@ const typeDefs = gql`
     createdAt: String
     userId: ID
     replies: [Reply]
+    updatedAt: String
   }
 
   type Reply {
