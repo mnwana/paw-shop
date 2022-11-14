@@ -5,6 +5,7 @@ import {useEffect} from 'react';
 import {useParams, Navigate} from 'react-router-dom';
 
 import PostInfo from '../../components/PostInfo';
+import ResultsSelector from '../../components/ResultsSelector';
 
 
 // COMPONENT
@@ -27,17 +28,21 @@ export default function User(){
         </h2>
 
         <div className='active-posts-wrapper posts-wrapper'>
-                <h4>Active posts</h4>
+            <h4>Active posts</h4>
 
-                {/* UPDATE LATER */}
-                {/* Sample post info */}
-                <PostInfo
-                    postId={1234569963}
-                    title={'Test active title'}
-                    dateCreated={'May 17, 2014 at 11:51 AM'}
-                    watchCount={6}
-                    active={true}
-                />
-            </div>
+            {/* UPDATE LATER */}
+            {/* Sample post info */}
+            <PostInfo
+                postId={1234569963}
+                title={'Test active title'}
+                dateCreated={'May 17, 2014 at 11:51 AM'}
+                watchCount={6}
+                active={true}
+            />
+
+            <ResultsSelector totalPages={2} />  {/* UPDATE LATER */}
+        </div>
+
+        
     </>;
 }

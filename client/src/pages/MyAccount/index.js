@@ -1,6 +1,7 @@
 
 // IMPORTS
 import PostInfo from '../../components/PostInfo';
+import ResultsSelector from '../../components/ResultsSelector';
 
 import {kebabify, capitalize} from '../../utils/helpers';
 import AcctMngmntModals from '../../components/AcctMngmntModals';
@@ -45,6 +46,8 @@ export default function MyAccount(){
                     active={true}
                     showDeleteBtn={true}
                 />
+
+                <ResultsSelector totalPages={4} />  {/* UPDATE LATER */}
             </div>
             
             <div className='your-inactive-posts-wrapper inactive-posts-wrapper posts-wrapper'>
@@ -60,6 +63,8 @@ export default function MyAccount(){
                     active={false}
                     showDeleteBtn={true}
                 />
+
+                <ResultsSelector totalPages={1} />  {/* UPDATE LATER */}
             </div>
         </div>
 
@@ -76,6 +81,8 @@ export default function MyAccount(){
                     watchCount={4}
                     active={true}
                 />
+
+                <ResultsSelector totalPages={2} />  {/* UPDATE LATER */}
             </div>
 
             <div className="inactive-watched-items watched-items-wrapper inactive-posts-wrapper posts-wrapper">
@@ -88,6 +95,8 @@ export default function MyAccount(){
                     watchCount={39}
                     active={false}
                 />
+
+                <ResultsSelector totalPages={6} />  {/* UPDATE LATER */}
             </div>
         </div>
     </>;

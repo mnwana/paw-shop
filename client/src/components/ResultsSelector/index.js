@@ -38,7 +38,7 @@ export default function ResultsSelector({totalPages}){
     }
 
     return <div class='results-selector'>
-        <div className="form-floating">
+        <div className="filter-sort-wrapper form-floating">
             <select
                 className="form-select form-select-sm"
                 id='filter-sort'
@@ -55,50 +55,56 @@ export default function ResultsSelector({totalPages}){
             <label htmlFor="filter-sort">Sort by</label>
         </div>
 
-        <div className="page-selector">
-            <label htmlFor="page-number" className="form-label">Page</label>
+        {totalPages > 1 ?
+            <div className="page-number-wrapper">
+                <label htmlFor="page-number" className="form-label">Page</label>
 
-            <input
-                id='page-number'
-                className='form-control'
-                type='number'
-                value={pageNumMidEdit}
-                onChange={({target}) => setPageNumMidEdit(target.value)}
-                onBlur={handlePageNumBlur}
-            />
+                <input
+                    id='page-number'
+                    className='form-control'
+                    type='number'
+                    value={pageNumMidEdit}
+                    onChange={({target}) => setPageNumMidEdit(target.value)}
+                    onBlur={handlePageNumBlur}
+                />
 
-            <label htmlFor="page-number" className="form-label">of {totalPages}</label>
+                <label htmlFor="page-number" className="form-label">of {totalPages}</label>
 
-            <div className="page-selector-arrows">
-                <button
-                    className={`first-page-selector ${pageNum > 1 ? 'visible' : 'invisible'}`}
-                    onClick={() => {setPageNumMidEdit(1); setPageNum(1);}}
-                >
-                    <FontAwesomeIcon icon={faAnglesLeft} />
-                </button>
+                <div className="page-number-arrows">
+                    <button
+                        className={`first-page-selector ${pageNum > 1 ? 'visible' : 'invisible'}`}
+                        onClick={() => {setPageNumMidEdit(1); setPageNum(1);}}
+                    >
+                        <FontAwesomeIcon icon={faAnglesLeft} />
+                    </button>
 
-                <button
-                    className={`prev-page-selector ${pageNum > 1 ? 'visible' : 'invisible'}`}
-                    onClick={() => {setPageNumMidEdit(pageNum - 1); setPageNum(pageNum - 1);}}
-                >
-                    <FontAwesomeIcon icon={faAngleLeft} />
-                </button>
+                    <button
+                        className={`prev-page-selector ${pageNum > 1 ? 'visible' : 'invisible'}`}
+                        onClick={() => {setPageNumMidEdit(pageNum - 1); setPageNum(pageNum - 1);}}
+                    >
+                        <FontAwesomeIcon icon={faAngleLeft} />
+                    </button>
 
-                <button
-                    className={`next-page-selector ${pageNum < totalPages ? 'visible' : 'invisible'}`}
-                    onClick={() => {setPageNumMidEdit(pageNum + 1); setPageNum(pageNum + 1);}}
-                >
-                    <FontAwesomeIcon icon={faAngleRight} />
-                </button>
+                    <button
+                        className={`next-page-selector ${pageNum < totalPages ? 'visible' : 'invisible'}`}
+                        onClick={() => {setPageNumMidEdit(pageNum + 1); setPageNum(pageNum + 1);}}
+                    >
+                        <FontAwesomeIcon icon={faAngleRight} />
+                    </button>
 
-                <button
-                    className={`last-page-selector ${pageNum < totalPages ? 'visible' : 'invisible'}`}
-                    onClick={() => {setPageNumMidEdit(totalPages); setPageNum(totalPages);}}
-                >
-                    <FontAwesomeIcon icon={faAnglesRight} />
-                </button>
+                    <button
+                        className={`last-page-selector ${pageNum < totalPages ? 'visible' : 'invisible'}`}
+                        onClick={() => {setPageNumMidEdit(totalPages); setPageNum(totalPages);}}
+                    >
+                        <FontAwesomeIcon icon={faAnglesRight} />
+                    </button>
+                </div>
             </div>
+        :
+            <></>
+        }
 
+        <div className="results-per-page-wrapper">
             <div className="btn-group btn-group-toggle" data-toggle="buttons">
                 {resultsPerPageOptions.map(option => 
                     <label
@@ -115,9 +121,10 @@ export default function ResultsSelector({totalPages}){
                             onClick={({target}) => {setResultsPerPage(+target.getAttribute('name')); setPageNumMidEdit(1); setPageNum(1);}}
                         />
                         {option}
-                    </label>    
+                    </label>
                 )}
             </div>
+            <span>&nbsp;results per page</span>
         </div>
     </div>;
 }
