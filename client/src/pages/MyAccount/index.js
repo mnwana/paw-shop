@@ -43,6 +43,7 @@ export default function MyAccount(){
                     watchCount={1}
                     toggleBtn={true}
                     active={true}
+                    showDeleteBtn={true}
                 />
             </div>
             
@@ -57,6 +58,7 @@ export default function MyAccount(){
                     watchCount={0}
                     toggleBtn={true}
                     active={false}
+                    showDeleteBtn={true}
                 />
             </div>
         </div>

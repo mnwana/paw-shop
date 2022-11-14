@@ -5,10 +5,13 @@ import {Link} from 'react-router-dom';
 import {useStoreContext} from '../../utils/GlobalState';
 import {FILTER_SET_ONE} from '../../utils/actions';
 
+import DeletePostBtnAndModal from '../DeletePostBtnAndModal';
+
 import $ from 'jquery';
 import {kebabify, capitalize, capitalizeEachWord, abbreviate} from '../../utils/helpers';
 
 import './index.css';
+
 
 
 
@@ -23,7 +26,8 @@ export default function PostInfo({
     dateCreated = null,
     watchCount,
     toggleBtn = false,
-    active
+    active,
+    showDeleteBtn = false
 }){
     const [, dispatch] = useStoreContext();
 
@@ -68,13 +72,20 @@ export default function PostInfo({
     }
 
 
-    return <div className={`post-info ${active ? 'active' : 'inactive'} mb-3`}>
+    return <div id={`post-info-${postId}`} className={`post-info ${active ? 'active' : 'inactive'} mb-3`}>
         <div className="first-row d-flex justify-content-between">
-            <Link to={`/post/${postId}`}>
-                <button className='item-name'>
-                    {abbreviate(name)}
-                </button>
-            </Link>
+            <div className={`post-title-${showDeleteBtn ? 'and-delete-btn-' : ''}wrapper`}>
+                <Link className='d-inline-block' to={`/post/${postId}`}>
+                    <button className='post-info-title'>
+                        {abbreviate(name)}
+                    </button>
+                </Link>
+                {showDeleteBtn ?
+                    <DeletePostBtnAndModal postId={postId} returnToHome={false} />
+                :
+                    <></>
+                }
+            </div>
 
             {animalType && category ?
                 <span>
