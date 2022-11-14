@@ -1,4 +1,7 @@
 
+export const siteTitle = 'Paw Shop';
+
+
 export function joinAuthors(authors){
     const authorLink = (author, charsAfter = '') =>
         <span key={author.name}>

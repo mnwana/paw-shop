@@ -2,9 +2,9 @@
 // IMPORTS
 import {useState, useEffect} from 'react';
 
+import {siteTitle} from '../../utils/helpers';
+
 import {Link} from 'react-router-dom';
-
-
 
 import {loginSignupModalId} from '../LoginSignupModal';
 
@@ -57,7 +57,7 @@ export default function Navbar(){
     }
 
     useEffect(
-        () => {document.title = `Paw Shop | ${activePage}`},
+        () => {document.title = `${siteTitle} | ${activePage}`},
         [activePage, setActivePage]
     );
 

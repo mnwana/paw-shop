@@ -1,6 +1,7 @@
 
 // IMPORTS
 import {useEffect} from 'react';
+import {siteTitle} from '../../utils/helpers';
 
 import {useParams, Navigate} from 'react-router-dom';
 
@@ -13,7 +14,7 @@ export default function User(){
     const {username} = useParams();
 
     useEffect(
-        () => {document.title = `Paw Shop | ${username}'s active items`},
+        () => {document.title = `${siteTitle} | ${username}'s active items`},
         []
     );
 

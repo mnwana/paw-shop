@@ -3,6 +3,7 @@
 import {useParams, Link} from 'react-router-dom';
 
 import {useEffect} from 'react';
+import {siteTitle} from '../../utils/helpers';
 
 import {useState} from 'react';
 
@@ -35,7 +36,7 @@ export default function SinglePost(){
     ;
 
     useEffect(
-        () => {document.title = `Paw Shop | ${title} (posted by ${username})`},
+        () => {document.title = `${siteTitle} | ${title} (posted by ${username})`},
         []
     );
 
