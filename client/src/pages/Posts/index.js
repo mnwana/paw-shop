@@ -2,6 +2,7 @@
 // IMPORTS
 import FilterPanel from '../../components/FilterPanel';
 import PostInfo from '../../components/PostInfo';
+import ResultsSelector from '../../components/ResultsSelector';
 
 
 // COMPONENT
@@ -23,5 +24,7 @@ export default function Posts(){
                 active={true}
             />
         </div>
+
+        <ResultsSelector totalPages={7} /> {/* UPDATE LATER */}
     </>;
 }

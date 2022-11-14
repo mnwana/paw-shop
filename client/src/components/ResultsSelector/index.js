@@ -37,7 +37,7 @@ export default function ResultsSelector({totalPages}){
         setPageNumMidEdit(val);
     }
 
-    return <>
+    return <div class='results-selector'>
         <div className="form-floating">
             <select
                 className="form-select form-select-sm"
@@ -119,5 +119,5 @@ export default function ResultsSelector({totalPages}){
                 )}
             </div>
         </div>
-    </>;
+    </div>;
 }

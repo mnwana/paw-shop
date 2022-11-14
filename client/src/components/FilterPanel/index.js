@@ -3,7 +3,6 @@
 import $ from 'jquery';
 
 import FilterGroup from '../FilterGroup';
-import ResultsSelector from '../ResultsSelector';
 
 import {useStoreContext} from '../../utils/GlobalState';
 
@@ -20,15 +19,15 @@ export default function FilterPanel(){
     
 
     function handleApply(){  // UPDATE LATER
-        const output = ['Getting ready to apply this filter state:', ''];
+        $('.results-selector .first-page-selector').trigger('click');
 
+        const output = ['Getting ready to apply this filter state:', ''];
         for (const group of filterState){
             for (const element of group.elements){
                 output.push(`${element.name}   ||   ${element.checked}`);
             }
             output.push('');
         }
-
         output.push('(*NOTE: A query with all `false`s for any given filter group should be treated the same as all `true`s by GraphQL)');
 
         console.log(output.join('\n'));
@@ -44,8 +43,6 @@ export default function FilterPanel(){
             </div>
 
             {filterState.map(({group, elements}) => <FilterGroup group={group} elements={elements} key={group}/>)}
-
-            <ResultsSelector totalPages={7} /> {/* UPDATE LATER */}
         </div>
     );
 }
