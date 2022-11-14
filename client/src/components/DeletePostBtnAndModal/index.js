@@ -1,14 +1,15 @@
 
-
-
-// ENDING TAG OF MODAL ID (after `${postId}-`)
-export const deletePostModalIdBeginning = 'delete-post-modal-';
+// IMPORTS
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
 
 
 // COMPONENT
-export default function DeletePostModal({postId, returnToHome}){
+export default function DeletePostBtnAndModal({postId, returnToHome}){
+    const modalIdBeginning = 'delete-post-modal-'
+
     async function handleYesDelete(){
-        alert('A GraphQL mutation should now be run to delete this post');  // UPDATE LATER to AWAIT a mutation to delete this post
+        alert('A GraphQL mutation should now be run to delete post ' + postId);  // UPDATE LATER to AWAIT a mutation to delete this post
 
         if (returnToHome)
             document.location.assign('/');
@@ -18,7 +19,15 @@ export default function DeletePostModal({postId, returnToHome}){
 
 
     return <>
-        <div className="modal fade" id={`${deletePostModalIdBeginning}${postId}`} tabIndex="-1" aria-labelledby='Delete post window' aria-hidden="true">
+        <button
+            className='delete-btn btn d-inline-block'
+            data-bs-toggle='modal'
+            data-bs-target={`#${modalIdBeginning}${postId}`}
+        >
+            <FontAwesomeIcon icon={faTrashCan} />
+        </button>
+
+        <div className="modal fade" id={`${modalIdBeginning}${postId}`} tabIndex="-1" aria-labelledby='Delete post window' aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-body">

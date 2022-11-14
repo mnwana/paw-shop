@@ -9,11 +9,10 @@ import {capitalizeEachWord} from '../../utils/helpers';
 import Comment from '../../components/Comment';
 import NewComment from '../../components/NewComment';
 import ResultsSelector from '../../components/ResultsSelector';
-import DeletePostModal from '../../components/DeletePostModal';
-    import {deletePostModalIdBeginning} from '../../components/DeletePostModal';
+import DeletePostBtnAndModal from '../../components/DeletePostBtnAndModal';
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTrashCan, faPenNib} from '@fortawesome/free-solid-svg-icons';
+import {faPenNib} from '@fortawesome/free-solid-svg-icons';
 
 
 // COMPONENT
@@ -65,9 +64,7 @@ export default function SinglePost(){
 
 
     return <>
-        {/* UPDATE LATER: Only render this modal + form in the first place if original post-er is currently logged in */}
-        <DeletePostModal postId={postId} returnToHome={true} />
-
+        {/* UPDATE LATER: Only render this form in the first place if original post-er is currently logged in */}
         <form id='edit-post-form' className={editPost ? '' : 'd-none'} onSubmit={handleEditPostFormSubmit}>
             <div className='title-editor form-floating'>
                 <input
@@ -103,7 +100,7 @@ export default function SinglePost(){
             <div className='post-title-and-delete-wrapper'>
                 <h3 className='post-title d-inline-block'>{title}</h3>
 
-                {/* UPDATE LATER: only render btns if original post-er is logged in */}
+                {/* UPDATE LATER: only render btns + modal if original post-er is logged in */}
                 <div className='post-btns-wrapper d-inline-block'>
                     <button
                         className='edit-btn btn'
@@ -112,13 +109,7 @@ export default function SinglePost(){
                         <FontAwesomeIcon icon={faPenNib} />
                     </button>
 
-                    <button
-                        className='delete-btn btn'
-                        data-bs-toggle='modal'
-                        data-bs-target={`#${deletePostModalIdBeginning}${postId}`}
-                    >
-                        <FontAwesomeIcon icon={faTrashCan} />
-                    </button>
+                    <DeletePostBtnAndModal postId={postId} returnToHome={true} />
                 </div>
             </div>
             
