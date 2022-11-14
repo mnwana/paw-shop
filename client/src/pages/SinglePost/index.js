@@ -6,6 +6,7 @@ import {capitalizeEachWord} from '../../utils/helpers';
 
 import Comment from '../../components/Comment';
 import NewComment from '../../components/NewComment';
+import ResultsSelector from '../../components/ResultsSelector';
 
 
 // COMPONENT
@@ -57,6 +58,8 @@ export default function SinglePost(){
                     dateCreated={'Jun 8, 2012 at 10:01 PM'}
                 />
             </div>
+
+            <ResultsSelector totalPages={11} /> {/* UPDATE LATER */}
             
             {/* UPDATE LATER: only show `NewComment` if a user is logged in, and that user is NOT the original post-er */}
             <NewComment postUsername={username} />
