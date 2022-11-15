@@ -18,7 +18,25 @@ export default function FilterPanel(){
     }
     
 
-    function handleApply(){  // UPDATE LATER
+    async function handleApply(){  // UPDATE LATER
+        // If a given filter group has none selected, select all in that group right now, before actually applying this filter
+        // (`await` here ensures that the `globalState` dispatch triggered by the jQuery click below has time to fully update `filterState` before the code proceeds)
+        await filterState.forEach(
+            ({group, elements}) => {
+                let atLeastOneSelected = false;
+                for (let i = 0; i < elements.length; i++){
+                    if (elements[i].checked){
+                        atLeastOneSelected = true;
+                        break;
+                    }
+                }
+
+                if (!atLeastOneSelected){
+                    $(`.select-all-btn[group="${group}"]`).trigger('click');
+                }
+            }
+        );
+
         $('.results-selector .first-page-selector').trigger('click');
 
         const output = ['Getting ready to apply this filter state:', ''];
@@ -28,7 +46,6 @@ export default function FilterPanel(){
             }
             output.push('');
         }
-        output.push('(*NOTE: A query with all `false`s for any given filter group should be treated the same as all `true`s by GraphQL)');
 
         console.log(output.join('\n'));
         alert("Check the console for details on the `filterState` that's ready to send to a GraphQL query");
