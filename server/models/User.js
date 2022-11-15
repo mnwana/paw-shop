@@ -15,7 +15,8 @@ const userSchema = new Schema(
       type: String,
       required: true,
       trim: true,
-      validate: [validateEmail, "Email address is invalid"],
+      //validation with a regex
+      validate: [/[a-z0-9._]+@[a-z]+\.[a-z]{2,3}/, "Email address is invalid"],
     },
     borough: {
       type: String,
