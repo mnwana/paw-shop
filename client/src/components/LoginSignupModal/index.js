@@ -60,32 +60,41 @@ export default function LoginSignupModal(){
     function handleLoginSubmit(e){  // UPDATE LATER
         e.preventDefault();
 
-        alert(`logging in with these credentials:
-            ${loginInfo.email}
-            ${loginInfo.password}
-        `);
+        loginInfo.email = loginInfo.email.trim();
 
-        setLoginInfo({
-            email: '',
-            password: ''
-        });
+        if (loginInfo.email && loginInfo.password){
+            alert(`logging in with these credentials:
+                ${loginInfo.email}
+                ${loginInfo.password}
+            `);
+
+            setLoginInfo({
+                email: '',
+                password: ''
+            });
+        }
     }
 
 
     function handleSignupSubmit(e){  // UPDATE LATER
         e.preventDefault();
-        
-        alert(`signing up with these credentials:
-            ${signupInfo.username}
-            ${signupInfo.email}
-            ${signupInfo.password}
-        `);
 
-        setSignupInfo({
-            username: '',
-            email: '',
-            password: ''
-        });
+        signupInfo.username = signupInfo.username.trim();
+        signupInfo.email = signupInfo.email.trim();
+
+        if (signupInfo.username && signupInfo.email && signupInfo.password){
+            alert(`signing up with these credentials:
+                ${signupInfo.username}
+                ${signupInfo.email}
+                ${signupInfo.password}
+            `);
+
+            setSignupInfo({
+                username: '',
+                email: '',
+                password: ''
+            });
+        }
     }
 
 

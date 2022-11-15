@@ -55,23 +55,20 @@ export default function SinglePost(){
     }
 
     function handleEditPostFormSubmit(){  // UPDATE LATER
-        const updatedTitle = editedPostData.title.trim();
-        const updatedDescription = editedPostData.description.trim();
+        editedPostData.title = editedPostData.title.trim();
+        editedPostData.description = editedPostData.description.trim();
 
-        if (updatedTitle && updatedDescription)
+        if (editedPostData.title && editedPostData.description){
             alert(`Ready to submit updated post data:
-                Title: ${editedPostData.title.trim()}
-                Description: ${editedPostData.description.trim()}
+                Title: ${editedPostData.title}
+                Description: ${editedPostData.description}
 
                 *NOTE: (updating on screen won't happen yet, but it will when the GraphQL mutation is actually sent—
                 make sure to set up the mutation with ApolloCache updating for the initial query on this page!)
             `);
-        else {
-            alert('Title and description both require values!');
-            setEditedPostData({title, description});
-        }
 
-        setEditPost(false);
+            setEditPost(false);
+        }
     }
 
 
@@ -105,7 +102,10 @@ export default function SinglePost(){
                 <label htmlFor='post-description-editable'>Description</label>
             </div>
 
-            <button className='btn btn-success' type='submit' form='edit-post-form'>Update</button>
+            <div className='edit-post-btns-wrapper'>
+                <button className='update-post-btn btn btn btn-success' type='submit' form='edit-post-form'>Update</button>
+                <button className='cancel-edit-post-btn'></button>
+            </div>
         </form>
 
         <div className={`post-content ${editPost ? 'd-none' : ''}`} >

@@ -31,6 +31,7 @@ export default function AcctMngmntModal({type}){
         case 'update password':
             updateFieldName = 'password';
             break;
+        // 'delete account' is intentionally unaccounted for here
     }
 
 
@@ -52,16 +53,21 @@ export default function AcctMngmntModal({type}){
     function handleFormSubmit(e){  // UPDATE LATER
         e.preventDefault();
 
-        alert(`Type: ${type}
-            Payload:
-                ${updateFieldName ? `Updated field: ${formData.updateField}` : '(no update field)'}
-                (Old) password: ${formData.password}
-        `);
+        if (updateFieldName !== 'password')
+            formData.updateField = formData.updateField.trim();
+        
+        if ((!updateFieldName || formData.updateField) && formData.password){
+            alert(`Type: ${type}
+                Payload:
+                    ${updateFieldName ? `Updated field: ${formData.updateField}` : '(no update field)'}
+                    (Old) password: ${formData.password}
+            `);
 
-        setFormData({
-            updateField: updateFieldName === 'borough' ? 'manhattan' : '',  // UPDATE LATER
-            password: ''
-        });
+            setFormData({
+                updateField: updateFieldName === 'borough' ? 'manhattan' : '',  // UPDATE LATER
+                password: ''
+            });
+        }
     }
 
 
