@@ -1,7 +1,8 @@
 
 // IMPORTS
 import {useEffect} from 'react';
-import {siteTitle} from '../../utils/helpers';
+import {useStoreContext} from '../../utils/GlobalState';
+import {SET_NAV_ACTIVE_PAGE} from '../../utils/actions';
 
 import {useParams, Navigate} from 'react-router-dom';
 
@@ -12,12 +13,17 @@ import ResultsSelector from '../../components/ResultsSelector';
 // COMPONENT
 export default function User(){
     const {username} = useParams();
+    const [, dispatch] = useStoreContext();
 
     useEffect(
-        () => {document.title = `${siteTitle} | ${username}'s active items`},
+        () => {
+            dispatch({
+                type: SET_NAV_ACTIVE_PAGE,
+                navActivePage: `${username}'s active items)`
+            });
+        },
         []
     );
-
 
     if (username === "logged-in user's username")  // UPDATE LATER
         return <Navigate to='/account' />;

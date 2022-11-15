@@ -54,7 +54,7 @@ export default function App() {
 
                     <Navbar />
                     
-                    <main>
+                    <main className='flex-grow-1'>
                         <Routes>
                             <Route path='/posts' element={<Posts />} />
                             <Route path='/post-an-item' element={<PostAnItem />} />

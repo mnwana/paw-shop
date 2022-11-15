@@ -3,7 +3,8 @@
 import {useParams, Link} from 'react-router-dom';
 
 import {useEffect} from 'react';
-import {siteTitle} from '../../utils/helpers';
+import {useStoreContext} from '../../utils/GlobalState';
+import {SET_NAV_ACTIVE_PAGE} from '../../utils/actions';
 
 import {useState} from 'react';
 
@@ -24,6 +25,8 @@ import {faPenNib} from '@fortawesome/free-solid-svg-icons';
 
 // COMPONENT
 export default function SinglePost(){
+    const [, dispatch] = useStoreContext();
+
     const {postId} = useParams();  // UPDATE LATER re querying
 
     // Sample post content
@@ -36,7 +39,12 @@ export default function SinglePost(){
     ;
 
     useEffect(
-        () => {document.title = `${siteTitle} | ${title} (posted by ${username})`},
+        () => {
+            dispatch({
+                type: SET_NAV_ACTIVE_PAGE,
+                navActivePage: `${title} (posted by ${username})`
+        });
+        },
         []
     );
 
