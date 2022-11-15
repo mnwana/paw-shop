@@ -12,17 +12,17 @@ const postSchema = new Schema(
         },
         animalType: {
             type: String,
-            enum: ['Dog', 'Cat', 'Bird', 'Fish', 'Rabbit / Hamster'],
+            enum: ['dog', 'cat', 'bird', 'fish', 'rabbit / hamster'],
             required: true
         },
         category: {
             type: String,
-            enum: ['Food', 'Toys', 'Furniture', 'Cleaning products', 'Outdoor'],
+            enum: ['food', 'toys', 'furniture', 'cleaning products', 'outdoor'],
             required: true
         },
         condition: {
             type: String,
-            enum: ['New', 'Like New', 'Okay', 'Bad', 'Ugly' ],
+            enum: ['new', 'like new', 'okay', 'bad', 'ugly' ],
             required: true
         },
         watching: [
@@ -41,7 +41,7 @@ const postSchema = new Schema(
             required: true,
             trim: true
         },
-        comments: [CommentSchema],
+        comments: [commentSchema],
     },
     {
         toJSON: {
