@@ -17,7 +17,7 @@ const typeDefs = gql`
     category: String
     condition: String
     createdAt: String
-    userId: String
+    userId: ID
     watching: [User]
     commentCount: Int
     comments: [Comment]
