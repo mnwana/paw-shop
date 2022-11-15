@@ -1,25 +1,47 @@
-import logo from './logo.svg';
+
+// IMPORTS
+import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
+
+import {StoreProvider} from './utils/GlobalState';
+
+import Navbar from './components/Navbar';
+import LoginSignupModal from './components/LoginSignupModal';
+import Footer from './components/Footer';
+
+import Posts from './pages/Posts';
+import PostAnItem from './pages/PostAnItem';
+import MyAccount from './pages/MyAccount';
+import SinglePost from './pages/SinglePost';
+import User from './pages/User';
+
+import 'bootstrap';  // Bootstrap JS
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+
+// COMPONENT
+export default function App() {
+    return (
+        <Router>
+            <StoreProvider>
+                <LoginSignupModal />  {/* UPDATE LATER to only render when logged in */}
+
+                <Navbar />
+                
+                <main>
+                    <Routes>
+                        <Route path='/posts' element={<Posts />} />
+                        <Route path='/post-an-item' element={<PostAnItem />} />
+                        <Route path='/account' element={<MyAccount />} />
+                        <Route path='/post/:postId' element={<SinglePost />} />
+                        <Route path='/user/:username' element={<User />} />
+                        <Route path='*' element={<Navigate to='/posts' />} />
+                    </Routes>
+                </main>
+                
+                <Footer />
+            </StoreProvider>
+      </Router>
+    );
+}
