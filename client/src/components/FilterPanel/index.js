@@ -6,6 +6,8 @@ import FilterGroup from '../FilterGroup';
 
 import {useStoreContext} from '../../utils/GlobalState';
 
+import './index.css';
+
 
 
 // COMPONENT
@@ -52,14 +54,14 @@ export default function FilterPanel(){
     }
 
 
-    return (
-        <div className="filter-panel d-flex flex-column">
-            <div className='global-filter-btns-wrapper'>
-                <button id='apply-btn' className='btn btn-success' onClick={handleApply}>Apply</button>
-                <button id='clear-all-btn' className='btn btn-info' onClick={handleClearAll}>Clear all</button>
+    return <>
+        <div className="filter-panel col-12 col-md-3 d-flex flex-column py-3 mb-5 mb-md-1 border border-dark rounded">
+            <div className='global-filter-btns-wrapper d-flex flex-wrap justify-content-start'>
+                <button id='apply-btn' className='btn btn-sm submit-btn mb-1 mx-2 hover-opacity' onClick={handleApply}>Apply</button>
+                <button id='clear-all-btn' className='btn btn-sm btn-info mb-1 mx-2 hover-opacity' onClick={handleClearAll}>Clear all</button>
             </div>
 
             {filterState.map(({group, elements}) => <FilterGroup group={group} elements={elements} key={group}/>)}
         </div>
-    );
+    </>;
 }

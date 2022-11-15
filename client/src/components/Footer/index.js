@@ -1,6 +1,5 @@
 
-// IMPORT
-
+// IMPORTS
 const shuffle = require('lodash.shuffle');
 
 import {joinAuthors} from '../../utils/helpers';

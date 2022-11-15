@@ -72,11 +72,14 @@ export default function PostInfo({
     }
 
 
-    return <div id={`post-info-${postId}`} className={`post-info ${active ? 'active' : 'inactive'} mb-3`}>
-        <div className="first-row d-flex justify-content-between">
+    return <div
+        id={`post-info-${postId}`}
+        className={`post-info ${active ? 'active' : 'inactive'} border border-dark rounded p-2 mb-3`}
+    >
+        <div className="first-row d-flex align-items-center justify-content-between">
             <div className={`post-title-${showDeleteBtn ? 'and-delete-btn-' : ''}wrapper`}>
                 <Link className='d-inline-block' to={`/post/${postId}`}>
-                    <button className='post-info-title'>
+                    <button className='post-info-title btn px-2 me-2'>
                         {abbreviate(title)}
                     </button>
                 </Link>
@@ -88,9 +91,14 @@ export default function PostInfo({
             </div>
 
             {animalType && category ?
-                <span>
-                    in{' '}
-                    <button className='update-filter-view-btn' onClick={handleFilterClick}>{capitalize(animalType)} <b>•</b> {capitalize(category)}</button>
+                <span className='update-filter-view'>
+                    in&nbsp;&nbsp;
+                    <button
+                        className='update-filter-view-btn btn submit-btn hover-opacity'
+                        onClick={handleFilterClick}
+                    >
+                        {capitalize(animalType)} <b>•</b> {capitalize(category)}
+                    </button>
                 </span>
             : dateCreated ?
                 toggleBtn ?
@@ -104,16 +112,16 @@ export default function PostInfo({
             }
         </div>
 
-        {(animalType && category) || dateCreated ? <br /> : <></>}
+        {(animalType && category) || dateCreated ? <p></p> : <></>}
 
-        <div className='second-row d-flex justify-content-between'>
+        <div className='post-meta d-flex justify-content-between fst-italic'>
             {dateCreated ?
                 <span>
                     Posted{' '}
                     {username && borough ?
                         <>
                             by{' '}
-                            <Link to={`/user/${username}`}>{username}</Link>{' '}
+                            <Link className='username-meta hover-opacity' to={`/user/${username}`}>{username}</Link>{' '}
                             <span>{'('}{capitalizeEachWord(borough)}{')'}</span>{' '}
                         </>
                     :

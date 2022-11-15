@@ -1,11 +1,47 @@
 
+.post-info{
+    color: white;
+    background-color: var(--royal-blue);
+}
+.post-info a{
+    color: var(--light-pink-darker);
+}
+
+
 .post-info.inactive .post-info-title,
-.post-info.inactive .second-row
+.post-info.inactive .post-meta
 {
     opacity: .7;
 }
 
-.post-info.inactive .first-row button,
-.post-info.inactive .second-row{
+.post-info.inactive .first-row button{
     font-style: italic;
+}
+
+
+.post-info-title{
+    background-color: var(--peach) !important;
+    border: 1px solid var(--peach) !important;
+    transition: var(--transition) !important;
+}
+.post-info-title:hover{
+    background-color: aliceblue !important;
+    color: var(--peach-darker) !important;
+}
+
+
+
+.update-filter-view, .update-filter-view-btn{
+    font-size: 14px !important;
+}
+.update-filter-view-btn{
+    border: 1px solid rgb(226, 226, 226) !important;
+}
+
+
+.username-meta{
+    font-weight: bold;
+}
+.username-meta:hover{
+    color: white;
 }

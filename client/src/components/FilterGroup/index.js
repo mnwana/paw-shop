@@ -7,6 +7,8 @@ import {kebabify, capitalize, capitalizeEachWord} from '../../utils/helpers';
 import {useStoreContext} from '../../utils/GlobalState';
 import {FILTER_SET_ONE, FILTER_SELECT_ALL, FILTER_SELECT_NONE} from '../../utils/actions';
 
+import './index.css';
+
 
 
 // COMPONENT
@@ -45,16 +47,21 @@ export default function FilterGroup({group, elements}){
     }
 
     
-    return (
-        <div className="filter-group btn-group" name={group} role={group} aria-label={`${group} filter group`}>
-            <h5>{capitalize(group)}</h5>
+    return <>
+        <div
+            className="filter-group btn-group d-flex flex-column mt-2"
+            name={group}
+            role={group}
+            aria-label={`${group} filter group`}
+        >
+            <h6 className='filter-group-name mb-1 ms-2'>{capitalize(group)}</h6>
 
-            <div className="select-all-none-btns-wrapper">
-                <button className="select-all-btn btn btn-warning" group={group} onClick={handleSelectAll}>Select all</button>
-                <button className="select-none-btn btn btn-warning" group={group} onClick={handleSelectNone}>Select none</button>
+            <div className="select-all-none-btns-wrapper mb-1">
+                <button className="select-all-btn btn btn-sm mx-2 mb-1 hover-opacity" group={group} onClick={handleSelectAll}>Select all</button>
+                <button className="select-none-btn btn btn-sm mx-2 mb-1 hover-opacity" group={group} onClick={handleSelectNone}>Deselect all</button>
             </div>
             
-            <div className="elements-wrapper d-flex" group={group}>
+            <div className="elements-wrapper d-flex justify-content-start ms-md-1 flex-wrap" group={group}>
                 {elements.map(({name, checked}) => (
                     <div className="filter-element" key={name}>
                         <input
@@ -67,12 +74,12 @@ export default function FilterGroup({group, elements}){
                             defaultChecked={checked}
                         />
 
-                        <label className="btn btn-outline-primary" htmlFor={`${kebabify(name)}-selector`} aria-label={`${name} selector`}>
+                        <label className="btn btn-sm mx-1 mb-1 hover-opacity" htmlFor={`${kebabify(name)}-selector`} aria-label={`${name} selector`}>
                             {group === 'borough' ? capitalizeEachWord(name) : capitalize(name)}
                         </label>
                     </div>
                 ))}
             </div>
         </div>
-    );
+    </>;
 }
