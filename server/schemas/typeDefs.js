@@ -20,6 +20,7 @@ const typeDefs = gql`
     userId: String
     watching: [User]
     commentCount: Int
+    comments: [Comment]
   }
 
   type Auth {
