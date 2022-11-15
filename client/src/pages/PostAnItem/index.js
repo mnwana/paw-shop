@@ -19,15 +19,20 @@ export default function PostAnItem(){
     function handleSubmit(e){
         e.preventDefault();
 
-        alert(`New post submitted:
-            Title: ${newPostData.title}
-            Description: ${newPostData.description}
-        `);
+        newPostData.title = newPostData.title.trim();
+        newPostData.description = newPostData.description.trim();
 
-        setNewPostData({
-            title: '',
-            description: ''
-        });
+        if(newPostData.title && newPostData.description){
+            alert(`New post submitted:
+                Title: ${newPostData.title}
+                Description: ${newPostData.description}
+            `);
+
+            setNewPostData({
+                title: '',
+                description: ''
+            });
+        }
     }
 
     return <>

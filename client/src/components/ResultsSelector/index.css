@@ -1,3 +1,4 @@
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -6,4 +7,32 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance: textfield;
+}
+
+
+.filter-sort-wrapper{
+  min-width: 100px;
+}
+#filter-sort{
+  background-color: aliceblue !important;
+}
+label[for="filter-sort"]{
+  padding-left: .5rem !important;
+}
+
+
+#page-number{
+  max-width: 40px;
+  background-color: aliceblue !important;
+  text-align: center;
+}
+.page-number-arrows-wrapper button{
+  font-size: 16px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+.results-per-page-wrapper .btn-group label{
+  font-size: 14px;
 }

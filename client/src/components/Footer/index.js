@@ -1,6 +1,5 @@
 
-// IMPORT
-
+// IMPORTS
 const shuffle = require('lodash.shuffle');
 
 import {joinAuthors} from '../../utils/helpers';
@@ -28,7 +27,7 @@ export default function Footer(){
     ]);
 
     return (
-        <footer>
+        <footer className='text-center flex-grow-0 mt-3 mb-1'>
             Designed and coded by {joinAuthors(siteAuthors)}
             &ensp;<span className='border border-start border-dark border-0'></span>
             &ensp;&copy;&nbsp;{new Date().getFullYear()}

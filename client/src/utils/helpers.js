@@ -29,7 +29,8 @@ export function capitalize(string){
 
 
 export function abbreviate(string){
-    return string.length < 35 ? string : string.substring(0, 35) + '…';
+    const maxLength = 40;
+    return string.length < maxLength ? string : string.substring(0, maxLength) + '…';
 }
 
 export function capitalizeEachWord(string){
