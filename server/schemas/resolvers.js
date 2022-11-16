@@ -92,7 +92,7 @@ const resolvers = {
     },
     addComment: async (parent, args, context) => {
       if (context.user) {
-        const comment = await Comment.create({
+        const comment = await Post.create({
           ...args,
           userId: context.user._id,
         });
@@ -109,7 +109,7 @@ const resolvers = {
     },
     addReply: async (parent, { commentId, replyBody }, context) => {
       if (context.user) {
-        const updatedComment = await Comment.findOneAndUpdate(
+        const updatedComment = await Post.findOneAndUpdate(
           { _id: commentId },
           {
             $push: { replies: { replyBody, userId: context.user._id } },
