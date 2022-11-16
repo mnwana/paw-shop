@@ -34,13 +34,6 @@ export const ADD_POST = gql`
       animalType
       condition
       category
-      comments {
-        _id
-      }
-      commentCount
-      watching {
-        _id
-      }
     }
   }
 `;
@@ -62,8 +55,8 @@ export const ADD_COMMENT = gql`
 
 
 export const ADD_REPLY = gql`
-  mutation addReply($commentId: ID! ,$replyBody: String!) {
-    addReply(commentId: $commentId, replyBody: $replyBody) {
+  mutation addReply($commentId: ID!,($postId: ID! ,$replyBody: String!) {
+    addReply(commentId: $commentId, postId: $postId, replyBody: $replyBody) {
       _id
       replies {
         _id
