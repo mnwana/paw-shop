@@ -22,7 +22,7 @@ import logoAnimated from '../../assets/logo-animated-by-claudia-yile.gif';
 export default function Navbar(){
     const [{navActivePage}, dispatch] = useStoreContext();
 
-    const testerLoggedIn = true;  // UPDATE LATER to pull from client-side `utils/auth.js`
+    const testerLoggedIn = false;  // UPDATE LATER to pull from client-side `utils/auth.js`
 
     const [imgSrc, setImgSrc] = useState(logo);
 
@@ -44,7 +44,7 @@ export default function Navbar(){
             reqsLogin: true
         },
         {
-            name: 'Sign up / log in',
+            name: 'Log in / sign up',
             reqsLogin: false,
         },
         {
@@ -152,7 +152,7 @@ export default function Navbar(){
                                     >
                                         {getNavLi(item)}
                                     </Link>
-                                : item.name === 'Sign up / log in' ?
+                                : item.name === 'Log in / sign up' ?
                                     <button
                                         className='nav-link-wrapper btn btn-link p-0'
                                         type="button"
