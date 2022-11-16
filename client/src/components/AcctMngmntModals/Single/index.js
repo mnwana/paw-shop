@@ -8,6 +8,8 @@ import {useStoreContext} from '../../../utils/GlobalState';
 
 import {kebabify, capitalize, capitalizeEachWord} from '../../../utils/helpers';
 
+import './index.css';
+
 
 
 // COMPONENT
@@ -77,11 +79,11 @@ export default function AcctMngmntModal({type}){
 
 
     return <>
-        <div className="modal fade" id={`${kebabify(type)}-modal`} tabIndex="-1" aria-labelledby={`${type} window`} aria-hidden="true">
+        <div className="acct-mngmnt-modal modal fade" id={`${kebabify(type)}-modal`} tabIndex="-1" aria-labelledby={`${type} window`} aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h1 className="modal-title">{capitalize(type)}</h1>
+                        <h3 className="modal-title">{capitalize(type)}</h3>
                         <button type="button" className="btn-close" tabIndex={-1} data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
@@ -92,9 +94,9 @@ export default function AcctMngmntModal({type}){
                             onSubmit={handleFormSubmit}
                         >
                             <div className='focus-guard' tabIndex={1} onFocus={focusGuard}></div>
-                            <div className={`form-elements-wrapper d-flex flex-wrap flex-column${updateFieldName === 'password' ? '-reverse' : ''}`}>
+                            <div className={`form-fields-wrapper d-flex flex-wrap flex-column${updateFieldName === 'password' ? '-reverse' : ''} align-items-center`}>
                                 {updateFieldName === 'borough' ?
-                                    <div className='form-floating'>
+                                    <div className='form-floating w-75 mb-2'>
                                         <select
                                             className='form-select form-select-sm'
                                             id='borough-selector'
@@ -113,7 +115,7 @@ export default function AcctMngmntModal({type}){
                                         <label htmlFor='borough-selector'>Borough</label>
                                     </div>
                                 : updateFieldName ?
-                                    <div className="form-floating">
+                                    <div className="form-floating w-75 mb-2">
                                         <input
                                             className="form-control form-control-sm"
                                             value={formData.updateField}
@@ -131,7 +133,7 @@ export default function AcctMngmntModal({type}){
                                     <p>Enter password to confirm account deletion</p>
                                 }
                                 
-                                <div className="form-floating">
+                                <div className="form-floating w-75 mb-2">
                                     <input
                                         className="form-control form-control-sm"
                                         value={formData.password}
@@ -148,7 +150,7 @@ export default function AcctMngmntModal({type}){
                             </div>
 
                             <button
-                                className="btn btn-primary"
+                                className={`btn mt-1 w-50 mx-auto hover-opacity`}
                                 type="submit"
                                 form={`${kebabify(type)}-form`}
                                 tabIndex={4}

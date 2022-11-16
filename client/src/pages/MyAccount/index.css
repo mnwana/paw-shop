@@ -1,0 +1,22 @@
+
+.acct-mngmnt-btns-wrapper .btn,
+.acct-mngmnt-btns-wrapper .btn:hover{
+    background-color: var(--navy-blue);
+    color: white;
+}
+
+.acct-mngmnt-btns-wrapper .btn[data-bs-target="#delete-account-modal"],
+.acct-mngmnt-btns-wrapper .btn[data-bs-target="#delete-account-modal"]:hover{
+    background-color: var(--deep-red);
+}
+
+
+.posts-section-title{
+    text-decoration: underline;
+    text-underline-offset: 2px !important;
+}
+
+
+.watched-items .post-info{
+    max-width: 800px;
+}

@@ -30,12 +30,12 @@ export default function User(){
 
 
     return <>
-        <h2 className='user-header'>
+        <h2 className='user-header text-center mt-2 mb-4'>
             username <span className='fst-italic fs-3'>(Current Borough)</span> {/* UPDATE LATER to pull username and borough from query */}
         </h2>
 
-        <div className='active-posts-wrapper posts-wrapper'>
-            <h4>Active posts</h4>
+        <div className='active-posts-wrapper posts-wrapper d-flex flex-column align-items-center w-100'>
+            <h4 className='mb-3'>Active posts</h4>
 
             {/* UPDATE LATER */}
             {/* Sample post info */}
@@ -47,7 +47,7 @@ export default function User(){
                 active={true}
             />
 
-            <ResultsSelector totalPages={2} />  {/* UPDATE LATER */}
+            <ResultsSelector totalPages={2} name={'user-posts'} />  {/* UPDATE LATER */}
         </div>
 
         

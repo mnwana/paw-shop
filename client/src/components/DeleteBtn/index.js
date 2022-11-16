@@ -10,6 +10,8 @@ import {useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
 
+import './index.css';
+
 
 
 // COMPONENT
@@ -37,21 +39,21 @@ export default function DeleteBtn({commentId, replyId = null}){
 
     return <>
         {showConfirm ? 
-            <div className='confirm-delete-wrapper'>
-                <p className='confirm-delete-msg'>Are you sure?</p>
+            <div className='confirm-delete-wrapper d-flex align-items-center px-2'>
+                <p className='confirm-delete-msg pe-1 mb-0'>Are you sure?</p>
 
-                <div className='confirm-delete-btns-wrapper'>
-                    <button className="confirm-delete-yes-btn btn btn-danger" onClick={handleYesDelete}>
+                <div className='confirm-delete-btns-wrapper d-flex me-1 mb-2'>
+                    <button className="confirm-delete-yes-btn btn py-1 mx-1" onClick={handleYesDelete}>
                         Yes
                     </button>
 
-                    <button className="confirm-delete-no-btn btn btn-primary" onClick={() => setShowConfirm(false)}>
+                    <button className="confirm-delete-no-btn btn py-1 mx-1" onClick={() => setShowConfirm(false)}>
                         No
                     </button>
                 </div>
             </div>
         :
-            <button className='delete-btn btn' onClick={() => setShowConfirm(true)}>
+            <button className='delete-btn btn hover-opacity px-2' onClick={() => setShowConfirm(true)}>
                 <FontAwesomeIcon icon={faTrashCan} />
             </button>
         }

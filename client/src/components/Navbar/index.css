@@ -1,5 +1,33 @@
 
-li.active{  /* UPDATE LATER */
-    color: green !important;
-    font-weight: 700;
+.nav-link-wrapper{
+    text-decoration: none !important;
+    transition: var(--transition) !important;
+}
+
+button.nav-link-wrapper{
+    border-width: 0px !important;
+}
+
+
+.nav-link{
+    color: var(--navy-blue) !important;   
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    text-shadow: 2px -1px 10px white;
+    transition: var(--transition) !important;
+}
+.nav-link:not(.active):hover{
+    opacity: .65 !important;
+}
+
+
+.nav-link.active{
+    font-weight: 700 !important;
+    font-family: sans-serif;
+    color: var(--peach) !important;
+    -webkit-text-stroke: .5px black;
+    letter-spacing: 1px;
+    font-size: 25px !important;
+    cursor: default;
 }

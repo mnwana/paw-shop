@@ -1,0 +1,7 @@
+
+footer span a{
+    transition: var(--transition) !important;
+}
+footer span:hover a{
+    color: var(--submit-green) !important;
+}

@@ -5,8 +5,13 @@
     --light-pink-darker: rgb(255, 160, 207);
     --royal-blue: rgb(70, 125, 228);
     --royal-blue-darker: rgb(39, 84, 169);
+    --navy-blue: rgb(59, 106, 158);
+    --light-blue: rgb(149, 198, 255);
     --peach: #ffc266;
     --peach-darker: #ea9800;
+    --submit-green: rgb(21, 165, 21);
+    --deep-red: rgb(172, 5, 5);
+    --light-red: rgb(255, 30, 30);
     --transition: .25s;
 }
 
@@ -20,8 +25,23 @@
 }
 
 .submit-btn{
-    background-color: rgb(21, 165, 21) !important;
+    background-color: var(--submit-green) !important;
     color: white !important;
+}
+
+.delete-btn{
+    color: var(--light-red) !important;
+    font-size: 18px !important;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+}
+
+.edit-btn{
+    color: var(--light-blue) !important;
+}
+
+.username-meta{
+    cursor: pointer;
 }
 
 
@@ -30,6 +50,5 @@
 #root{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--light-pink);
-    
+    background-color: var(--light-pink);   
 }

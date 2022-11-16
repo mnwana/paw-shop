@@ -10,6 +10,9 @@ import DeletePostBtnAndModal from '../DeletePostBtnAndModal';
 import $ from 'jquery';
 import {kebabify, capitalize, capitalizeEachWord, abbreviate} from '../../utils/helpers';
 
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faDownLong, faUpLong} from '@fortawesome/free-solid-svg-icons';
+
 import './index.css';
 
 
@@ -72,6 +75,12 @@ export default function PostInfo({
     }
 
 
+    function handleToggleActiveStatus(){  // UPDATE LATER
+        alert(`This post is currently ${active ? '' : 'in'}active;
+        getting ready to toggle it to ${active ? 'in' : ''}active`);
+    }
+
+
     return <div
         id={`post-info-${postId}`}
         className={`post-info ${active ? 'active' : 'inactive'} border border-dark rounded p-2 mb-3`}
@@ -91,7 +100,7 @@ export default function PostInfo({
             </div>
 
             {animalType && category ?
-                <span className='update-filter-view'>
+                <span className='update-filter-view d-flex align-items-center flex-nowrap'>
                     in&nbsp;&nbsp;
                     <button
                         className='update-filter-view-btn btn submit-btn hover-opacity'
@@ -100,15 +109,17 @@ export default function PostInfo({
                         {capitalize(animalType)} <b>•</b> {capitalize(category)}
                     </button>
                 </span>
-            : dateCreated ?
+            :
                 toggleBtn ?
-                    <button className='active-inactive-toggle-btn btn btn-primary'>
-                        {active ? 'Deactivate' : 'Reactivate'}
+                    <button className={`${active ? 'deactivate' : 'reactivate'}-btn btn hover-opacity`} onClick={handleToggleActiveStatus}>
+                        {active ?
+                            <>Deactivate <FontAwesomeIcon icon={faDownLong} /></>
+                        :
+                            <>Reactivate <FontAwesomeIcon icon={faUpLong} /></>
+                        }
                     </button>
                 :
                     <></>
-            :
-                getWatchCountText()
             }
         </div>
 
@@ -116,7 +127,7 @@ export default function PostInfo({
 
         <div className='post-meta d-flex justify-content-between fst-italic'>
             {dateCreated ?
-                <span>
+                <p className='text-start mb-0 me-2'>
                     Posted{' '}
                     {username && borough ?
                         <>
@@ -128,13 +139,13 @@ export default function PostInfo({
                         <></>
                     }
                     on <span>{dateCreated}</span>
-                </span>
+                </p>
             :
                 <></>
             }
 
             {(animalType && category) || dateCreated ?
-                <span>{getWatchCountText()}</span>
+                <p className='text-end mb-0 ms-2'>{getWatchCountText()}</p>
             :
                 <></>
             }

@@ -1,0 +1,17 @@
+
+
+#new-post-name, #new-post-description{
+    background-color: aliceblue;
+    min-width: 275px !important;
+    max-width: 700px !important;
+}
+
+
+#new-post-name, #new-post-name+label{
+    width: 35vw;
+}
+
+#new-post-description, #new-post-description+label{
+    width: 65vw;
+    min-height: 100px;
+}

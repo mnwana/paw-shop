@@ -20,7 +20,6 @@ import User from './pages/User';
 
 import 'bootstrap';  // Bootstrap JS
 import 'bootstrap/dist/css/bootstrap.min.css'; 
-import './App.css';
 
 
 
@@ -54,7 +53,7 @@ export default function App() {
 
                     <Navbar />
                     
-                    <main className='flex-grow-1 d-flex justify-content-start'>
+                    <main className='flex-grow-1 d-flex flex-column align-items-center'>
                         <Routes>
                             <Route path='/posts' element={<Posts />} />
                             <Route path='/post-an-item' element={<PostAnItem />} />

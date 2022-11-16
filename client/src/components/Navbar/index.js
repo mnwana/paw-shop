@@ -13,6 +13,9 @@ import {loginSignupModalId} from '../LoginSignupModal';
 
 import './index.css';
 
+import logo from '../../assets/logo-by-claudia-yile.png';
+import logoAnimated from '../../assets/logo-animated-by-claudia-yile.gif';
+
 
 
 // COMPONENT
@@ -20,6 +23,8 @@ export default function Navbar(){
     const [{navActivePage}, dispatch] = useStoreContext();
 
     const testerLoggedIn = true;  // UPDATE LATER to pull from client-side `utils/auth.js`
+
+    const [imgSrc, setImgSrc] = useState(logo);
 
 
     const navItems = [
@@ -39,7 +44,7 @@ export default function Navbar(){
             reqsLogin: true
         },
         {
-            name: 'Sign up / log in',
+            name: 'Log in / sign up',
             reqsLogin: false,
         },
         {
@@ -112,16 +117,22 @@ export default function Navbar(){
             data-bs-target='.navbar-collapse.show'
             aria-current={item.name}
         >
-            {item.name}
+            {item.name.replaceAll(' ', '\u00A0')}  {/* replaces spaces with `nbsp;`s */}
         </li>;
     }
 
 
     return (
         <header className='d-flex justify-content-between mt-2 mb-3 mx-1 flex-grow-0'>
-            <h1>
-                <Link to='/posts' page='Posts' onClick={handleNavClick}>{siteTitle}</Link>
-            </h1>
+            <Link to='/posts' page='Posts' onClick={handleNavClick}>
+                <img
+                    src={imgSrc}
+                    onMouseEnter={() => setImgSrc(logoAnimated || logo) /* `logo` = fallback */ }
+                    onMouseLeave={() => setImgSrc(logo)}
+                    style={{width: '400px'}}
+                    alt={siteTitle} />
+            </Link>
+
 
             <nav className="navbar navbar-expand-sm">
                 <div className="container-fluid justify-content-end px-0">
@@ -136,14 +147,14 @@ export default function Navbar(){
                                 .map(item => item.link ?
                                     <Link
                                         to={item.link}
-                                        className='no-link-style p-0'
+                                        className='nav-link-wrapper no-link-style p-0'
                                         key={item.name}
                                     >
                                         {getNavLi(item)}
                                     </Link>
-                                : item.name === 'Sign up / log in' ?
+                                : item.name === 'Log in / sign up' ?
                                     <button
-                                        className='btn btn-link p-0'
+                                        className='nav-link-wrapper btn btn-link p-0'
                                         type="button"
                                         data-bs-toggle="modal"
                                         data-bs-target={`#${loginSignupModalId}`}
@@ -153,7 +164,7 @@ export default function Navbar(){
                                     </button>
                                 : // item.name === 'Log out'
                                     <button
-                                        className='btn btn-link p-0'
+                                        className='nav-link-wrapper btn btn-link p-0'
                                         type="button"
                                         onClick={handleLogOut}
                                         key={item.name}
