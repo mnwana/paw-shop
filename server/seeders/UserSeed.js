@@ -68,7 +68,7 @@
         "borough" : "manhattan",
         "postID" : 22,
         "post" : [] 
-            }
+           
         ]
     },
         {
