@@ -1,14 +1,13 @@
-[
-    {
+[{
         "username": "billybob",
         "email" : "billy@bob.com",
+        "password" : "$GADFR1g9PG)dDjAP0k",
         "borough" : "brooklyn",
-        "postID" : 2,
         "post" : [
             {
                 "postText" : "I have a cat stroller for a cat under 12 pounds. You can have it if I can borrow a power drill for one afternoon.",
-                "comments" : [
-            {   "username" : "bigboy",
+                "comments" : [{   
+                    "username" : "bigboy",
                     "commentBody" : "You can borrow my power-drill; text me at (401)333-4509 if you're interested", 
                     "replies" : [
                         {
@@ -18,17 +17,21 @@
                         {
                             "replyBody" : "yup",
                             "username" : "bigboy"
-                        }
+                        },
                     ]}
                 ]
             }
-        ]
+        ], 
+        "watchlist" : [
+            {
+                "postId" : [3, 7, 9] 
+            }]
     },
     {
         "username": "larry",
         "email" : "larryhasacookie@gmail.com",
+        "password" : "Uz1t(7g*H#6$zVui",
         "borough" : "the bronx",
-        "postID" : 3,
         "post" : [
             {
                 "postText" : "mother says i need to find a new home for the cat",
@@ -42,14 +45,18 @@
                         },
                     ]}
                 ]
-            }
-        ]
+            }], 
+            "watchlist" : [
+                {
+                    "postId" : [2, 4, 26]
+                },
+              ]
     },
     {
         "username": "cococat",
         "email" : "coco@cat.com",
+        "password" : "gONPd5)PCRhbT",
         "borough" : "manhattan",
-        "postID" : 4,
         "post" : [ 
             {
                 "postText" : "Meow Meow",
@@ -60,88 +67,111 @@
                 }
                 ]
             }
-        ]
-    },
-    {
+        ], 
+        "watchlist" : [
+            {
+                "postId" : [16] 
+            }]
+        },
+        {
         "username": "ruffstuff",
         "email" : "ruffstuff@loveme.com",
+        "password" : "changesforadd",
         "borough" : "manhattan",
-        "postID" : 22,
-        "post" : [] 
-           
-        ]
-    },
+        "post" : [], 
+        "watchlist" : [
+            {
+                "postId" : [11, 18, 22] 
+            }]
+        },
         {
         "username": "lovable",
-        "email" : "amiagod@loveme.com",
+        "email" : "loveme@loveme.com",
+        "password" : "ca90jjon",
         "borough" : "manhattan",
-        "postID" : 300,
         "post" : [{
                 "postText" : "are we alone in the universe",
                 "comments" : []
-            }] 
-            }
-        ]
-    },
-    {
+            }], 
+            "watchlist" : [
+                {
+                    "postId" : [11, 18, 22] 
+                }]
+        },
+        {
         "username": "bigboyfella",
         "email" : "bullfighter@riskystuff.com",
+        "password" : "casdewnjlnjjn",
         "borough" : "manhattan",
-        "postID" : 18,
         "post" : [
             {
                 "postText" : "garbhj garble gabagaj garble garble uhuh",
                 "comments" : []
             }
-        ]
-    },
+        ], 
+        "watchlist" : [
             {
+                "postId" : [11, 18, 22] 
+            }]
+        },
+        {
         "username": "gabagool",
         "email" : "gabagool@gabagool.com",
+        "password" : "cajkjkji123",
         "borough" : "manhattan",
-        "postID" : 108,
         "post" : [
             {
                 "postText" : "u r a dog",
                 "comments" : []
             }
-        ]
-    },
+        ], 
+        "watchlist" : [
+            {
+                "postId" : [1, 12] 
+            }]
+        },
         {
         "username": "angelxo",
         "email" : "angels@gabagool.com",
+        "password" : "ca0gruM5eh8Wnd",
         "borough" : "brooklyn",
-        "postID" : 19,
         "post" : [
             {
                 "postText" : "does anybody have anything for cows?",
                 "comments" : []
             }
-        ]
-    },
-    {
+        ], 
+        "watchlist" : [
+            {
+                "postId" : [8, 23] 
+            }]
+        },
+        {
         "username": "asdhposiifhuwl",
         "email" : "asldijw@rkldj.org",
+        "password" : "BlBKP8gR2$A",
         "borough" : "the bronx",
-        "postID" : 199,
         "post" : [
             {
                 "postText" : "garbhj garble gabagaj garble garble uhuh",
                 "comments" : []
             }
-        ]
-    
+        ], 
+        "watchlist" : [
+            {
+                "postId" : [] 
+            }]
     },
     {
         "username": "lanadelrey",
         "email" : "lana@delrey.com",
+        "password" : "Bv9T*KXKm(Eo",
         "borough" : "brooklyn",
-        "postID" : 90,
         "post" : [
             {
                 "postText" : "I am Lana Del Rey AMA",
                 "comments" : [
-            {   "username" : "lilpuppy",
+                {   "username" : "lilpuppy",
                     "commentBody" : "Woof woof woof!", 
                     "replies" : []
                 }, 
@@ -155,9 +185,9 @@
                         {
                             "replyBody" : "take all of mine queen",
                             "username" : "bigfan"
-                        }
-                    ]
-            },            
+                        }]
+                }]
+            },          
             {   "username" : "lilpuppy",
                 "commentBody" : "what inspired blue bannisters?", 
                 "replies" : [
@@ -169,15 +199,17 @@
                         "replyBody" : "cool",
                         "username" : "lilpuppy"
                     }
-                ]
-        }, 
-                ]
+                ], 
             }
-        ]
-    },
-    {
-        "username": "psychic",
+        ], 
+        "watchlist" : [
+            {
+                "postId" : [3, 4, 7, 8, 9] 
+            }]
+            },
+        {"username": "psychic",
         "email" : "iseeu@canada.org",
+        "password" : "thirdeyemutation",
         "borough" : "staten island",
         "post" : [
             {
@@ -193,36 +225,42 @@
                         {
                             "replyBody" : "no way, that happened to my cousin",
                             "username" : "billybob"
-                        }
-                    ]
-            },   
-            ]
-            }, 
-            {
-                "postText" : "can i borrow a soft pet carrier for a cat under 12 lbs next friday, the 13th?",
+                        }],
+            }]},
+            {   "postText" : "can i borrow a soft pet carrier for a cat under 12 lbs next friday, the 13th?",
                 "comments" : [
                     {   "username" : "cococat",
                     "commentBody" : "meow meow meow", 
                     "replies" : []
-            }, 
+                }],
+            }], 
+            "watchlist" : [
+                {
+                    "postId" : [] 
+                }]
+            },
             {
         "username": "monicavitti",
         "email" : "vitti@canada.org",
+        "password" : "tozA3(b2xeSuo7",
         "borough" : "manhattan",
-        "post" : [
-            {
+        "post" : [{
                 "postText" : "i have some treats my cats hate",
                 "comments" : [
                         {
                             "replyBody" : "i'll eat em",
                             "username" : "billybob"
-                        }
-                    ]
-            },   
-            ]
+                        }]
+            }],
+            "watchlist" : [
+                {
+                    "postId" : [3, 4, 5] 
+                }]
             }, 
-        "username": "psychic",
-        "email" : "iseeu@canada.org",
+        {
+        "username": "kevin",
+        "email" : "kevin@canada.org",
+        "password" : "tozA3(b2xeSuo7",
         "borough" : "staten island",
         "post" : [
             {
@@ -230,35 +268,34 @@
                 "comments" : [
                     {   "username" : "billybob",
                     "commentBody" : "aren't you a psychic?", 
-                    "replies" : [
-                        {
-                            "replyBody" : "my cat ate my crystal ball",
-                            "username" : "psychic"
-                        },
-                        {
-                            "replyBody" : "no way, that happened to my cousin",
-                            "username" : "billybob"
-                        }
-                    ]
-            },   
-            ]
-            },
+                    "replies" : []
+                    },   
+            ]},
             {
                 "postText" : "is your fridge running?",
                 "comments" : []
-            }
-        ]
+            }], 
+            "watchlist" : [
+                {
+                    "postId" : [3, 4, 5] 
+                }]
     },
     {
         "username": "twitterdad",
         "email" : "anonymous@tesla.org",
-        "borough" : "Manhattan",
-        "post" : []
+        "password" : "toasoiqwoopmd7",
+        "borough" : "manhattan",
+        "post" : [], 
+        "watchlist" : [
+            {
+                "postId" : [] 
+            }],
     },
     {
         "username": "bobjunior",
         "email" : "billyjunior@bob.com",
-        "borough" : "Brooklyn",
+        "password" : "toasoiqwoopmd7",
+        "borough" : "manhattan",
         "post" : [
             {
                 "postText" : "I have a pet candle that I'm allergic to. Free pickup in Bed-stuy.",
@@ -277,12 +314,16 @@
                     ]}
                 ]
             }
-        ]
+        ], 
+        "watchlist" : [
+            {
+                "postId" : [] 
+            }]
     }, 
     {
         "username": "instagram",
         "email" : "instagram@yahoo.com",
-        "borough" : "Brooklyn",
+        "borough" : "staten island",
         "post" : [
             {
                 "postText" : "I have a lego set.",
@@ -298,15 +339,19 @@
                             "replyBody" : "yup",
                             "username" : "avrillavigne"
                         }
-                    ]}
-                ]
+                    ]}]
             }
-        ]
+        ], 
+        "watchlist" : [
+            {
+                "postId" : [] 
+            }]
     }, 
         {
         "username": "riley9",
         "email" : "riley9@yahoo.com",
-        "borough" : "Brooklyn",
+        "password" : "t9oxinxeSuo7",
+        "borough" : "brooklyn",
         "post" : [
             {
                 "postText" : "bing bong bing.",
@@ -314,8 +359,105 @@
             {   "username" : "riley8",
                     "commentBody" : "bingbongBoom", 
                     "replies" : []}
-                ]
-            }
-        ]
-    }, 
+                ]}
+        ],
+        "watchlist" : [
+            {
+                "postId" : [] 
+            }]
+        }, 
+        {
+            "username": "kyle",
+            "email" : "kyle@yahoo.com",
+            "password" : "t2347850917",
+            "borough" : "brooklyn",
+            "post" : [
+                {
+                    "postText" : "feelin 22",
+                    "comments" : [
+                {   "username" : "riley8",
+                        "commentBody" : "bin 33 om", 
+                        "replies" : []}
+                    ]}
+            ],
+            "watchlist" : [
+                {
+                    "postId" : [] 
+                }]
+            },
+            {
+                "username": "ooooooo",
+                "email" : "owl@twitter.com",
+                "password" : "owlsandcarsforeva",
+                "borough" : "brooklyn",
+                "post" : [
+                    {
+                        "postText" : "does anybody in brooklyn or queens have anything for pigs?",
+                        "comments" : []
+                    }
+                ], 
+                "watchlist" : [
+                    {
+                        "postId" : [13] 
+                    }]
+            },
+            {
+                "username": "b2iloes",
+                "email" : "bill@robert.com",
+                "password" : "23nakoas1902d7",
+                "borough" : "brooklyn",
+                "post" : [
+                    {
+                        "postText" : "I have rabbit supplies. Free pickup in Bushwick.",
+                        "comments" : [
+                    {   "username" : "pigboy",
+                            "commentBody" : "do they eat a lot of lettuce", 
+                            "replies" : [
+                                {
+                                    "replyBody" : "i feed them dark leafy greens",
+                                    "username" : "b2iloes"
+                                },
+                                {
+                                    "replyBody" : "nice",
+                                    "username" : "pigboy"
+                                }
+                            ]}
+                        ]
+                    }
+                ], 
+                "watchlist" : [
+                    {
+                        "postId" : [] 
+                    }]
+            }, 
+            {
+                "username": "90elfes",
+                "email" : "elf@iiiii.com",
+                "password" : "iiuuooxx23niid7",
+                "borough" : "manhattan",
+                "post" : [
+                    {
+                        "postText" : "I have rabbit supplies. Free pickup in Bushwick.",
+                        "comments" : [
+                    {   "username" : "pigboy",
+                            "commentBody" : "do they eat a lot of lettuce", 
+                            "replies" : [
+                                {
+                                    "replyBody" : "i feed them dark leafy greens",
+                                    "username" : "b2iloes"
+                                },
+                                {
+                                    "replyBody" : "nice",
+                                    "username" : "pigboy"
+                                }
+                            ]}
+                        ]
+                    }
+                ], 
+                "watchlist" : [
+                    {
+                        "postId" : [] 
+                    }]
+            }, 
+
 ]
