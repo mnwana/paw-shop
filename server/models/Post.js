@@ -46,8 +46,7 @@ const postSchema = new Schema(
             required: true,
             trim: true
         },
-        comments: [commentSchema]
-    },
+        comments: [commentSchema],
     animalType: {
       type: String,
       enum: ["Dog", "Cat", "Bird", "Fish", "Hamster"],
