@@ -122,7 +122,7 @@ export default function ResultsSelector({totalPages, name}){
             <div className="btn-group btn-group-toggle" data-toggle="buttons">
                 {resultsPerPageOptions.map(option => 
                     <label
-                        className={`btn btn-primary ${option === resultsPerPage ? 'active' : ''}`}
+                        className={`btn ${option === resultsPerPage ? 'active' : 'hover-opacity'}`}
                         htmlFor={`${name}-${option}-option`}
                         key={`${option}-results-per-page`}
                     >
@@ -138,7 +138,7 @@ export default function ResultsSelector({totalPages, name}){
                     </label>
                 )}
             </div>
-            <p className="results-per-page mb-0">results per page</p>
+            <p className="results-per-page-msg mb-0">results per page</p>
         </div>
     </div>;
 }

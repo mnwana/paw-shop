@@ -43,9 +43,15 @@ label[for="filter-sort"]{
 
 .results-per-page-wrapper .btn-group label{
   font-size: 14px;
+  background-color: var(--light-blue);
+  border: none !important;
+}
+.results-per-page-wrapper .btn-group label.active{
+  background-color: var(--navy-blue);
+  color: white;
 }
 
-.results-per-page{
+.results-per-page-msg{
   -webkit-user-select: none;
   user-select: none;
 }
