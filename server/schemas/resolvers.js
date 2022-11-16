@@ -90,29 +90,32 @@ const resolvers = {
 
       throw new AuthenticationError("You need to be logged in!");
     },
-    addComment: async (parent, args, context) => {
+    addComment: async (parent, { postId, commentBody }, context) => {
       if (context.user) {
-        const comment = await Comment.create({
+        const comment = await Post.create({
           ...args,
           userId: context.user._id,
         });
         await Post.findByIdAndUpdate(
           { _id: postId },
-          { $push: { comments: comment._id } },
+          { $push: { commentBody, comments: comment._id } },
           { new: true }
         );
 
-        return thought;
+        return comment;
       }
 
       throw new AuthenticationError("You need to be logged in!");
     },
-    addReply: async (parent, { commentId, replyBody }, context) => {
+    addReply: async (parent, { postId, commentId, replyBody }, context) => {
       if (context.user) {
-        const updatedComment = await Comment.findOneAndUpdate(
-          { _id: commentId },
+        const updatedComment = await Post.findOneAndUpdate(
+          { _id: postId, 'comments._id': commentId },
           {
-            $push: { replies: { replyBody, userId: context.user._id } },
+            $push: { 'comments.$.replies': {
+              replyBody,
+              commentId,
+              userId: context.user._id } },
           },
           { new: true, runValidators: true }
         );

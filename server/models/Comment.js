@@ -38,7 +38,7 @@ const commentSchema = new Schema(
 
 commentSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("replies")) {
-    this.updatedAt = Date.now;
+    this.updatedAt = Date.now();
   }
 
   next();

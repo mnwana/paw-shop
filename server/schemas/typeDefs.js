@@ -17,9 +17,10 @@ const typeDefs = gql`
     category: String
     condition: String
     createdAt: String
-    userId: String
+    userId: ID
     watching: [User]
     commentCount: Int
+    comments: [Comment]
   }
 
   type Auth {
@@ -57,7 +58,7 @@ const typeDefs = gql`
     addPost(postText: String!): Post
     addWatching(postId: ID!): User
     addComment(postId: ID!,commentBody: String!): Comment
-    addReply(commentId: ID!, replyBody: String!): Comment
+    addReply(commentId: ID!, postId: ID! ,replyBody: String!): Comment
   }
 `;
 
