@@ -1,161 +1,194 @@
 [
     {
         "postText": "Slightly used cat toy with String",
-        "username": "michaelC",
+        "animalType": "cat",
+        "category": "toys",
+        "condition": "like new",
+        "watching": [],
+        "createdAt": [],
+        "userId": "michaelC",
         "comments": [
             {
-                "commentBody": "Why do you want to exchange this?",
-                "username": "johnnyB"
+                "commentBody": "molestiae dicta voluptas ut iusto et hic nam",
+                "userId": "Jody.Eichmann",
+                "replies": [
+                    {
+                        "replyBody": "non exercitationem consequatur temporibus quia dicta id earum molestias voluptatibus et ut quia officiis dignissimos ex maxime sit voluptatem",
+                        "userId": "Tyree17"
+                    }
+                ]
             }
         ]
     },
     {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
+        "postText": "Slightly used cat toy with String",
+        "animalType": "dog",
+        "category": "furniture",
+        "condition": "ugly",
+        "watching": [],
+        "createdAt": [],
+        "userId": "michaelC",
         "comments": [
             {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
+                "commentBody": "sapiente illo animi non et molestiae et blanditiis adipisci aut ut dolore",
+                "userId": "Shyann.Crist57",
+                "replies": []
             }
         ]
     },
     {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
+        "postText": "Slightly used cat toy with String",
+        "animalType": "rabbit / hamster",
+        "category": "cleaning products",
+        "condition": "okay",
+        "watching": [],
+        "createdAt": [],
+        "userId": "michaelC",
         "comments": [
             {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
+                "commentBody": "voluptas quis voluptates et laborum est facere et quia quasi cupiditate dolorem",
+                "userId": "Fern.Schiller",
+                "replies": [
+                    {
+                        "replyBody": "facilis et ipsum",
+                        "userId": "Gianni_Kiehn14"
+                    },
+                    {
+                        "replyBody": "qui non aut nam porro cum repellendus a et ab laboriosam autem error ut ex incidunt sed consequatur autem",
+                        "userId": "Natasha_Beier59"
+                    }
+                ]
             }
         ]
     },
     {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
+        "postText": "Slightly used cat toy with String",
+        "animalType": "fish",
+        "category": "food",
+        "condition": "new",
+        "watching": [],
+        "createdAt": [],
+        "userId": "michaelC",
         "comments": [
             {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
+                "commentBody": "sapiente illo animi non et molestiae et blanditiis adipisci aut ut dolore",
+                "userId": "Shyann.Crist57",
+                "replies": []
             }
         ]
     },
     {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
+        "postText": "Slightly used cat toy with String",
+        "animalType": "cat",
+        "category": "outdoor",
+        "condition": "like new",
+        "watching": [],
+        "createdAt": [],
+        "userId": "michaelC",
         "comments": [
             {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
+                "commentBody": "itaque distinctio sunt et autem saepe non officia consequuntur qui sit nesciunt rerum porro corrupti possimus praesentium voluptas dolore",
+                "userId": "Dee_Bogisich",
+                "replies": []
             }
         ]
     },
     {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
+        "postText": "Slightly used cat toy with String",
+        "animalType": "cat",
+        "category": "toys",
+        "condition": "like new",
+        "watching": [],
+        "createdAt": [],
+        "userId": "michaelC",
         "comments": [
             {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
+                "commentBody": "molestiae dicta voluptas ut iusto et hic nam",
+                "userId": "Jody.Eichmann",
+                "replies": [
+                    {
+                        "replyBody": "non exercitationem consequatur temporibus quia dicta id earum molestias voluptatibus et ut quia officiis dignissimos ex maxime sit voluptatem",
+                        "userId": "Tyree17"
+                    }
+                ]
             }
         ]
     },
     {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
+        "postText": "Slightly used cat toy with String",
+        "animalType": "dog",
+        "category": "furniture",
+        "condition": "ugly",
+        "watching": [],
+        "createdAt": [],
+        "userId": "michaelC",
         "comments": [
             {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
+                "commentBody": "sapiente illo animi non et molestiae et blanditiis adipisci aut ut dolore",
+                "userId": "Shyann.Crist57",
+                "replies": []
             }
         ]
     },
     {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
+        "postText": "Slightly used cat toy with String",
+        "animalType": "rabbit / hamster",
+        "category": "cleaning products",
+        "condition": "okay",
+        "watching": [],
+        "createdAt": [],
+        "userId": "michaelC",
         "comments": [
             {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
+                "commentBody": "voluptas quis voluptates et laborum est facere et quia quasi cupiditate dolorem",
+                "userId": "Fern.Schiller",
+                "replies": [
+                    {
+                        "replyBody": "facilis et ipsum",
+                        "userId": "Gianni_Kiehn14"
+                    },
+                    {
+                        "replyBody": "qui non aut nam porro cum repellendus a et ab laboriosam autem error ut ex incidunt sed consequatur autem",
+                        "userId": "Natasha_Beier59"
+                    }
+                ]
             }
         ]
     },
     {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
+        "postText": "Slightly used cat toy with String",
+        "animalType": "fish",
+        "category": "food",
+        "condition": "new",
+        "watching": [],
+        "createdAt": [],
+        "userId": "michaelC",
         "comments": [
             {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
+                "commentBody": "sapiente illo animi non et molestiae et blanditiis adipisci aut ut dolore",
+                "userId": "Shyann.Crist57",
+                "replies": [
+                    {
+                        "replyBody": "facilis et ipsum",
+                        "userId": "Gianni_Kiehn14"
+                    }
+                ]
             }
         ]
     },
     {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
+        "postText": "Slightly used cat toy with String",
+        "animalType": "cat",
+        "category": "outdoor",
+        "condition": "like new",
+        "watching": [],
+        "createdAt": [],
+        "userId": "michaelC",
         "comments": [
             {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
-            }
-        ]
-    },
-    {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
-        "comments": [
-            {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
-            }
-        ]
-    },
-    {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
-        "comments": [
-            {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
-            }
-        ]
-    },
-    {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
-        "comments": [
-            {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
-            }
-        ]
-    },
-    {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
-        "comments": [
-            {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
-            }
-        ]
-    },
-    {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
-        "comments": [
-            {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
-            }
-        ]
-    },
-    {
-        "postText": "Looking for dog chewing toy",
-        "username": "doggo",
-        "comments": [
-            {
-                "commentBody": "How old is your dog?",
-                "username": "MMC"
+                "commentBody": "itaque distinctio sunt et autem saepe non officia consequuntur qui sit nesciunt rerum porro corrupti possimus praesentium voluptas dolore",
+                "userId": "Dee_Bogisich",
+                "replies": []
             }
         ]
     }
