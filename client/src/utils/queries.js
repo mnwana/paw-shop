@@ -8,6 +8,7 @@ export const QUERY_POSTS = gql`
       animalType
       category
       condition
+      active
       createdAt
       userId
       watchingCount
@@ -28,6 +29,7 @@ export const QUERY_POST = gql`
       animalType
       category
       condition
+      active
       createdAt
       userId
       watchingCount
@@ -65,6 +67,7 @@ export const QUERY_USER = gql`
         postText
         animalType
         condition
+        active
         category
         createdAt
         commentCount
@@ -85,6 +88,7 @@ export const QUERY_ME = gql`
         postText
         animalType
         condition
+        active
         category
         userId
         createdAt
@@ -94,6 +98,7 @@ export const QUERY_ME = gql`
         _id
         postText
         animalType
+        active
         condition
         category
         createdAt
