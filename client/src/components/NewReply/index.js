@@ -34,7 +34,7 @@ export default function NewReply({commentId, otherUsername}){
 
 
     return <>
-        <form id="new-reply-form" className='d-flex align-items-center' onSubmit={handleSubmit}>
+        <form id={`new-reply-form-for-comment-${commentId}`} className='new-reply-form d-flex align-items-center' onSubmit={handleSubmit}>
             <div className="form-floating flex-grow-1 me-1">
                 <input
                     className="form-control form-control-sm"
@@ -46,7 +46,7 @@ export default function NewReply({commentId, otherUsername}){
                 <label htmlFor={`new-reply-for-comment-${commentId}`}>Reply privately to {otherUsername}</label>
             </div>
 
-            <button type='submit' form='new-reply-form' className='btn submit-btn hover-opacity py-1' style={{height: '50%'}}>
+            <button type='submit' form={`new-reply-form-for-comment-${commentId}`} className='btn submit-btn hover-opacity py-1' style={{height: '50%'}}>
                 <FontAwesomeIcon icon={faReply} />
             </button>
         </form>

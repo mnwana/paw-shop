@@ -205,6 +205,13 @@ export default function SinglePost(){
                         content={'This is a test comment'}
                         dateCreated={'Jun 8, 2012 at 10:01 PM'}
                     />
+
+                    <div className='replies-wrapper mx-5'>
+                    <NewReply
+                        commentId={20067}
+                        otherUsername={username}
+                        />
+                    </div>
                 </div>
             </div>
 
