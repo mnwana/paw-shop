@@ -18,6 +18,10 @@ const userSchema = new Schema(
       //validation with a regex
       validate: [/[a-z0-9._]+@[a-z]+\.[a-z]{2,3}/, "Email address is invalid"],
     },
+    password: {
+      type: String, 
+      require: true
+    },
     borough: {
       type: String,
       enum: ["manhattan", "brooklyn", "queens", "staten island", "the bronx"],
