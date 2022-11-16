@@ -10,6 +10,10 @@ const postSchema = new Schema(
             maxLength: 300,
             trim: true,
         },
+        active: {
+            type: Boolean,
+            required: true
+        },
         animalType: {
             type: String,
             enum: ['dog', 'cat', 'bird', 'fish', 'rabbit / hamster'],
