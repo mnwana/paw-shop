@@ -1,4 +1,4 @@
-export default const Userseeds = (users) => {
+export default postSeeds = (users) => {
     const getRandomUserId = () => {
         return users[
             Math.floor(Math.random()*users.length)
