@@ -147,14 +147,14 @@ export default function Navbar(){
                                 .map(item => item.link ?
                                     <Link
                                         to={item.link}
-                                        className='no-link-style p-0'
+                                        className='nav-link-wrapper no-link-style p-0'
                                         key={item.name}
                                     >
                                         {getNavLi(item)}
                                     </Link>
                                 : item.name === 'Sign up / log in' ?
                                     <button
-                                        className='btn btn-link p-0'
+                                        className='nav-link-wrapper btn btn-link p-0'
                                         type="button"
                                         data-bs-toggle="modal"
                                         data-bs-target={`#${loginSignupModalId}`}
@@ -164,7 +164,7 @@ export default function Navbar(){
                                     </button>
                                 : // item.name === 'Log out'
                                     <button
-                                        className='btn btn-link p-0'
+                                        className='nav-link-wrapper btn btn-link p-0'
                                         type="button"
                                         onClick={handleLogOut}
                                         key={item.name}

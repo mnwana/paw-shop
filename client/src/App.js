@@ -54,7 +54,7 @@ export default function App() {
 
                     <Navbar />
                     
-                    <main className='flex-grow-1 d-flex justify-content-start'>
+                    <main className='flex-grow-1 d-flex flex-column align-items-start'>
                         <Routes>
                             <Route path='/posts' element={<Posts />} />
                             <Route path='/post-an-item' element={<PostAnItem />} />
