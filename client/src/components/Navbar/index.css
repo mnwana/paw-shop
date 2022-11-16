@@ -3,9 +3,11 @@
     text-decoration: none !important;
     transition: var(--transition) !important;
 }
-/* .nav-link-wrapper:hover{
-    opacity: .65 !important;
-} */
+
+button.nav-link-wrapper{
+    border-width: 0px !important;
+}
+
 
 .nav-link{
     color: var(--navy-blue) !important;   

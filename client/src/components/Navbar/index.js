@@ -22,7 +22,7 @@ import logoAnimated from '../../assets/logo-animated-by-claudia-yile.gif';
 export default function Navbar(){
     const [{navActivePage}, dispatch] = useStoreContext();
 
-    const testerLoggedIn = false;  // UPDATE LATER to pull from client-side `utils/auth.js`
+    const testerLoggedIn = true;  // UPDATE LATER to pull from client-side `utils/auth.js`
 
     const [imgSrc, setImgSrc] = useState(logo);
 
