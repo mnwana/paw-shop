@@ -13,7 +13,7 @@ db.once('open', async () => {
         await Post.deleteMany({});
         await Comment.deleteMany({});
 
-        await User.create(userSeeds);
+        const users = await User.create(userSeeds);
 
         for (let i = 0; i < postSeeds.length; i++) {
             const {_id, postAuthor} = await Post.create(postSeeds[i]);

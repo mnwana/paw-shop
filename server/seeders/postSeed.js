@@ -1,4 +1,11 @@
-[
+const Userseeds = (users) => {
+    const getRandomUserId = () => {
+        return users[
+            Math.floor(Math.random()*users.length)
+        ]._id
+    }
+
+const postData = [
     {
         "postText": "Slightly used cat toy with String",
         "animalType": "cat",
@@ -6,11 +13,11 @@
         "condition": "like new",
         "watching": [],
         "createdAt": [],
-        "userId": "michaelC",
+        "userId": getRandomUserId(),
         "comments": [
             {
                 "commentBody": "molestiae dicta voluptas ut iusto et hic nam",
-                "userId": "Jody.Eichmann",
+                "userId": getRandomUserId(),
                 "replies": [
                     {
                         "replyBody": "non exercitationem consequatur temporibus quia dicta id earum molestias voluptatibus et ut quia officiis dignissimos ex maxime sit voluptatem",
@@ -27,11 +34,11 @@
         "condition": "ugly",
         "watching": [],
         "createdAt": [],
-        "userId": "michaelC",
+        "userId": getRandomUserId(),
         "comments": [
             {
                 "commentBody": "sapiente illo animi non et molestiae et blanditiis adipisci aut ut dolore",
-                "userId": "Shyann.Crist57",
+                "userId": getRandomUserId(),
                 "replies": []
             }
         ]
@@ -43,19 +50,19 @@
         "condition": "okay",
         "watching": [],
         "createdAt": [],
-        "userId": "michaelC",
+        "userId": getRandomUserId(),
         "comments": [
             {
                 "commentBody": "voluptas quis voluptates et laborum est facere et quia quasi cupiditate dolorem",
-                "userId": "Fern.Schiller",
+                "userId": getRandomUserId(),
                 "replies": [
                     {
                         "replyBody": "facilis et ipsum",
-                        "userId": "Gianni_Kiehn14"
+                        "userId": getRandomUserId()
                     },
                     {
                         "replyBody": "qui non aut nam porro cum repellendus a et ab laboriosam autem error ut ex incidunt sed consequatur autem",
-                        "userId": "Natasha_Beier59"
+                        "userId": getRandomUserId()
                     }
                 ]
             }
@@ -68,11 +75,11 @@
         "condition": "new",
         "watching": [],
         "createdAt": [],
-        "userId": "michaelC",
+        "userId": getRandomUserId(),
         "comments": [
             {
                 "commentBody": "sapiente illo animi non et molestiae et blanditiis adipisci aut ut dolore",
-                "userId": "Shyann.Crist57",
+                "userId": getRandomUserId(),
                 "replies": []
             }
         ]
@@ -84,11 +91,11 @@
         "condition": "like new",
         "watching": [],
         "createdAt": [],
-        "userId": "michaelC",
+        "userId": getRandomUserId(),
         "comments": [
             {
                 "commentBody": "itaque distinctio sunt et autem saepe non officia consequuntur qui sit nesciunt rerum porro corrupti possimus praesentium voluptas dolore",
-                "userId": "Dee_Bogisich",
+                "userId": getRandomUserId(),
                 "replies": []
             }
         ]
@@ -100,15 +107,15 @@
         "condition": "like new",
         "watching": [],
         "createdAt": [],
-        "userId": "michaelC",
+        "userId": getRandomUserId(),
         "comments": [
             {
                 "commentBody": "molestiae dicta voluptas ut iusto et hic nam",
-                "userId": "Jody.Eichmann",
+                "userId": getRandomUserId(),
                 "replies": [
                     {
                         "replyBody": "non exercitationem consequatur temporibus quia dicta id earum molestias voluptatibus et ut quia officiis dignissimos ex maxime sit voluptatem",
-                        "userId": "Tyree17"
+                        "userId": getRandomUserId()
                     }
                 ]
             }
@@ -121,11 +128,11 @@
         "condition": "ugly",
         "watching": [],
         "createdAt": [],
-        "userId": "michaelC",
+        "userId": getRandomUserId(),
         "comments": [
             {
                 "commentBody": "sapiente illo animi non et molestiae et blanditiis adipisci aut ut dolore",
-                "userId": "Shyann.Crist57",
+                "userId": getRandomUserId(),
                 "replies": []
             }
         ]
@@ -137,7 +144,7 @@
         "condition": "okay",
         "watching": [],
         "createdAt": [],
-        "userId": "michaelC",
+        "userId": getRandomUserId(),
         "comments": [
             {
                 "commentBody": "voluptas quis voluptates et laborum est facere et quia quasi cupiditate dolorem",
@@ -145,11 +152,11 @@
                 "replies": [
                     {
                         "replyBody": "facilis et ipsum",
-                        "userId": "Gianni_Kiehn14"
+                        "userId": getRandomUserId()
                     },
                     {
                         "replyBody": "qui non aut nam porro cum repellendus a et ab laboriosam autem error ut ex incidunt sed consequatur autem",
-                        "userId": "Natasha_Beier59"
+                        "userId": getRandomUserId()
                     }
                 ]
             }
@@ -162,15 +169,15 @@
         "condition": "new",
         "watching": [],
         "createdAt": [],
-        "userId": "michaelC",
+        "userId": getRandomUserId(),
         "comments": [
             {
                 "commentBody": "sapiente illo animi non et molestiae et blanditiis adipisci aut ut dolore",
-                "userId": "Shyann.Crist57",
+                "userId": getRandomUserId(),
                 "replies": [
                     {
                         "replyBody": "facilis et ipsum",
-                        "userId": "Gianni_Kiehn14"
+                        "userId": getRandomUserId()
                     }
                 ]
             }
@@ -183,13 +190,77 @@
         "condition": "like new",
         "watching": [],
         "createdAt": [],
-        "userId": "michaelC",
+        "userId": getRandomUserId(),
         "comments": [
             {
                 "commentBody": "itaque distinctio sunt et autem saepe non officia consequuntur qui sit nesciunt rerum porro corrupti possimus praesentium voluptas dolore",
-                "userId": "Dee_Bogisich",
+                "userId": getRandomUserId(),
+                "replies": []
+            }
+        ]
+    },
+    {
+        "postText": "Slightly used cat toy with String",
+        "animalType": "rabbit / hamster",
+        "category": "cleaning products",
+        "condition": "okay",
+        "watching": [],
+        "createdAt": [],
+        "userId": getRandomUserId(),
+        "comments": [
+            {
+                "commentBody": "voluptas quis voluptates et laborum est facere et quia quasi cupiditate dolorem",
+                "userId": "Fern.Schiller",
+                "replies": [
+                    {
+                        "replyBody": "facilis et ipsum",
+                        "userId": getRandomUserId()
+                    },
+                    {
+                        "replyBody": "qui non aut nam porro cum repellendus a et ab laboriosam autem error ut ex incidunt sed consequatur autem",
+                        "userId": getRandomUserId()
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "postText": "Slightly used cat toy with String",
+        "animalType": "fish",
+        "category": "food",
+        "condition": "new",
+        "watching": [],
+        "createdAt": [],
+        "userId": getRandomUserId(),
+        "comments": [
+            {
+                "commentBody": "sapiente illo animi non et molestiae et blanditiis adipisci aut ut dolore",
+                "userId": getRandomUserId(),
+                "replies": [
+                    {
+                        "replyBody": "facilis et ipsum",
+                        "userId": getRandomUserId()
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "postText": "Slightly used cat toy with String",
+        "animalType": "cat",
+        "category": "outdoor",
+        "condition": "like new",
+        "watching": [],
+        "createdAt": [],
+        "userId": getRandomUserId(),
+        "comments": [
+            {
+                "commentBody": "itaque distinctio sunt et autem saepe non officia consequuntur qui sit nesciunt rerum porro corrupti possimus praesentium voluptas dolore",
+                "userId": getRandomUserId(),
                 "replies": []
             }
         ]
     }
 ]
+return 
+};
