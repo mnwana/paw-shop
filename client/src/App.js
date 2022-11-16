@@ -20,7 +20,6 @@ import User from './pages/User';
 
 import 'bootstrap';  // Bootstrap JS
 import 'bootstrap/dist/css/bootstrap.min.css'; 
-import './App.css';
 
 
 

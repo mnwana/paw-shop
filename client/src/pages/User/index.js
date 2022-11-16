@@ -47,7 +47,7 @@ export default function User(){
                 active={true}
             />
 
-            <ResultsSelector totalPages={2} />  {/* UPDATE LATER */}
+            <ResultsSelector totalPages={2} name={'user-posts'} />  {/* UPDATE LATER */}
         </div>
 
         

@@ -10,6 +10,8 @@
     --peach: #ffc266;
     --peach-darker: #ea9800;
     --submit-green: rgb(21, 165, 21);
+    --deep-red: rgb(172, 5, 5);
+    --light-red: rgb(227, 15, 15);
     --transition: .25s;
 }
 
@@ -25,6 +27,14 @@
 .submit-btn{
     background-color: var(--submit-green) !important;
     color: white !important;
+}
+
+.delete-btn{
+    color: var(--light-red) !important;
+}
+
+.edit-btn{
+    color: blue;
 }
 
 

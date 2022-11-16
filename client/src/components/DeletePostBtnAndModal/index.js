@@ -3,6 +3,8 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
 
+import './index.css';
+
 
 // COMPONENT
 export default function DeletePostBtnAndModal({postId, returnToHome}){
@@ -20,7 +22,7 @@ export default function DeletePostBtnAndModal({postId, returnToHome}){
 
     return <>
         <button
-            className='delete-btn btn d-inline-block'
+            className='delete-btn btn d-inline-block hover-opacity'
             data-bs-toggle='modal'
             data-bs-target={`#${modalIdBeginning}${postId}`}
         >
@@ -31,14 +33,14 @@ export default function DeletePostBtnAndModal({postId, returnToHome}){
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-body">
-                        <p className="confirm-delete-post-msg confirm-delete-msg">Are you sure you want to delete this post?</p>
+                        <p className="confirm-delete-post-msg confirm-delete-msg text-center">Are you sure you want to delete this post?</p>
 
                         <div className="confirm-delete-post-btns-wrapper d-flex justify-content-center">
-                            <button className="confirm-delete-yes-btn btn btn-danger" onClick={handleYesDelete}>
+                            <button className="confirm-delete-yes-btn btn mx-2 hover-opacity" onClick={handleYesDelete}>
                                 Yes
                             </button>
 
-                            <button className="confirm-delete-no-btn btn btn-primary" data-bs-dismiss="modal" aria-label="Close">
+                            <button className="confirm-delete-no-btn btn mx-2 hover-opacity" data-bs-dismiss="modal" aria-label="Close">
                                 No
                             </button>
                         </div>

@@ -25,7 +25,7 @@ export default function Posts(){
                     active={true}
                 />
 
-                <ResultsSelector totalPages={7} /> {/* UPDATE LATER */}
+                <ResultsSelector totalPages={7} name={'posts'} /> {/* UPDATE LATER */}
             </div>
         </div>
     </div>;

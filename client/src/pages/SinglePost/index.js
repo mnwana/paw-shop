@@ -202,7 +202,7 @@ export default function SinglePost(){
                 </div>
             </div>
 
-            <ResultsSelector totalPages={11} /> {/* UPDATE LATER */}
+            <ResultsSelector totalPages={11} name={'comments'} /> {/* UPDATE LATER */}
             
             {/* UPDATE LATER: only show `NewComment` if a user is logged in, and that user is NOT the original post-er */}
             <NewComment postUsername={username} />

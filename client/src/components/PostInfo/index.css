@@ -1,8 +1,19 @@
 
 .post-info{
+    max-width: 900px;
+    width: 100%;
+}
+
+.post-info.active{
     color: white;
     background-color: var(--royal-blue);
 }
+
+.post-info.inactive{
+    color: black;
+    background-color: var(--light-blue);
+}
+
 .post-info a{
     color: var(--light-pink-darker);
 }
@@ -44,4 +55,23 @@
 }
 .username-meta:hover{
     color: white;
+}
+
+
+.deactivate-btn{
+    background-color: var(--light-blue) !important;
+    opacity: .9;
+}
+.deactivate-btn:hover{
+    color: black !important;
+    opacity: .6 !important;
+}
+
+.reactivate-btn{
+    background-color: var(--light-pink-darker) !important;
+    opacity: .7;   
+}
+.reactivate-btn:hover{
+    color: black !important;
+    opacity: .9 !important;
 }
