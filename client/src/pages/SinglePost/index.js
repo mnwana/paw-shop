@@ -20,6 +20,7 @@ import NewComment from '../../components/NewComment';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPenNib} from '@fortawesome/free-solid-svg-icons';
 
+import './index.css'
 
 
 
@@ -33,7 +34,7 @@ export default function SinglePost(){
     const
         title = 'Test title',
         username = 'testusername',
-        borough = 'manhattan',
+        borough = 'the bronx',
         dateCreated = 'Mar 9, 2018 at 6:21 AM',
         description = 'Test description lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
     ;
@@ -82,10 +83,10 @@ export default function SinglePost(){
 
     return <>
         {/* UPDATE LATER: Only render this form in the first place if original post-er is currently logged in */}
-        <form id='edit-post-form' className={editPost ? '' : 'd-none'} onSubmit={handleEditPostFormSubmit}>
-            <div className='title-editor form-floating'>
+        <form id='edit-post-form' className={editPost ? 'd-flex flex-column w-75 mb-3' : 'd-none'} onSubmit={handleEditPostFormSubmit}>
+            <div className='title-editor form-floating mb-2 w-75 mx-auto'>
                 <input
-                    className="form-control form-control-sm"
+                    className="form-control"
                     id='post-title-editable'
                     name='title'
                     placeholder="Enter updated post title"
@@ -96,7 +97,7 @@ export default function SinglePost(){
                 <label htmlFor="post-title-editable">Title</label>
             </div>
 
-            <div className='description-editor form-floating'>
+            <div className='description-editor form-floating mb-2'>
                 <textarea
                     className='form-control'
                     id='post-description-editable'
@@ -110,41 +111,44 @@ export default function SinglePost(){
                 <label htmlFor='post-description-editable'>Description</label>
             </div>
 
-            <div className='edit-post-btns-wrapper'>
-                <button className='update-post-btn btn btn btn-success' type='submit' form='edit-post-form'>Update</button>
-                <button className='cancel-edit-post-btn'></button>
+            <div className='edit-post-btns-wrapper d-flex justify-content-center mt-1'>
+                <button className='update-post-btn btn submit-btn mx-2 hover-opacity' type='submit' form='edit-post-form'>Update</button>
+                <button className='cancel-edit-post-btn btn mx-2 hover-opacity'>Cancel</button>
             </div>
         </form>
 
-        <div className={`post-content ${editPost ? 'd-none' : ''}`} >
-            <div className='post-title-and-delete-wrapper'>
-                <h3 className='post-title d-inline-block'>{title}</h3>
+        <div className={`post-content ${editPost ? 'd-none' : ''} border border-dark rounded px-3 pt-3 w-100`} >
+            <div className='post-title-and-btns-and-meta-wrapper text-center d-flex flex-wrap justify-content-between align-items-center mb-3'>
+                <div className='post-title-and-btns-wrapper mx-2 mb-1'>
+                    <h3 className='post-title d-inline-block mb-1'>{title}</h3>
 
-                {/* UPDATE LATER: only render btns + modal if original post-er is logged in */}
-                <div className='post-btns-wrapper d-inline-block'>
-                    <button
-                        className='edit-btn btn'
-                        onClick={() => setEditPost(true)}
-                    >
-                        <FontAwesomeIcon icon={faPenNib} />
-                    </button>
+                    {/* UPDATE LATER: only render btns + modal if original post-er is logged in */}
+                    <span className='post-btns-wrapper d-inline-block'>
+                        <button
+                            className='edit-btn btn ps-2 pe-1 py-0 hover-opacity'
+                            onClick={() => setEditPost(true)}
+                        >
+                            <FontAwesomeIcon icon={faPenNib} />
+                        </button>
 
-                    <DeletePostBtnAndModal postId={postId} returnToHome={true} />
+                        <DeletePostBtnAndModal postId={postId} returnToHome={true} />
+                    </span>
                 </div>
+
+                <p className='post-meta mb-1 mx-2 fst-italic text-start'>
+                    Posted by{' '}
+                    <span className='username-meta hover-opacity'>
+                        <Link to={`/user/${username}`}>{username}</Link>{' '}
+                    </span>
+                    <span>{'('}{capitalizeEachWord(borough)}{')'}</span>{' '}
+                    on{' '}<span>{dateCreated}</span>
+                </p>
             </div>
-            
 
-            <p className='post-meta'>
-                Posted by{' '}
-                <Link to={`/user/${username}`}>{username}</Link>{' '}
-                <span>{'('}{capitalizeEachWord(borough)}{')'}</span>{' '}
-                on{' '}<span>{dateCreated}</span>
-            </p>
-
-            <p className='description'>{description}</p>
+            <p className='post-description text-start px-3 px-md-4'>{description}</p>
         </div>
 
-        <div className='comments-wrapper'>
+        <div className={`comments-wrapper d-flex flex-column border border-dark rounded px-3 pt-4 ${editPost ? '' : 'border-top-0'}`}>
             <div className='comments'>
                 {/* Sample comments and replies */}
                 {/* UPDATE LATER:
@@ -152,7 +156,7 @@ export default function SinglePost(){
                     otherwise, only query/display comments for which the commenter is the user who's logged in
                     (and if nobody's logged in, don't show any comments; instead, show a message like 'Log in to comment and communicate with {username} about this item')
                 */}
-                <div className='comment-and-reply-wrapper'>
+                <div className='comment-and-replies-wrapper px-3 mb-3 rounded'>
                     <Comment
                         commentId={20063}
                         commenterUsername={'testuser091'}
@@ -161,37 +165,39 @@ export default function SinglePost(){
                         dateCreated={'Jun 24, 2016 at 1:46 PM'}
                     />
 
-                    <Reply
-                        commentId={20063}
-                        replyId={125}
-                        replierUsername={username}
-                        content={'Hey testuser091, thanks for writing—should we meet?'}
-                        dateCreated={'Jun 25, 2016 at 2:12 PM'}
-                    />
+                    <div className='replies-wrapper mx-5'>
+                        <Reply
+                            commentId={20063}
+                            replyId={125}
+                            replierUsername={username}
+                            content={'Hey testuser091, thanks for writing—should we meet?'}
+                            dateCreated={'Jun 25, 2016 at 2:12 PM'}
+                        />
 
-                    <Reply
-                        commentId={20063}
-                        replyId={126}
-                        replierUsername={username}
-                        content={"I can come towards you if you're down"}
-                        dateCreated={'Jun 25, 2016 at 2:15 PM'}
-                    />
+                        <Reply
+                            commentId={20063}
+                            replyId={126}
+                            replierUsername={username}
+                            content={"I can come towards you if you're down"}
+                            dateCreated={'Jun 25, 2016 at 2:15 PM'}
+                        />
 
-                    <Reply
-                        commentId={20063}
-                        replyId={127}
-                        replierUsername={'testuser091'}
-                        content={"Hey, great, let's do it! My number is 212-449-6831, shoot me a text"}
-                        dateCreated={'Jun 26, 2016 at 8:30 AM'}
-                    />
+                        <Reply
+                            commentId={20063}
+                            replyId={127}
+                            replierUsername={'testuser091'}
+                            content={"Hey, great, let's do it! My number is 212-449-6831, shoot me a text"}
+                            dateCreated={'Jun 26, 2016 at 8:30 AM'}
+                        />
 
-                    <NewReply
-                        commentId={20063}
-                        otherUsername={username}
-                    />
+                        <NewReply
+                            commentId={20063}
+                            otherUsername={username}
+                        />
+                    </div>
                 </div>
 
-                <div className='comment-and-reply-wrapper'>
+                <div className='comment-and-replies-wrapper px-3 mb-3 rounded'>
                     <Comment
                         commentId={20067}
                         commenterUsername={'testuser229'}
@@ -202,7 +208,7 @@ export default function SinglePost(){
                 </div>
             </div>
 
-            <ResultsSelector totalPages={11} name={'comments'} /> {/* UPDATE LATER */}
+            <ResultsSelector totalPages={11} name={'comments'} /> {/* UPDATE LATER: Only show if the logged-in user is the original post-er */}
             
             {/* UPDATE LATER: only show `NewComment` if a user is logged in, and that user is NOT the original post-er */}
             <NewComment postUsername={username} />

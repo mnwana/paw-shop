@@ -1,0 +1,15 @@
+
+.comment{
+    background-color: var(--peach);
+}
+
+.comment-meta{
+    font-size: 14px;
+}
+
+.comment .username-meta{
+    color: var(--royal-blue-darker)
+}
+.comment .username-meta:hover{
+    color: var(--royal-blue-darker);
+}

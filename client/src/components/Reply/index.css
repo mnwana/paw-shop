@@ -1,0 +1,15 @@
+
+.reply{
+    background-color: var(--light-pink-darker);
+}
+
+.reply-meta{
+    font-size: 14px;
+}
+
+.reply .username-meta{
+    color: var(--royal-blue-darker)
+}
+.reply .username-meta:hover{
+    color: var(--royal-blue-darker);
+}

@@ -7,9 +7,9 @@
 
 .filter-element input+label{
     border-color: var(--royal-blue) !important;
-    color: var(--royal-blue-darker) !important;
+    color: var(--navy-blue) !important;
 }
 .filter-element input:checked+label{
     color: white !important;
-    background-color: var(--royal-blue) !important; 
+    background-color: var(--navy-blue) !important; 
 }

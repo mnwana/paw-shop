@@ -22,7 +22,7 @@ export default function DeletePostBtnAndModal({postId, returnToHome}){
 
     return <>
         <button
-            className='delete-btn btn d-inline-block hover-opacity'
+            className='delete-btn btn d-inline-block py-0 hover-opacity'
             data-bs-toggle='modal'
             data-bs-target={`#${modalIdBeginning}${postId}`}
         >

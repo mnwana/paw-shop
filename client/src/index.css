@@ -11,7 +11,7 @@
     --peach-darker: #ea9800;
     --submit-green: rgb(21, 165, 21);
     --deep-red: rgb(172, 5, 5);
-    --light-red: rgb(227, 15, 15);
+    --light-red: rgb(255, 30, 30);
     --transition: .25s;
 }
 
@@ -37,7 +37,11 @@
 }
 
 .edit-btn{
-    color: blue;
+    color: var(--light-blue) !important;
+}
+
+.username-meta{
+    cursor: pointer;
 }
 
 

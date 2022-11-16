@@ -19,7 +19,7 @@ input[type=number] {
   background-color: aliceblue !important;
   cursor: pointer !important;
 }
-label[for="filter-sort"]{
+label[for$="filter-sort"]{
   padding-left: .5rem !important;
 }
 
