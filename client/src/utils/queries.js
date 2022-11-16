@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const QUERY_POSTS = gql`
   query posts($userId: ID!) {
-    posts(_id: $$userId) {
+    posts(_id: $userId) {
       _id
       postText
       animalType
@@ -18,6 +18,7 @@ export const QUERY_POSTS = gql`
       comments {
         _id
         createdAt
+        updatedAt
         userId
         commentBody
       }
@@ -43,6 +44,7 @@ export const QUERY_POST = gql`
       comments {
         _id
         createdAt
+        updatedAt
         userId
         commentBody
       }
