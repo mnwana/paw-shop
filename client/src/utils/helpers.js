@@ -33,6 +33,7 @@ export function abbreviate(string){
     return string.length < maxLength ? string : string.substring(0, maxLength) + '…';
 }
 
+
 export function capitalizeEachWord(string){
     return string.split(' ').map(word => capitalize(word)).join(' ');
 }

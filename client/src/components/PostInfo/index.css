@@ -20,9 +20,9 @@
 
 
 .post-info.inactive .post-info-title,
-.post-info.inactive .post-meta
+.post-info.inactive .post-meta p
 {
-    opacity: .7;
+    opacity: .6 !important;
 }
 
 .post-info.inactive .first-row button{

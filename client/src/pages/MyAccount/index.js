@@ -93,6 +93,9 @@ export default function MyAccount(){
                         postId={87213}
                         title={'Test watching active title'}
                         watchCount={4}
+                        username={'testUsername'}
+                        borough={'staten island'}
+                        dateCreated={'Oct 1, 2019 at 4:08 PM'}
                         active={true}
                     />
 

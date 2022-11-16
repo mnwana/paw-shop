@@ -109,7 +109,7 @@ export default function PostInfo({
                         {capitalize(animalType)} <b>•</b> {capitalize(category)}
                     </button>
                 </span>
-            : dateCreated ?
+            :
                 toggleBtn ?
                     <button className={`${active ? 'deactivate' : 'reactivate'}-btn btn hover-opacity`} onClick={handleToggleActiveStatus}>
                         {active ?
@@ -120,8 +120,6 @@ export default function PostInfo({
                     </button>
                 :
                     <></>
-            :
-                <span className='fst-italic'>{getWatchCountText()}</span>
             }
         </div>
 
