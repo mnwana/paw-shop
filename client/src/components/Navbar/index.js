@@ -117,7 +117,7 @@ export default function Navbar(){
             data-bs-target='.navbar-collapse.show'
             aria-current={item.name}
         >
-            {item.name}
+            {item.name.replaceAll(' ', '\u00A0')}  {/* replaces spaces with `nbsp;`s */}
         </li>;
     }
 
@@ -127,7 +127,7 @@ export default function Navbar(){
             <Link to='/posts' page='Posts' onClick={handleNavClick}>
                 <img
                     src={imgSrc}
-                    onMouseEnter={() => setImgSrc(logoAnimated)}
+                    onMouseEnter={() => setImgSrc(logoAnimated || logo) /* `logo` = fallback */ }
                     onMouseLeave={() => setImgSrc(logo)}
                     style={{width: '400px'}}
                     alt={siteTitle} />

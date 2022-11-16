@@ -31,6 +31,9 @@
 
 .delete-btn{
     color: var(--light-red) !important;
+    font-size: 18px !important;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
 }
 
 .edit-btn{

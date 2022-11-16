@@ -157,7 +157,7 @@ export default function LoginSignupModal(){
                                 <label htmlFor="signup-password">Password</label>
                             </div>
 
-                            <button className="btn submit-btn hover-opacity mt-1    " type="submit" form="signup">Sign up</button>
+                            <button className="btn submit-btn hover-opacity mt-1" type="submit" form="signup">Sign up</button>
                         </form>
                     </div>
                 </div>

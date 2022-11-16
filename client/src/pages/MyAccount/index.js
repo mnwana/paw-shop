@@ -18,11 +18,11 @@ export default function MyAccount(){
         <AcctMngmntModals />
     
         <div className='my-account-wrapper w-100 mt-2'>
-            <h2 className='welcome-user user-header'>
+            <h2 className='welcome-user user-header text-center'>
                 Welcome, username <span className='fst-italic fs-3'>(Current Borough)</span> {/* UPDATE LATER to pull username and borough from query */}
             </h2>
 
-            <div className="acct-mngmnt-btns-wrapper d-flex flex-wrap flex-start my-4">
+            <div className="acct-mngmnt-btns-wrapper d-flex flex-wrap justify-content-center my-4">
                 {AcctMngmntModalTypes.map(type => 
                     <button
                         className='btn mx-2 mb-2 hover-opacity'
