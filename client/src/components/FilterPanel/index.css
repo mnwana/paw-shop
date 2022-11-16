@@ -3,3 +3,7 @@
     background-color: rgb(240, 248, 255);
     height: min-content;
 }
+
+#clear-all-btn{
+    background-color: var(--light-blue) !important; 
+}
