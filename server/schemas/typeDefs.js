@@ -50,7 +50,7 @@ const typeDefs = gql`
     addPost(postText: String!): Post
     addWatching(postId: ID!): User
     addComment(postId: ID!,commentBody: String!): Comment
-    addReply(commentId: ID!, replyBody: String!): Comment
+    addReply(commentId: ID!, postId: ID! ,replyBody: String!): Comment
   }
 `;
 
