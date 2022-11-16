@@ -1,5 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
+
 const { User, Post } = require("../models");
+
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -75,7 +77,6 @@ const resolvers = {
 
         return post;
       }
-
       throw new AuthenticationError("You need to be logged in!");
     },
     addWatching: async (parent, args, context) => {
