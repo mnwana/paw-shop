@@ -10,18 +10,12 @@ export const QUERY_POSTS = gql`
       condition
       createdAt
       userId
+      watchingCount
       watching {
         _id
         username
       }
       commentCount
-      comments {
-        _id
-        createdAt
-        updatedAt
-        userId
-        commentBody
-      }
     }
   }
 `;
@@ -36,6 +30,7 @@ export const QUERY_POST = gql`
       condition
       createdAt
       userId
+      watchingCount
       watching {
         _id
         username
@@ -47,6 +42,12 @@ export const QUERY_POST = gql`
         updatedAt
         userId
         commentBody
+        replies {
+          _id
+          replyBody
+          createdAt
+          userId
+        }
       }
     }
   }

@@ -57,6 +57,7 @@ export const ADD_COMMENT = gql`
       comments {
         _id
         commentBody
+        updatedAt
         createdAt
         userId
         replies {
@@ -90,6 +91,7 @@ export const ADD_REPLY = gql`
       comments {
         _id
         commentBody
+        updatedAt
         createdAt
         userId
         replies {
