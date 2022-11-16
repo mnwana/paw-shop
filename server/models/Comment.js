@@ -1,12 +1,12 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
-const ReplySchema = require('./Reply');
+const replySchema = require('./Reply');
 
-const CommentSchema = new Schema(
+const commentSchema = new Schema(
   {
-    username: {
-      type: String,
-      required: true
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     },
     commentBody: {
       type: String,
@@ -20,7 +20,12 @@ const CommentSchema = new Schema(
       default: Date.now,
       get: createdAtVal => dateFormat(createdAtVal)
     },
-    replies: [ReplySchema]
+    updatedAt: {
+      type: Date,
+      default: Date.now,
+      get: createdAtVal => dateFormat(createdAtVal)
+    },
+    replies: [replySchema]
   },
   {
     toJSON: {
@@ -31,4 +36,12 @@ const CommentSchema = new Schema(
   }
 );
 
-module.exports = CommentSchema;
+commentSchema.pre("save", async function (next) {
+  if (this.isNew || this.isModified("replies")) {
+    this.updatedAt = Date.now;
+  }
+
+  next();
+});
+
+module.exports = commentSchema;
