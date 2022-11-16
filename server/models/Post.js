@@ -56,6 +56,10 @@ postSchema.virtual("commentCount").get(function () {
   return this.comments.length;
 });
 
+postSchema.virtual("watchingCount").get(function () {
+  return this.watching.length;
+});
+
 const Post = model("Post", postSchema);
 
 module.exports = Post;
