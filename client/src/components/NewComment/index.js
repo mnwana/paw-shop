@@ -34,7 +34,7 @@ export default function NewComment({postUsername}){
 
 
     return <>
-        <form id="new-comment-form" onSubmit={handleSubmit} className='mx-4 mb-2'>
+        <form id="new-comment-form" onSubmit={handleSubmit} className='mx-4 mb-4'>
             <div className='d-flex align-items-center mb-1'>
                 <div className="form-floating flex-grow-1 me-1">
                     <input
@@ -44,7 +44,7 @@ export default function NewComment({postUsername}){
                         value={commentText}
                         onChange={({target}) => setCommentText(target.value)}
                     />
-                    <label htmlFor="new-comment">New comment</label>
+                    <label htmlFor="new-comment">Send a private message to {postUsername}</label>
                 </div>
 
                 <button type='submit' form='new-comment-form' className='btn submit-btn hover-opacity py-1' style={{height: '50%'}}>
@@ -52,11 +52,11 @@ export default function NewComment({postUsername}){
                 </button>
             </div>
 
-            <p className='new-comment-msg fst-italic ps-1'>
+            {/* <p className='new-comment-msg fst-italic ps-1'>
                 Only{' '}
                 <Link className='username-meta hover-opacity' to={`/user/${postUsername}`}>{postUsername}</Link>
                 {' '}will see and be able to reply to your comment
-            </p>
+            </p> */}
         </form>
     </>;
 }
