@@ -23,13 +23,6 @@ const typeDefs = gql`
     comments: [Comment]
   }
 
-    createdAt: String
-    userId: ID
-    watching: [User]
-    commentCount: Int
-    comments: [Comment]
-  }
-
   type Auth {
     token: ID!
     user: User
