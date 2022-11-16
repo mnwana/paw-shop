@@ -4,6 +4,8 @@ const shuffle = require('lodash.shuffle');
 
 import {joinAuthors} from '../../utils/helpers';
 
+import './index.css';
+
 
 // COMPONENT
 export default function Footer(){

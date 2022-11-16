@@ -7,6 +7,7 @@
     --royal-blue-darker: rgb(39, 84, 169);
     --peach: #ffc266;
     --peach-darker: #ea9800;
+    --submit-green: rgb(21, 165, 21);
     --transition: .25s;
 }
 
@@ -20,7 +21,7 @@
 }
 
 .submit-btn{
-    background-color: rgb(21, 165, 21) !important;
+    background-color: var(--submit-green) !important;
     color: white !important;
 }
 
