@@ -126,6 +126,13 @@ const resolvers = {
 
       throw new AuthenticationError("You need to be logged in!");
     },
+
+// 15 Mutation – Delete one Comment from a Post (this will also automatically delete all of the Comment’s Replies)
+
+// 16 Mutation – Delete one Reply from a Post’s Comment
+
+// 17 Mutation – Update a Post’s text and/or animal type and/or category and/or condition
+
   },
 };
 
