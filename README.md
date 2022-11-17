@@ -22,7 +22,7 @@ This application allows NYC residents to exchange pet products they no longer ne
 
 
 ##
-![Image of Paw Shop](./client/src/assets/images/screenshot.png)
+![Image of Paw Shop](./client/src/assets/screenshot.png)
 
 
 ## Contributors
