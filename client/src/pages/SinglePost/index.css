@@ -14,8 +14,12 @@
 }
 
 .post-description{
-    max-width: 900px;
     font-size: 18px;
+}
+
+.post-group{
+    background-color: var(--light-pink);
+    color: black
 }
 
 

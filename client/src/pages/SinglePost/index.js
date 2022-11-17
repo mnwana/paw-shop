@@ -14,7 +14,7 @@ import {ADD_COMMENT} from '../../utils/mutations'
 
 import Auth from '../../utils/auth';
 
-import {capitalizeEachWord} from '../../utils/helpers';
+import {capitalize, capitalizeEachWord} from '../../utils/helpers';
 
 import DeletePostBtnAndModal from '../../components/DeletePostBtnAndModal';
 import Comment from '../../components/Comment';
@@ -181,7 +181,15 @@ export default function SinglePost(){
                 </p>
             </div>
 
-            <p className='post-description text-start px-3 px-md-4'>{description}</p>
+            <p className='post-description text-center px-3 px-md-4 mx-5'>{description}</p>
+
+            <div className='post-groups-wrapper d-flex justify-content-center'>
+                <p className='post-group post-animal-type px-3 mx-3 border border-dark rounded'>Animal type: <i>{capitalize(animalType)}</i></p>
+                
+                <p className='post-group post-category px-3 mx-3 border border-dark rounded'>Category: <i>{capitalize(category)}</i></p>
+                
+                <p className='post-group post-condition px-3 mx-3 border border-dark rounded'>Condition: <i>{capitalize(condition)}</i></p>
+            </div>
         </div>
 
         <div className={`comments-wrapper d-flex flex-column border border-dark rounded px-3 pt-4 ${editPost ? '' : 'border-top-0'}`}>
