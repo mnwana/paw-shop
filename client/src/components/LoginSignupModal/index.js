@@ -6,7 +6,7 @@ import logo from '../../assets/logo-by-claudia-yile.png';
 import {siteTitle} from "../../utils/helpers";
 
 import {useMutation} from '@apollo/client';
-import {LOGIN_USER} from "../../utils/mutations";
+import {LOGIN_USER, ADD_USER} from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
@@ -22,6 +22,7 @@ export const loginSignupModalId = 'login-signup-modal';
 // COMPONENT
 export default function LoginSignupModal(){
     const [loginUser] = useMutation(LOGIN_USER);
+    const [addUser] = useMutation(ADD_USER);
 
 
     const [loginInfo, setLoginInfo] = useState({
@@ -104,11 +105,12 @@ export default function LoginSignupModal(){
         if (signupInfo.username && signupInfo.email && signupInfo.password){
             
             try{
-                const {data} = await loginUser({
+                const {data} = await addUser({
                     variables: {...signupInfo}
                 });
 
-                const {token, user} = data.login;
+                const {token} = data.addUser;
+                Auth.login(token);
 
                 setSignupInfo({
                     username: '',

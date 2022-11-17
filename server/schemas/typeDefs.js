@@ -5,7 +5,6 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
-    borough: String
     posts: [Post]
     watchlistCount: Int
     watchlist: [Post]
@@ -86,7 +85,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!, borough: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addPost(postData: PostInput!): Post
     addWatching(postId: ID!): User

@@ -61,7 +61,6 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      borough
       posts {
         _id
         postText
@@ -82,7 +81,6 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      borough
       watchlist {
         _id
         postText
@@ -114,7 +112,6 @@ export const QUERY_ME_BASIC = gql`
       _id
       username
       email
-      borough
     }
   }
 `;
@@ -135,7 +132,6 @@ export const FILTERED_POSTS = gql`
         active
         user {
           username
-          borough
         }
       }
     }

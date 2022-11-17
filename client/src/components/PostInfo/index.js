@@ -129,12 +129,12 @@ export default function PostInfo({
             {dateCreated ?
                 <p className='text-start mb-0 me-2'>
                     Posted{' '}
-                    {username && borough ?
+                    {username /* && borough */ ?
                         <>
                             by{' '}
                             {/* <Link className='username-meta hover-opacity' to={`/user/${username}`}>{username}</Link>{' '} */}
                             <span>{username}</span>{' '}
-                            <span>{'('}{capitalizeEachWord(borough)}{')'}</span>{' '}
+                            {/* <span>{'('}{capitalizeEachWord(borough)}{')'}</span>{' '} */}
                         </>
                     :
                         <></>

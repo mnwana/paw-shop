@@ -84,7 +84,7 @@ export default function Navbar(){
 
 
     function handleLogOut(){  // UPDATE LATER
-        alert('Log out the current user');
+        Auth.logout();
     }
 
 
