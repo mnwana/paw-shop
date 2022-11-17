@@ -47,7 +47,59 @@ const resolvers = {
         },
 
         filteredPosts: async (parent, {filterState}) => {
+            const {
+                pageNum,
+                postsPerPage,
+                animalType,
+                category,
+                condition,
+                newestFirst
+            } = filterState;
+
+            const posts = await Post
+                .find({$and: [
+                    {animalType: {$in: animalType}},
+                    {category: {$in: category}},
+                    {condition: {$in: condition}}
+                ]})
+                .populate('user')
+                .sort({createdAt: newestFirst ? -1 : 1})
+                .skip((pageNum - 1) * postsPerPage)
+                .limit(postsPerPage)
+            ;
+
+            let allPosts = await Post
+                .find({$and: [
+                    {animalType: {$in: animalType}},
+                    {category: {$in: category}},
+                    {condition: {$in: condition}}
+                ]})
+                .populate('user')
+            ;
+
+            const totalPages = Math.ceil(allPosts.length / postsPerPage);
             
+            // NONWORKING CODE - perhaps to be revisited at a later date
+                // const posts = await Post.aggregate([
+                //     {$match: {animalType: {$in: animalType}}},
+                //     {$match: {category: {$in: category}}},
+                //     {$match: {condition: {$in: condition}}},
+                //     {$match: {'user.$.borough': {$in: borough}}},
+                //     // {$group: {
+                //     //     '_id': '$_id',
+                //     //     user: {$push: '$user'}
+                //     // }}
+                // ]);
+
+                // const totalPages = Math.ceil(await Post.countDocuments({
+                //     // QUERY FROM ABOVE WOULD GO HERE
+                // }) / postsPerPage);
+
+
+            return {
+                posts,
+                totalPages
+            };
         }
     },
 

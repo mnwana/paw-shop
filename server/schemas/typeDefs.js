@@ -14,6 +14,7 @@ const typeDefs = gql`
   type Post {
     _id: ID
     active: Boolean
+    title: String
     postText: String
     animalType: String
     category: String
@@ -43,6 +44,7 @@ const typeDefs = gql`
 
 
   input PostInput{
+    title: String
     postText: String
     animalType: String
     category: String
@@ -52,10 +54,9 @@ const typeDefs = gql`
   input FilterState{
     pageNum: Int!
     postsPerPage: Int!
-    animalType: [String]
-    category: [String]
-    condition: [String]
-    borough: [String]
+    animalType: [String]!
+    category: [String]!
+    condition: [String]!
     newestFirst: Boolean!
   }
 
@@ -73,7 +74,7 @@ const typeDefs = gql`
   
   type Query {
     me: User
-    filteredPosts(input: FilterState!): FilterResults
+    filteredPosts(filterState: FilterState!): FilterResults
     users: [User]
     user(_id: ID!): User
     posts(userId: ID): [Post]

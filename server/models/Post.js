@@ -12,6 +12,13 @@ const postSchema = new Schema(
             maxLength: 300,
             trim: true,
         },
+        title: {
+            type: String,
+            required: 'Please include a title for this Post',
+            minLength: 1,
+            maxLength: 80,
+            trim: true
+        },
         active: {
             type: Boolean,
             default: () => true
