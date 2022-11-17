@@ -1,11 +1,11 @@
 
 // IMPORTS
-const shuffle = require('lodash.shuffle');
 
 import {joinAuthors} from '../../utils/helpers';
 
 import './index.css';
 
+const shuffle = require('lodash.shuffle');
 
 // COMPONENT
 export default function Footer(){
