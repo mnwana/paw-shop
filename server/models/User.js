@@ -15,7 +15,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
       trim: true,
-      //validation with a regex
       validate: [/[a-z0-9._]+@[a-z]+\.[a-z]{2,3}/, "Email address is invalid"],
     },
     password: {
@@ -66,10 +65,10 @@ userSchema.pre("save", async function (next) {
 
 // compare the incoming password with the hashed password
 userSchema.methods.isCorrectPassword = async function (password) {
-  return bcrypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.password);
 };
 
-userSchema.virtual("watchedCount").get(function () {
+userSchema.virtual("watchlistCount").get(function () {
   return this.watchlist.length;
 });
 

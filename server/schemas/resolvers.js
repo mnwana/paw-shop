@@ -1,132 +1,155 @@
-const { AuthenticationError } = require("apollo-server-express");
 
-const { User, Post } = require("../models");
+// IMPORTS
+const {AuthenticationError} = require("apollo-server-express");
+const {User, Post} = require("../models");
+const {signToken} = require("../utils/auth");
 
-const { signToken } = require("../utils/auth");
+
 
 const resolvers = {
-  Query: {
-    me: async (parent, args, context) => {
-      if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
-          .select("-__v -password")
-          .populate("posts")
-          .populate("watchlist");
 
-        return userData;
-      }
+    // QUERIES
+    Query: {
+        me: async (parent, args, context) => {
+            if (context.user)
+                return await User.findOne({ _id: context.user._id })
+                    .select("-__v -password")
+                    .populate("posts")
+                    .populate("watchlist");
 
-      throw new AuthenticationError("Not logged in");
+            throw new AuthenticationError("Not logged in");
+        },
+
+        users: async () => {
+            return await User.find()
+                .select("-__v -password")
+                .populate("posts")
+                .populate("watchlist");
+        },
+
+        user: async (parent, {_id}) => {
+            return await User.findById(_id)
+                .select("-__v -password")
+                .populate("posts")
+                .populate("watchlist");
+            },
+
+        posts: async (parent, {userId}) => {
+            const params = userId ? {userId} : {};
+            return await Post.find(params)
+                .sort({createdAt: -1});
+        },
+
+        post: async (parent, {_id}) => {
+            return await Post.findById({_id});
+        },
     },
-    users: async () => {
-      return User.find()
-        .select("-__v -password")
-        .populate("posts")
-        .populate("watchlist");
-    },
-    user: async (parent, { _id }) => {
-      return User.findOne({ _id })
-        .select("-__v -password")
-        .populate("posts")
-        .populate("watchlist");
-    },
-    posts: async (parent, { userId }) => {
-      const params = userId ? { userId } : {};
-      return Post.find(params).sort({ createdAt: -1 });
-    },
-    post: async (parent, { _id }) => {
-      return Post.findOne({ _id });
-    },
-  },
 
-  Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
 
-      return { token, user };
-    },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+    // MUTATIONS
+    Mutation: {
+        addUser: async (parent, args) => {
+            const user = await User.create(args);
+            const token = signToken(user);
 
-      if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
+            return {token, user};
+        },
 
-      const correctPw = await user.isCorrectPassword(password);
+        login: async (parent, {email, password}) => {
+            const user = await User.findOne({email});
 
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
+            if (!user) {
+                throw new AuthenticationError("Incorrect credentials");
+            }
 
-      const token = signToken(user);
-      return { token, user };
-    },
-    addPost: async (parent, args, context) => {
-      if (context.user) {
-        const post = await Post.create({
-          ...args,
-          userId: context.user._id,
-        });
+            const correctPw = await user.isCorrectPassword(password);
 
-        await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { posts: post._id } },
-          { new: true }
-        );
+            if (!correctPw) {
+                throw new AuthenticationError("Incorrect credentials");
+            }
 
-        return post;
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
-    addWatching: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { watchlist: postId } },
-          { new: true }
-        );
-        return user;
-      }
+            const token = signToken(user);
+            return {token, user};
+        },
 
-      throw new AuthenticationError("You need to be logged in!");
-    },
-    addComment: async (parent, { postId, commentBody }, context) => {
-      if (context.user) {
-        const comment = await Post.create({
-          ...args,
-          userId: context.user._id,
-        });
-        await Post.findByIdAndUpdate(
-          { _id: postId },
-          { $push: { commentBody, comments: comment._id } },
-          { new: true }
-        );
+        addPost: async (parent, args, context) => {
+            if (context.user) {
+                const post = await Post.create({
+                    ...args,
+                    userId: context.user._id,
+                });
 
-        return comment;
-      }
+                await User.findByIdAndUpdate(
+                    context.user._id,
+                    {$push: {posts: post._id}},
+                    // {new: true}
+                );
 
-      throw new AuthenticationError("You need to be logged in!");
-    },
-    addReply: async (parent, { postId, commentId, replyBody }, context) => {
-      if (context.user) {
-        const updatedComment = await Post.findOneAndUpdate(
-          { _id: postId, 'comments._id': commentId },
-          {
-            $push: { 'comments.$.replies': {
-              replyBody,
-              commentId,
-              userId: context.user._id } },
-          },
-          { new: true, runValidators: true }
-        );
+                return post;
+            }
 
-        return updatedComment;
-      }
+            throw new AuthenticationError("Not logged in");
+        },
 
-      throw new AuthenticationError("You need to be logged in!");
-    },
+        addWatching: async (parent, args, context) => {
+            if (context.user) {
+                const user = await User.findByIdAndUpdate(
+                    context.user._id,
+                    {$push: {watchlist: args.postId}},
+                    {new: true}
+                );
+                
+                return user;
+            }
+
+            throw new AuthenticationError("Not logged in");
+        },
+
+        addComment: async (parent, {postId, commentBody}, context) => {
+            if (context.user) {
+                const comment = await Post.create({
+                    ...args,
+                    userId: context.user._id,
+                });
+
+                const post = await Post.findByIdAndUpdate(
+                    postId,
+                    {$push: {commentBody, comments: comment._id}},
+                    {new: true}
+                );
+
+                return post;
+            }
+
+            throw new AuthenticationError("Not logged in");
+        },
+
+        addReply: async (parent, {postId, commentId, replyBody}, context) => {
+            if (context.user) {
+                const updatedPost = await Post.findOneAndUpdate(
+                    {
+                        _id: postId,
+                        'comments._id': commentId
+                    },
+                    {
+                        $push: {'comments.$.replies': {
+                            replyBody,
+                            commentId,
+                            userId: context.user._id
+                        }},
+                    },
+                    {new: true, runValidators: true}
+                );
+
+                return updatedPost;
+            }
+
+            throw new AuthenticationError("Not logged in");
+        },
   },
 };
 
+
+
+// EXPORT 
 module.exports = resolvers;

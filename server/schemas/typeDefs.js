@@ -7,11 +7,13 @@ const typeDefs = gql`
     email: String
     borough: String
     posts: [Post]
+    watchlistCount: Int
     watchlist: [Post]
   }
 
   type Post {
     _id: ID
+    active: Boolean
     postText: String
     animalType: String
     category: String
@@ -21,11 +23,6 @@ const typeDefs = gql`
     watching: [User]
     commentCount: Int
     comments: [Comment]
-  }
-
-  type Auth {
-    token: ID!
-    user: User
   }
 
   type Comment {
@@ -43,22 +40,27 @@ const typeDefs = gql`
     createdAt: String
     userId: ID
   }
+
+  type Auth {
+    token: ID!
+    user: User
+  }
   
   type Query {
     me: User
     users: [User]
     user(_id: ID!): User
-    posts(userId: ID!): [Post]
+    posts(userId: ID): [Post]
     post(_id: ID!): Post
   }
 
   type Mutation {
-    login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
     addPost(postText: String!): Post
     addWatching(postId: ID!): User
-    addComment(postId: ID!,commentBody: String!): Comment
-    addReply(commentId: ID!, postId: ID! ,replyBody: String!): Comment
+    addComment(postId: ID!, commentBody: String!): Comment
+    addReply(postId: ID!, commentId: ID!, replyBody: String!): Comment
   }
 `;
 
