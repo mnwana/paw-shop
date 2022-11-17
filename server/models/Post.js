@@ -14,7 +14,7 @@ const postSchema = new Schema(
         },
         active: {
             type: Boolean,
-            required: true
+            default: () => true
         },
         animalType: {
             type: String,
@@ -42,15 +42,10 @@ const postSchema = new Schema(
             default: Date.now,
             get: timestamp => dateFormat(timestamp)
         },
-        username: {
-            type: String,
-            required: true,
-            trim: true
-        },
         comments: [commentSchema],
-        userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
         },
         comments: [commentSchema],
     },

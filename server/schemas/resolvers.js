@@ -35,14 +35,20 @@ const resolvers = {
             },
 
         posts: async (parent, {userId}) => {
-            const params = userId ? {userId} : {};
+            const params = userId ? {user: userId} : {};
             return await Post.find(params)
+                .populate('user')
                 .sort({createdAt: -1});
         },
 
         post: async (parent, {_id}) => {
-            return await Post.findById({_id});
+            return await Post.findById(_id)
+                .populate('user');
         },
+
+        filteredPosts: async (parent, {filterState}) => {
+            
+        }
     },
 
 
@@ -72,11 +78,11 @@ const resolvers = {
             return {token, user};
         },
 
-        addPost: async (parent, args, context) => {
+        addPost: async (parent, {postData}, context) => {
             if (context.user) {
                 const post = await Post.create({
-                    ...args,
-                    userId: context.user._id,
+                    ...postData,
+                    user: context.user._id,
                 });
 
                 await User.findByIdAndUpdate(
@@ -85,7 +91,7 @@ const resolvers = {
                     // {new: true}
                 );
 
-                return post;
+                return await post.populate('user');
             }
 
             throw new AuthenticationError("Not logged in");
@@ -109,7 +115,7 @@ const resolvers = {
             if (context.user) {
                 const comment = await Post.create({
                     ...args,
-                    userId: context.user._id,
+                    user: context.user._id,
                 });
 
                 const post = await Post.findByIdAndUpdate(
@@ -135,7 +141,7 @@ const resolvers = {
                         $push: {'comments.$.replies': {
                             replyBody,
                             commentId,
-                            userId: context.user._id
+                            user: context.user._id
                         }},
                     },
                     {new: true, runValidators: true}
