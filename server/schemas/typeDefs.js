@@ -59,6 +59,9 @@ const typeDefs = gql`
     addWatching(postId: ID!): User
     addComment(postId: ID!,commentBody: String!): Comment
     addReply(commentId: ID!, postId: ID! ,replyBody: String!): Comment
+    deleteComment(postId: ID!, commentId: ID!): Comment
+    deleteReply(commentId: ID!, postId: ID!, replyId: ID!): Comment
+    updatePost(postId: ID!, postText: String!, animalType: String!, category: String!, condition: String!): Post
   }
 `;
 

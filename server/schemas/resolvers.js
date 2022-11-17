@@ -111,12 +111,15 @@ const resolvers = {
     addReply: async (parent, { postId, commentId, replyBody }, context) => {
       if (context.user) {
         const updatedComment = await Post.findOneAndUpdate(
-          { _id: postId, 'comments._id': commentId },
+          { _id: postId, "comments._id": commentId },
           {
-            $push: { 'comments.$.replies': {
-              replyBody,
-              commentId,
-              userId: context.user._id } },
+            $push: {
+              "comments.$.replies": {
+                replyBody,
+                commentId,
+                userId: context.user._id,
+              },
+            },
           },
           { new: true, runValidators: true }
         );
@@ -124,6 +127,56 @@ const resolvers = {
         return updatedComment;
       }
 
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    deleteComment: async (parent, { postId, commentId }, context) => {
+      if (context.user) {
+        const updatedPost = await Post.findByIdAndUpdate(
+          { _id: postId },
+          { $pull: { comments: commentId } },
+          { new: true }
+        );
+        return updatedPost;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    deleteReply: async (parent, { postId, commentId, replyId }, context) => {
+      if (context.user) {
+        const updatedPost = await Post.findByIdAndUpdate(
+          { _id: postId, "comments._id": commentId },
+          {
+            $pull: {
+              "comments.$.replies": {
+                replyId,
+                commentId,
+              },
+            },
+          },
+          { new: true }
+        );
+        return updatedPost;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    updatePost: async (parent, {postId, postText, animalType, category, condition}, context) => {
+      if (context.user) {
+        const post = await Post.findByIdAndUpdate(
+          { _id: postId },
+          { $set: {
+            postText: postText ? postText : undefined,
+            animalType: animalType ? animalType : undefined,
+            category: category ? category : undefined,
+            condition:  condition ? condition : undefined
+        }
+      },
+          { new: true }
+        );
+
+        return post;
+      }
       throw new AuthenticationError("You need to be logged in!");
     },
   },
