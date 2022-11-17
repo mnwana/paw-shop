@@ -76,6 +76,8 @@ export default function PostAnItem(){
                     {variables: {postData: {...newPostData}}}
                 );
 
+                document.location.assign('/posts');
+
                 setNewPostData({
                     title: '',
                     description: ''

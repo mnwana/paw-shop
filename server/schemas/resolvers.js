@@ -70,6 +70,7 @@ const resolvers = {
                     {condition: {$in: condition}}
                 ]})
                 .populate('user')
+                .sort({createdAt: -1})
                 // .sort({createdAt: newestFirst ? -1 : 1})
                 // .skip((pageNum - 1) * postsPerPage)
                 // .limit(postsPerPage)
