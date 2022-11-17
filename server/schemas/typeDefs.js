@@ -52,9 +52,9 @@ const typeDefs = gql`
   }
 
   input FilterState{
-    pageNum: Int!
-    postsPerPage: Int!
-    newestFirst: Boolean!
+    pageNum: Int
+    postsPerPage: Int
+    newestFirst: Boolean
     animalType: [String]!
     category: [String]!
     condition: [String]!

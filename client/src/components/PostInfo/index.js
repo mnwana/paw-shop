@@ -145,7 +145,8 @@ export default function PostInfo({
             }
 
             {(animalType && category) || dateCreated ?
-                <p className='text-end mb-0 ms-2'>{getWatchCountText()}</p>
+                // <p className='text-end mb-0 ms-2'>{getWatchCountText()}</p>
+                <></>
             :
                 <></>
             }

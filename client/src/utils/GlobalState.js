@@ -90,31 +90,31 @@ export function StoreProvider({value = [], ...props}){
                     }
                 ]
             },
-            {
-                group: 'borough',
-                elements: [
-                    {
-                        name: 'manhattan',
-                        checked: true
-                    },
-                    {
-                        name: 'brooklyn',
-                        checked: true
-                    },
-                    {
-                        name: 'queens',
-                        checked: true
-                    },
-                    {
-                        name: 'staten island',
-                        checked: true
-                    },
-                    {
-                        name: 'the bronx',
-                        checked: true
-                    }
-                ]
-            }
+            // {  // DEACTIVATED FOR NOW, until set up properly on the back end (at a later data)
+            //     group: 'borough',
+            //     elements: [
+            //         {
+            //             name: 'manhattan',
+            //             checked: true
+            //         },
+            //         {
+            //             name: 'brooklyn',
+            //             checked: true
+            //         },
+            //         {
+            //             name: 'queens',
+            //             checked: true
+            //         },
+            //         {
+            //             name: 'staten island',
+            //             checked: true
+            //         },
+            //         {
+            //             name: 'the bronx',
+            //             checked: true
+            //         }
+            //     ]
+            // }
         ]
     };
 

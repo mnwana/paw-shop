@@ -48,12 +48,12 @@ const resolvers = {
 
         filteredPosts: async (parent, {filterState}) => {
             const {
-                pageNum,
-                postsPerPage,
+                // pageNum,
+                // postsPerPage,
+                // newestFirst,
                 animalType,
                 category,
                 condition,
-                newestFirst
             } = filterState;
 
             const posts = await Post
@@ -63,21 +63,23 @@ const resolvers = {
                     {condition: {$in: condition}}
                 ]})
                 .populate('user')
-                .sort({createdAt: newestFirst ? -1 : 1})
-                .skip((pageNum - 1) * postsPerPage)
-                .limit(postsPerPage)
+                // .sort({createdAt: newestFirst ? -1 : 1})
+                // .skip((pageNum - 1) * postsPerPage)
+                // .limit(postsPerPage)
             ;
 
-            let allPosts = await Post
-                .find({$and: [
-                    {animalType: {$in: animalType}},
-                    {category: {$in: category}},
-                    {condition: {$in: condition}}
-                ]})
-                .populate('user')
-            ;
+            const totalPages = 1;
 
-            const totalPages = Math.ceil(allPosts.length / postsPerPage);
+            // let allPosts = await Post
+            //     .find({$and: [
+            //         {animalType: {$in: animalType}},
+            //         {category: {$in: category}},
+            //         {condition: {$in: condition}}
+            //     ]})
+            //     .populate('user')
+            // ;
+
+            // const totalPages = Math.ceil(allPosts.length / postsPerPage);
             
             // NONWORKING CODE - perhaps to be revisited at a later date
                 // const posts = await Post.aggregate([

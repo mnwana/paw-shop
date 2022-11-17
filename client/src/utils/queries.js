@@ -118,3 +118,26 @@ export const QUERY_ME_BASIC = gql`
     }
   }
 `;
+
+
+
+export const FILTERED_POSTS = gql`
+  query ($filterState: FilterState!){
+    filteredPosts(filterState: $filterState) {
+      totalPages
+      posts {
+        _id
+        title
+        createdAt
+        animalType
+        category
+        condition
+        active
+        user {
+          username
+          borough
+        }
+      }
+    }
+  }
+`;
