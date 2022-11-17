@@ -59,6 +59,11 @@ const typeDefs = gql`
     addWatching(postId: ID!): User
     addComment(postId: ID!,commentBody: String!): Comment
     addReply(commentId: ID!, postId: ID! ,replyBody: String!): Comment
+    deleteWatching(postId: ID!): User 
+    updateUser(username: String!, email: String!, password: String!, Borough: String!): User
+    updateActive(postId: ID!, active: Boolean!): Post
+    updateInactive(postId: ID!, active: Boolean!): Post
+    deletePost(postId: ID!): Post
   }
 `;
 

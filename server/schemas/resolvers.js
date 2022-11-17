@@ -126,7 +126,75 @@ const resolvers = {
 
       throw new AuthenticationError("You need to be logged in!");
     },
-  },
+    deleteWatching: async (parent, args, context) => {
+      if(context.user){
+        const user = await User.findOneAndDelete(
+          { _id: context.post._id, }, 
+          { $pull: { watchlist: userId, 
+                                postId } },
+          { new: true }
+    );
+    return user; 
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    }, 
+    updateUser: async (parent, args, context) => {
+        if(context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: user._id }, 
+          { $set: { 
+              Username : username ? username : undefined,
+              Email : email ? email : undefined, 
+              Password : password ? password : undefined, 
+              Borough : borough ? borough : undefined 
+            } },
+          { new: true }
+          );	
+          return updatedUser;
+    }
+    throw new AuthenticationError("You need to be logged in!");
+    }, 
+    updateActive: async (parent, { postId, active }, context) => {
+      if(context.user) {
+        const updatedPost = await Post.findByIdAndUpdate(
+          { _id: post._id },
+          { $set: {
+            active: true
+          }},
+          { new: true }
+        );
+        return updatedPost;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    updateInactive: async (parent, { postId, active }, context) => {
+      if(context.user) {
+        const updatedPost = await Post.findByIdAndUpdate(
+          { _id: post._id },
+          { $set: {
+            active: false
+          }},
+          { new: true }
+        );
+        return updatedPost;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    deletePost: async (parent, args, context) => {
+      if(context.user) {
+        const updatedPost = await Post.findByIdAndUpdate(
+          { _id: context.post._id },
+          { $pull: { post: post._id,
+                    user: posts, 
+                    watchlist: post._id
+                      }},
+          { new: true }
+        );
+        return updatedPost;  
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    }
+  }
 };
 
 module.exports = resolvers;
