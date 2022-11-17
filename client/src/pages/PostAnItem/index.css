@@ -15,3 +15,7 @@
     width: 65vw;
     min-height: 100px;
 }
+
+.new-post-groups-wrapper select{
+    background-color: aliceblue;
+}
