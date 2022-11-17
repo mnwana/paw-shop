@@ -5,6 +5,11 @@ import {useState} from "react";
 import logo from '../../assets/logo-by-claudia-yile.png';
 import {siteTitle} from "../../utils/helpers";
 
+import {useMutation} from '@apollo/client';
+import {LOGIN_USER} from "../../utils/mutations";
+
+import Auth from "../../utils/auth";
+
 import './index.css';
 
 
@@ -16,6 +21,9 @@ export const loginSignupModalId = 'login-signup-modal';
 
 // COMPONENT
 export default function LoginSignupModal(){
+    const [loginUser] = useMutation(LOGIN_USER);
+
+
     const [loginInfo, setLoginInfo] = useState({
         email: '',
         password: ''
@@ -62,43 +70,54 @@ export default function LoginSignupModal(){
     }
 
     
-    function handleLoginSubmit(e){  // UPDATE LATER
+    async function handleLoginSubmit(e){
         e.preventDefault();
 
         loginInfo.email = loginInfo.email.trim();
 
         if (loginInfo.email && loginInfo.password){
-            alert(`logging in with these credentials:
-                ${loginInfo.email}
-                ${loginInfo.password}
-            `);
+            try{
+                const {data} = await loginUser({
+                    variables: {...loginInfo}
+                });
 
-            setLoginInfo({
-                email: '',
-                password: ''
-            });
+                const {token} = data.login;
+                Auth.login(token);
+
+                setLoginInfo({
+                    email: '',
+                    password: ''
+                });
+            }catch(err){
+                console.error(err);
+            }
         }
     }
 
 
-    function handleSignupSubmit(e){  // UPDATE LATER
+    async function handleSignupSubmit(e){  // UPDATE LATER
         e.preventDefault();
 
         signupInfo.username = signupInfo.username.trim();
         signupInfo.email = signupInfo.email.trim();
 
         if (signupInfo.username && signupInfo.email && signupInfo.password){
-            alert(`signing up with these credentials:
-                ${signupInfo.username}
-                ${signupInfo.email}
-                ${signupInfo.password}
-            `);
+            
+            try{
+                const {data} = await loginUser({
+                    variables: {...signupInfo}
+                });
 
-            setSignupInfo({
-                username: '',
-                email: '',
-                password: ''
-            });
+                const {token, user} = data.login;
+
+                setSignupInfo({
+                    username: '',
+                    email: '',
+                    password: ''
+                });
+            }catch(err){
+                console.error(err);
+            }
         }
     }
 
