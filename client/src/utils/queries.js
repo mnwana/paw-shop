@@ -23,32 +23,32 @@ export const QUERY_POSTS = gql`
 
 export const QUERY_POST = gql`
   query post($id: ID!) {
-    post(_id: $id) {
+    post(id: $id) {
       _id
+      title
       postText
       animalType
       category
       condition
-      active
       createdAt
-      userId
-      watchingCount
-      watching {
-        _id
+      user {
         username
       }
-      commentCount
       comments {
         _id
+        commentBody
         createdAt
         updatedAt
-        userId
-        commentBody
-        replies {
+        user{
+          username
+        }
+        replies{
           _id
           replyBody
           createdAt
-          userId
+          user{
+            username
+          }
         }
       }
     }

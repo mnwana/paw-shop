@@ -42,28 +42,30 @@ export const ADD_COMMENT = gql`
   mutation addComment($postId: ID!, $commentBody: String!) {
     addComment(postId: $postId, commentBody: $commentBody) {
       _id
+      title
       postText
-      createdAt
-      username
       animalType
-      condition
       category
-      commentCount
-      watchingCount
-      watching {
-        _id
+      condition
+      createdAt
+      user {
+        username
       }
       comments {
         _id
         commentBody
-        updatedAt
         createdAt
-        userId
-        replies {
+        updatedAt
+        user{
+          username
+        }
+        replies{
           _id
           replyBody
           createdAt
-          userId
+          user{
+            username
+          }
         }
       }
     }
@@ -75,28 +77,30 @@ export const ADD_REPLY = gql`
   mutation addReply($commentId: ID!, $postId: ID!, $replyBody: String!) {
     addReply(commentId: $commentId, postId: $postId, replyBody: $replyBody) {
       _id
+      title
       postText
-      createdAt
-      username
       animalType
-      condition
       category
-      commentCount
-      watchingCount
-      watching{
-        _id
+      condition
+      createdAt
+      user {
+        username
       }
       comments {
         _id
         commentBody
-        updatedAt
         createdAt
-        userId
-        replies {
+        updatedAt
+        user{
+          username
+        }
+        replies{
           _id
           replyBody
           createdAt
-          userId
+          user{
+            username
+          }
         }
       }
     }

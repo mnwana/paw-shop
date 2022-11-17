@@ -29,7 +29,7 @@ const typeDefs = gql`
     _id: ID
     commentBody: String
     createdAt: String
-    userId: ID
+    user: User
     replies: [Reply]
     updatedAt: String
   }
@@ -38,7 +38,7 @@ const typeDefs = gql`
     _id: ID
     replyBody: String
     createdAt: String
-    userId: ID
+    user: User
   }
 
 
@@ -81,7 +81,7 @@ const typeDefs = gql`
     users: [User]
     user(_id: ID!): User
     posts(userId: ID): [Post]
-    post(_id: ID!): Post
+    post(id: ID!): Post
   }
 
   type Mutation {
@@ -89,8 +89,8 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addPost(postData: PostInput!): Post
     addWatching(postId: ID!): User
-    addComment(postId: ID!, commentBody: String!): Comment
-    addReply(postId: ID!, commentId: ID!, replyBody: String!): Comment
+    addComment(postId: ID!, commentBody: String!): Post
+    addReply(postId: ID!, commentId: ID!, replyBody: String!): Post
   }
 `;
 

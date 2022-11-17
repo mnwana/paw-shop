@@ -41,9 +41,16 @@ const resolvers = {
                 .sort({createdAt: -1});
         },
 
-        post: async (parent, {_id}) => {
-            return await Post.findById(_id)
-                .populate('user');
+        post: async (parent, {id}) => {
+            const post = await Post.findById(id)
+                .populate('user')
+                .populate({path: 'comments.user'})
+                .populate({path: 'comments.replies.user'})
+            ;
+
+            console.log(post);
+
+            return post;
         },
 
         filteredPosts: async (parent, {filterState}) => {
@@ -305,27 +312,26 @@ const resolvers = {
         },
 
         addComment: async (parent, {postId, commentBody}, context) => {
-            if (context.user) {
-                const comment = await Post.create({
-                    ...args,
-                    user: context.user._id,
-                });
-
-                const post = await Post.findByIdAndUpdate(
+            if (context.user)
+                return await Post.findByIdAndUpdate(
                     postId,
-                    {$push: {commentBody, comments: comment._id}},
+                    {$push: {comments: {
+                        commentBody,
+                        user: context.user._id
+                    }}},
                     {new: true}
-                );
-
-                return post;
-            }
+                )
+                    .populate('user')
+                    .populate({path: 'comments.user'})
+                    .populate({path: 'comments.replies.user'})
+                ;
 
             throw new AuthenticationError("Not logged in");
         },
 
         addReply: async (parent, {postId, commentId, replyBody}, context) => {
-            if (context.user) {
-                const updatedPost = await Post.findOneAndUpdate(
+            if (context.user)
+                return await Post.findOneAndUpdate(
                     {
                         _id: postId,
                         'comments._id': commentId
@@ -333,15 +339,15 @@ const resolvers = {
                     {
                         $push: {'comments.$.replies': {
                             replyBody,
-                            commentId,
                             user: context.user._id
                         }},
                     },
                     {new: true, runValidators: true}
-                );
-
-                return updatedPost;
-            }
+                )
+                    .populate('user')
+                    .populate({path: 'comments.user'})
+                    .populate({path: 'comments.replies.user'})
+                ;
 
             throw new AuthenticationError("Not logged in");
         },

@@ -10,7 +10,7 @@ const replySchema = new Schema(
       minLength: 1,
       maxLength: 100,
     },
-    userId: {
+    user: {
       type: Schema.Types.ObjectId,
       ref: 'User'
     },

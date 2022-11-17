@@ -15,7 +15,18 @@
 
 .post-description{
     max-width: 900px;
+    font-size: 18px;
 }
+
+
+.login-link{
+    color: var(--navy-blue);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 1px ;
+}
+
+
 
 .comments-wrapper{
     width: 90%;
