@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom
 
 import {StoreProvider} from './utils/GlobalState';
 
-import {ApolloProvider, ApolloClient, InMemoryCache, createHttpLink} from '@apollo/client';
+import {ApolloProvider, ApolloClient, InMemoryCache, createHttpLink, Query} from '@apollo/client';
 import {setContext} from '@apollo/client/link/context';
 import {localStorageTokenName} from './utils/auth';
 
@@ -41,7 +41,23 @@ const client = new ApolloClient({
     cache: new InMemoryCache()
 });
 
+const POST_QUERY = gql`
+{
+    post(_id: $id) {
+      comments {
+        commentBody
+        replies {
+          replyBody
+        }
+      }
+    }
+}
+`;
 
+//calling query
+// client.query({
+//     query: postQuery
+// }).then(res => console.log(res));
 
 // COMPONENT
 export default function App() {
@@ -62,6 +78,13 @@ export default function App() {
                             <Route path='/user/:username' element={<User />} />
                             <Route path='*' element={<Navigate to='/posts' />} />
                         </Routes>
+                        <Query query = {POST_QUERY}>
+                            {({loading, data}) => {
+                                if (loading) return "Loading...";
+                                const { post } = data;
+                                return post.map(post => <div> 'post containter' </div>);
+                            }}
+                        </Query>
                     </main>
                     
                     <Footer />
