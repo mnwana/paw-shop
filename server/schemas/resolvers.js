@@ -111,12 +111,15 @@ const resolvers = {
     addReply: async (parent, { postId, commentId, replyBody }, context) => {
       if (context.user) {
         const updatedComment = await Post.findOneAndUpdate(
-          { _id: postId, 'comments._id': commentId },
+          { _id: postId, "comments._id": commentId },
           {
-            $push: { 'comments.$.replies': {
-              replyBody,
-              commentId,
-              userId: context.user._id } },
+            $push: {
+              "comments.$.replies": {
+                replyBody,
+                commentId,
+                userId: context.user._id,
+              },
+            },
           },
           { new: true, runValidators: true }
         );
@@ -127,12 +130,55 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-// 15 Mutation – Delete one Comment from a Post (this will also automatically delete all of the Comment’s Replies)
+    deleteComment: async (parent, { postId, commentId }, context) => {
+      if (context.user) {
+        const updatedPost = await Post.findByIdAndUpdate(
+          { _id: postId },
+          { $pull: { comments: commentId } },
+          { new: true }
+        );
+        return updatedPost;
+      }
 
-// 16 Mutation – Delete one Reply from a Post’s Comment
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    deleteReply: async (parent, { postId, commentId, replyId }, context) => {
+      if (context.user) {
+        const updatedPost = await Post.findByIdAndUpdate(
+          { _id: postId, "comments._id": commentId },
+          {
+            $pull: {
+              "comments.$.replies": {
+                replyId,
+                commentId,
+              },
+            },
+          },
+          { new: true }
+        );
+        return updatedPost;
+      }
 
-// 17 Mutation – Update a Post’s text and/or animal type and/or category and/or condition
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    updatePost: async (parent, {postId, postText, animalType, category, condition}, context) => {
+      if (context.user) {
+        const post = await Post.findByIdAndUpdate(
+          { _id: postId },
+          { $set: {
+            postText: postText ? postText : undefined,
+            animalType: animalType ? animalType : undefined,
+            category: category ? category : undefined,
+            condition:  condition ? condition : undefined
+        }
+      },
+          { new: true }
+        );
 
+        return post;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 
