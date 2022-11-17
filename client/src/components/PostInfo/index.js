@@ -132,7 +132,8 @@ export default function PostInfo({
                     {username && borough ?
                         <>
                             by{' '}
-                            <Link className='username-meta hover-opacity' to={`/user/${username}`}>{username}</Link>{' '}
+                            {/* <Link className='username-meta hover-opacity' to={`/user/${username}`}>{username}</Link>{' '} */}
+                            <span>{username}</span>{' '}
                             <span>{'('}{capitalizeEachWord(borough)}{')'}</span>{' '}
                         </>
                     :

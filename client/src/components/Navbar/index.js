@@ -38,11 +38,11 @@ export default function Navbar(){
             link: '/post-an-item',
             reqsLogin: true
         },
-        {
-            name: 'My account',
-            link: '/account',
-            reqsLogin: true
-        },
+        // {
+        //     name: 'My account',
+        //     link: '/account',
+        //     reqsLogin: true
+        // },
         {
             name: 'Log in / sign up',
             reqsLogin: false,

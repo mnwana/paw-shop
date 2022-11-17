@@ -57,9 +57,9 @@ export default function App() {
                         <Routes>
                             <Route path='/posts' element={<Posts />} />
                             <Route path='/post-an-item' element={<PostAnItem />} />
-                            <Route path='/account' element={<MyAccount />} />
+                            {/* <Route path='/account' element={<MyAccount />} /> */}
                             <Route path='/post/:postId' element={<SinglePost />} />
-                            <Route path='/user/:username' element={<User />} />
+                            {/* <Route path='/user/:username' element={<User />} /> */}
                             <Route path='*' element={<Navigate to='/posts' />} />
                         </Routes>
                     </main>
