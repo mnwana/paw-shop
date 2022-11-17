@@ -26,7 +26,7 @@ This application allows NYC residents to exchange pet products they no longer ne
 
 
 ## Contributors
-- [Jongwon (Michael) Choi] (https://github.com/jchoi10)
+- [Jongwon Michael Choi] (https://github.com/jchoi10)
 - [Marielle Nwana](https://www.mariellenwana.com/)
 - [Noah Becker](https://noah35becker.github.io/portfolio/)
 - [Claudia Yile](https://market.zora.co/cybele)
