@@ -111,8 +111,13 @@ export default function SinglePost(){
         animalType,
         category,
         condition,
-        comments
     } = data.post;
+
+    const comments = loggedInUsername === username ?
+        data.post.comments
+    :
+        data.post.comments.filter(comment => comment.user.username === loggedInUsername)
+    ;
     
 
 
@@ -200,7 +205,7 @@ export default function SinglePost(){
                     otherwise, only query/display comments for which the commenter is the user who's logged in
                     (and if nobody's logged in, don't show any comments; instead, show a message like 'Log in to comment and communicate with {username} about this item')
                 */}
-                    {comments.map(comment => loggedInUsername === username || loggedInUsername === comment.user.username     ? 
+                    {comments.map(comment => 
                         <div className='comment-and-replies-wrapper px-3 mb-3 rounded' key={comment._id}>
                             <Comment
                                 commentId={comment._id}
@@ -229,8 +234,6 @@ export default function SinglePost(){
                                 />
                             </div>
                         </div>
-                    :
-                        <></>
                     )}
             </div>
 
@@ -239,7 +242,10 @@ export default function SinglePost(){
             
             {loggedInUsername ?
                 loggedInUsername === username ?
-                    <></>
+                    comments.length === 0 ?
+                        <p className='text-center fst-italic'>No users have commented on this post yet—check back soon!</p>
+                    :
+                        <></>
                 :
                     <NewComment postUsername={username} />
             :
