@@ -129,11 +129,12 @@ export default function PostInfo({
             {dateCreated ?
                 <p className='text-start mb-0 me-2'>
                     Posted{' '}
-                    {username && borough ?
+                    {username /* && borough */ ?
                         <>
                             by{' '}
-                            <Link className='username-meta hover-opacity' to={`/user/${username}`}>{username}</Link>{' '}
-                            <span>{'('}{capitalizeEachWord(borough)}{')'}</span>{' '}
+                            {/* <Link className='username-meta hover-opacity' to={`/user/${username}`}>{username}</Link>{' '} */}
+                            <span>{username}</span>{' '}
+                            {/* <span>{'('}{capitalizeEachWord(borough)}{')'}</span>{' '} */}
                         </>
                     :
                         <></>
@@ -145,7 +146,8 @@ export default function PostInfo({
             }
 
             {(animalType && category) || dateCreated ?
-                <p className='text-end mb-0 ms-2'>{getWatchCountText()}</p>
+                // <p className='text-end mb-0 ms-2'>{getWatchCountText()}</p>
+                <></>
             :
                 <></>
             }

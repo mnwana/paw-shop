@@ -8,7 +8,13 @@ import {SET_NAV_ACTIVE_PAGE} from '../../utils/actions';
 
 import {useState} from 'react';
 
-import {capitalizeEachWord} from '../../utils/helpers';
+import {useQuery} from '@apollo/client';
+import {QUERY_POST} from '../../utils/queries';
+import {ADD_COMMENT} from '../../utils/mutations'
+
+import Auth from '../../utils/auth';
+
+import {capitalize, capitalizeEachWord} from '../../utils/helpers';
 
 import DeletePostBtnAndModal from '../../components/DeletePostBtnAndModal';
 import Comment from '../../components/Comment';
@@ -26,64 +32,98 @@ import './index.css'
 
 // COMPONENT
 export default function SinglePost(){
+    let loggedInUsername = null;
+    if (Auth.loggedIn())
+        loggedInUsername = Auth.getProfile().data.username;
+
     const [, dispatch] = useStoreContext();
 
-    const {postId} = useParams();  // UPDATE LATER re querying
+    const {postId} = useParams();
+
+    const {data, loading} = useQuery(QUERY_POST, {
+        variables: {id: postId}
+    });
+
+    
 
     // Sample post content
-    const
-        title = 'Test title',
-        username = 'testusername',
-        borough = 'the bronx',
-        dateCreated = 'Mar 9, 2018 at 6:21 AM',
-        description = 'Test description lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
-    ;
+    // const
+    //     title = 'Test title',
+    //     username = 'testusername',
+    //     dateCreated = 'Mar 9, 2018 at 6:21 AM',
+    //     postText = 'Test description lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
+    // ;
 
     useEffect(
         () => {
-            dispatch({
-                type: SET_NAV_ACTIVE_PAGE,
-                navActivePage: `${title} (posted by ${username})`
+            if (data)
+                dispatch({
+                    type: SET_NAV_ACTIVE_PAGE,
+                    navActivePage: `${data.post.title} (posted by ${data.post.user.username})`
         });
         },
-        []
+        [data, loading]
     );
 
     // UPDATE LATER: Only set up all editing-post-related stuff below if the original post-er is currently logged in
     const [editPost, setEditPost] = useState(false);
-    const [editedPostData, setEditedPostData] = useState({
+    // const [editedPostData, setEditedPostData] = useState({
+    //     title,
+    //     description
+    // });
+
+
+    // function handleEditedPostChange({target}){
+    //     const updatedPostData = {...editedPostData};
+    //     updatedPostData[target.name] = target.value;
+    //     setEditedPostData(updatedPostData);
+    // }
+
+    // function handleEditPostFormSubmit(){  // UPDATE LATER
+    //     editedPostData.title = editedPostData.title.trim();
+    //     editedPostData.description = editedPostData.description.trim();
+
+    //     if (editedPostData.title && editedPostData.description){
+    //         alert(`Ready to submit updated post data:
+    //             Title: ${editedPostData.title}
+    //             Description: ${editedPostData.description}
+
+    //             *NOTE: (updating on screen won't happen yet, but it will when the GraphQL mutation is actually sent—
+    //             make sure to set up the mutation with ApolloCache updating for the initial query on this page!)
+    //         `);
+
+    //         setEditPost(false);
+    //     }
+    // }
+
+    
+    if (loading)
+        return <h2>Loading…</h2>;
+
+    
+    console.log(data);
+
+    const {
         title,
-        description
-    });
+        user: {username},
+        createdAt: dateCreated,
+        postText: description,
+        animalType,
+        category,
+        condition,
+    } = data.post;
 
-
-    function handleEditedPostChange({target}){
-        const updatedPostData = {...editedPostData};
-        updatedPostData[target.name] = target.value;
-        setEditedPostData(updatedPostData);
-    }
-
-    function handleEditPostFormSubmit(){  // UPDATE LATER
-        editedPostData.title = editedPostData.title.trim();
-        editedPostData.description = editedPostData.description.trim();
-
-        if (editedPostData.title && editedPostData.description){
-            alert(`Ready to submit updated post data:
-                Title: ${editedPostData.title}
-                Description: ${editedPostData.description}
-
-                *NOTE: (updating on screen won't happen yet, but it will when the GraphQL mutation is actually sent—
-                make sure to set up the mutation with ApolloCache updating for the initial query on this page!)
-            `);
-
-            setEditPost(false);
-        }
-    }
+    const comments = loggedInUsername === username ?
+        data.post.comments
+    :
+        data.post.comments.filter(comment => comment.user.username === loggedInUsername)
+    ;
+    
 
 
     return <>
         {/* UPDATE LATER: Only render this form in the first place if original post-er is currently logged in */}
-        <form id='edit-post-form' className={editPost ? 'd-flex flex-column w-75 mb-3' : 'd-none'} onSubmit={handleEditPostFormSubmit}>
+        {/* <form id='edit-post-form' className={editPost ? 'd-flex flex-column w-75 mb-3' : 'd-none'} onSubmit={handleEditPostFormSubmit}>
             <div className='title-editor form-floating mb-2 w-75 mx-auto'>
                 <input
                     className="form-control"
@@ -115,7 +155,7 @@ export default function SinglePost(){
                 <button className='update-post-btn btn submit-btn mx-2 hover-opacity' type='submit' form='edit-post-form'>Update</button>
                 <button className='cancel-edit-post-btn btn mx-2 hover-opacity'>Cancel</button>
             </div>
-        </form>
+        </form> */}
 
         <div className={`post-content ${editPost ? 'd-none' : ''} border border-dark rounded px-3 pt-3 w-100`} >
             <div className='post-title-and-btns-and-meta-wrapper text-center d-flex flex-wrap justify-content-between align-items-center mb-3'>
@@ -123,7 +163,7 @@ export default function SinglePost(){
                     <h3 className='post-title d-inline-block mb-1'>{title}</h3>
 
                     {/* UPDATE LATER: only render btns + modal if original post-er is logged in */}
-                    <span className='post-btns-wrapper d-inline-block'>
+                    {/* <span className='post-btns-wrapper d-inline-block'>
                         <button
                             className='edit-btn btn ps-2 pe-1 py-0 hover-opacity'
                             onClick={() => setEditPost(true)}
@@ -132,20 +172,29 @@ export default function SinglePost(){
                         </button>
 
                         <DeletePostBtnAndModal postId={postId} returnToHome={true} />
-                    </span>
+                    </span> */}
                 </div>
 
                 <p className='post-meta mb-1 mx-2 fst-italic text-start'>
                     Posted by{' '}
-                    <span className='username-meta hover-opacity'>
+                    {/* <span className='username-meta hover-opacity'>
                         <Link to={`/user/${username}`}>{username}</Link>{' '}
-                    </span>
-                    <span>{'('}{capitalizeEachWord(borough)}{')'}</span>{' '}
+                    </span> */}
+                    <span>{username}{' '}</span>
+                    {/* <span>{'('}{capitalizeEachWord(borough)}{')'}</span>{' '} */}
                     on{' '}<span>{dateCreated}</span>
                 </p>
             </div>
 
-            <p className='post-description text-start px-3 px-md-4'>{description}</p>
+            <p className='post-description text-center px-3 px-md-4 mx-5'>{description}</p>
+
+            <div className='post-groups-wrapper d-flex justify-content-center'>
+                <p className='post-group post-animal-type px-3 mx-3 border border-dark rounded'>Animal type: <i>{capitalize(animalType)}</i></p>
+                
+                <p className='post-group post-category px-3 mx-3 border border-dark rounded'>Category: <i>{capitalize(category)}</i></p>
+                
+                <p className='post-group post-condition px-3 mx-3 border border-dark rounded'>Condition: <i>{capitalize(condition)}</i></p>
+            </div>
         </div>
 
         <div className={`comments-wrapper d-flex flex-column border border-dark rounded px-3 pt-4 ${editPost ? '' : 'border-top-0'}`}>
@@ -156,69 +205,61 @@ export default function SinglePost(){
                     otherwise, only query/display comments for which the commenter is the user who's logged in
                     (and if nobody's logged in, don't show any comments; instead, show a message like 'Log in to comment and communicate with {username} about this item')
                 */}
-                <div className='comment-and-replies-wrapper px-3 mb-3 rounded'>
-                    <Comment
-                        commentId={20063}
-                        commenterUsername={'testuser091'}
-                        origPostUsername={username}
-                        content={'This is another test comment'}
-                        dateCreated={'Jun 24, 2016 at 1:46 PM'}
-                    />
+                    {comments.map(comment => 
+                        <div className='comment-and-replies-wrapper px-3 mb-3 rounded' key={comment._id}>
+                            <Comment
+                                commentId={comment._id}
+                                commenterUsername={comment.user.username}
+                                origPostUsername={username}
+                                content={comment.commentBody}
+                                dateCreated={comment.createdAt}
+                                dateUpdated={comment.updatedAt}
+                            />
 
-                    <div className='replies-wrapper mx-5'>
-                        <Reply
-                            commentId={20063}
-                            replyId={125}
-                            replierUsername={username}
-                            content={'Hey testuser091, thanks for writing—should we meet?'}
-                            dateCreated={'Jun 25, 2016 at 2:12 PM'}
-                        />
+                            <div className='replies-wrapper mx-5'>
+                                {comment.replies.map(reply => 
+                                    <Reply
+                                        commentId={comment._id}
+                                        replyId={reply._id}
+                                        replierUsername={reply.user.username}
+                                        content={reply.replyBody}
+                                        dateCreated={reply.createdAt}
+                                        key={reply._id}
+                                    />
+                                )}
 
-                        <Reply
-                            commentId={20063}
-                            replyId={126}
-                            replierUsername={username}
-                            content={"I can come towards you if you're down"}
-                            dateCreated={'Jun 25, 2016 at 2:15 PM'}
-                        />
-
-                        <Reply
-                            commentId={20063}
-                            replyId={127}
-                            replierUsername={'testuser091'}
-                            content={"Hey, great, let's do it! My number is 212-449-6831, shoot me a text"}
-                            dateCreated={'Jun 26, 2016 at 8:30 AM'}
-                        />
-
-                        <NewReply
-                            commentId={20063}
-                            otherUsername={username}
-                        />
-                    </div>
-                </div>
-
-                <div className='comment-and-replies-wrapper px-3 mb-3 rounded'>
-                    <Comment
-                        commentId={20067}
-                        commenterUsername={'testuser229'}
-                        origPostUsername={username}
-                        content={'This is a test comment'}
-                        dateCreated={'Jun 8, 2012 at 10:01 PM'}
-                    />
-
-                    <div className='replies-wrapper mx-5'>
-                    <NewReply
-                        commentId={20067}
-                        otherUsername={username}
-                        />
-                    </div>
-                </div>
+                                <NewReply
+                                    commentId={comment._id}
+                                    otherUsername={username === loggedInUsername ? comment.user.username : username}
+                                />
+                            </div>
+                        </div>
+                    )}
             </div>
 
-            <ResultsSelector totalPages={11} name={'comments'} /> {/* UPDATE LATER: Only show if the logged-in user is the original post-er */}
+            {/* <ResultsSelector totalPages={11} name={'comments'} /> */}
+            {/* UPDATE LATER: Only show if the logged-in user is the original post-er */}
             
-            {/* UPDATE LATER: only show `NewComment` if a user is logged in, and that user is NOT the original post-er */}
-            <NewComment postUsername={username} />
+            {loggedInUsername ?
+                loggedInUsername === username ?
+                    comments.length === 0 ?
+                        <p className='text-center fst-italic'>No users have commented on this post yet—check back soon!</p>
+                    :
+                        <></>
+                :
+                    <NewComment postUsername={username} />
+            :
+                <p className='text-center fs-5'>
+                    <span
+                        className='login-link fs-5 p-0 m-0 hover-opacity'
+                        data-bs-toggle='modal'
+                        data-bs-target='#login-signup-modal'
+                    >
+                        Log in
+                    </span>{' '}
+                    to message with <i>{username}</i> about this item
+                </p>
+            }
         </div>
     </>;
 }

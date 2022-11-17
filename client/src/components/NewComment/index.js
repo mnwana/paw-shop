@@ -7,6 +7,10 @@ import {useParams, Link} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faComment} from '@fortawesome/free-solid-svg-icons';
 
+import {useMutation} from '@apollo/client';
+import {ADD_COMMENT} from '../../utils/mutations'
+import {QUERY_POST} from '../../utils/queries';
+
 import './index.css';
 
 
@@ -17,16 +21,37 @@ export default function NewComment({postUsername}){
     const [commentText, setCommentText] = useState('');
 
 
-    function handleSubmit(e){
+    const [addComment] = useMutation(ADD_COMMENT, {
+        update: (cache, {data: {addComment}}) => {
+            cache.writeQuery({
+              query: QUERY_POST,
+              data: {post: {
+                ...addComment,
+                user: {username: addComment.user.username},
+                dateCreated: addComment.createdAt,
+                description: addComment.postText
+            }}
+            });
+        }
+    });
+
+
+    async function handleSubmit(e){
         e.preventDefault();
 
         const text = commentText.trim();
 
         if (text){
-            alert(`
-                Getting ready for the logged-in user to add a new comment on post ${postId}
-                with this message: ${text}
-            `);  // UPDATE LATER
+            try {
+                await addComment({
+                    variables: {
+                        postId: postId,
+                        commentBody: text
+                    }
+                });
+            }catch(err){
+                console.error(err);
+            }
             
             setCommentText('');
         }

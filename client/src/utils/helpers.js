@@ -23,6 +23,15 @@ export function kebabify(string){
 }
 
 
+export function camelCase(string){
+    const words = string.split(' ');
+    for (let i = 1; i < words.length; i++)
+        words[i] = capitalize(words[i]);
+    
+    return words.join('');
+}
+
+
 export function capitalize(string){
     return string.substring(0, 1).toUpperCase() + string.substring(1);
 }

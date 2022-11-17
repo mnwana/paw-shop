@@ -10,24 +10,24 @@ const userSchema = new Schema(
       minLength: 5,
       maxLength: 16,
       trim: true,
+      unique: true
     },
     email: {
       type: String,
       required: true,
       trim: true,
-      //validation with a regex
       validate: [/[a-z0-9._]+@[a-z]+\.[a-z]{2,3}/, "Email address is invalid"],
+      unique: true
     },
     password: {
       type: String, 
-      require: true
+      required: true
     },
-    borough: {
-      type: String,
-      enum: ["manhattan", "brooklyn", "queens", "staten island", "the bronx"],
-      required: true,
-      trim: true,
-    },
+    // borough: {
+    //   type: String,
+    //   enum: ["manhattan", "brooklyn", "queens", "staten island", "the bronx"],
+    //   required: true,
+    // },
     createdAt: {
       type: Date,
       default: Date.now,
@@ -66,10 +66,10 @@ userSchema.pre("save", async function (next) {
 
 // compare the incoming password with the hashed password
 userSchema.methods.isCorrectPassword = async function (password) {
-  return bcrypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.password);
 };
 
-userSchema.virtual("watchedCount").get(function () {
+userSchema.virtual("watchlistCount").get(function () {
   return this.watchlist.length;
 });
 

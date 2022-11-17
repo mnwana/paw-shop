@@ -11,6 +11,8 @@ import {Link} from 'react-router-dom';
 
 import {loginSignupModalId} from '../LoginSignupModal';
 
+import Auth from '../../utils/auth';
+
 import './index.css';
 
 import logo from '../../assets/logo-by-claudia-yile.png';
@@ -22,7 +24,7 @@ import logoAnimated from '../../assets/logo-animated-by-claudia-yile.gif';
 export default function Navbar(){
     const [{navActivePage}, dispatch] = useStoreContext();
 
-    const testerLoggedIn = true;  // UPDATE LATER to pull from client-side `utils/auth.js`
+    const testerLoggedIn = Auth.loggedIn();  // UPDATE LATER to pull from client-side `utils/auth.js`
 
     const [imgSrc, setImgSrc] = useState(logo);
 
@@ -38,11 +40,11 @@ export default function Navbar(){
             link: '/post-an-item',
             reqsLogin: true
         },
-        {
-            name: 'My account',
-            link: '/account',
-            reqsLogin: true
-        },
+        // {
+        //     name: 'My account',
+        //     link: '/account',
+        //     reqsLogin: true
+        // },
         {
             name: 'Log in / sign up',
             reqsLogin: false,
@@ -82,7 +84,7 @@ export default function Navbar(){
 
 
     function handleLogOut(){  // UPDATE LATER
-        alert('Log out the current user');
+        Auth.logout();
     }
 
 

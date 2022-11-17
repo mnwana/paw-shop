@@ -23,32 +23,32 @@ export const QUERY_POSTS = gql`
 
 export const QUERY_POST = gql`
   query post($id: ID!) {
-    post(_id: $id) {
+    post(id: $id) {
       _id
+      title
       postText
       animalType
       category
       condition
-      active
       createdAt
-      userId
-      watchingCount
-      watching {
-        _id
+      user {
         username
       }
-      commentCount
       comments {
         _id
+        commentBody
         createdAt
         updatedAt
-        userId
-        commentBody
-        replies {
+        user{
+          username
+        }
+        replies{
           _id
           replyBody
           createdAt
-          userId
+          user{
+            username
+          }
         }
       }
     }
@@ -61,7 +61,6 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      borough
       posts {
         _id
         postText
@@ -82,7 +81,6 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      borough
       watchlist {
         _id
         postText
@@ -114,7 +112,28 @@ export const QUERY_ME_BASIC = gql`
       _id
       username
       email
-      borough
+    }
+  }
+`;
+
+
+
+export const FILTERED_POSTS = gql`
+  query ($filterState: FilterState!){
+    filteredPosts(filterState: $filterState) {
+      totalPages
+      posts {
+        _id
+        title
+        createdAt
+        animalType
+        category
+        condition
+        active
+        user {
+          username
+        }
+      }
     }
   }
 `;
