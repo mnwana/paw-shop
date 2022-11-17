@@ -100,6 +100,142 @@ const resolvers = {
                 posts,
                 totalPages
             };
+        },
+
+        userActivePosts: async (parent, {pageNum, postsPerPage, newestFirst}, context) => {
+            if (context.user){
+                const posts = await Post
+                    .find({$and: [
+                        {user: {_id: context.user._id}},
+                        {active: true},
+                    ]})
+                    .populate('user')
+                    .sort({createdAt: newestFirst ? -1 : 1})
+                    .skip((pageNum - 1) * postsPerPage)
+                    .limit(postsPerPage)
+                ;
+
+                let allPosts = await Post
+                    .find({$and: [
+                        {user: {_id: context.user._id}},
+                        {active: true},
+                    ]})
+                ;
+
+                const totalPages = Math.ceil(allPosts.length / postsPerPage);
+
+                return {
+                    posts,
+                    totalPages
+                };
+            }
+
+            throw new AuthenticationError("Not logged in");            
+        },
+
+        userInactivePosts: async (parent, {pageNum, postsPerPage, newestFirst}, context) => {
+            if (context.user){
+                const posts = await Post
+                    .find({$and: [
+                        {user: {_id: context.user._id}},
+                        {active: false},
+                    ]})
+                    .populate('user')
+                    .sort({createdAt: newestFirst ? -1 : 1})
+                    .skip((pageNum - 1) * postsPerPage)
+                    .limit(postsPerPage)
+                ;
+
+                let allPosts = await Post
+                    .find({$and: [
+                        {user: {_id: context.user._id}},
+                        {active: false},
+                    ]})
+                ;
+
+                const totalPages = Math.ceil(allPosts.length / postsPerPage);
+
+                return {
+                    posts,
+                    totalPages
+                };
+            }
+
+            throw new AuthenticationError("Not logged in");            
+        },
+
+        userActiveWatchedPosts: async (parent, {pageNum, postsPerPage, newestFirst}, context) => {
+            if (context.user){
+                const user = await User
+                    .findById(context.user._id)
+                    .select('watchlist');
+
+                const watchlistPostIds = user.watchlist.map(post => post._id);
+                
+                const posts = await Post
+                    .find({$and: [
+                        {_id: {$in: watchlistPostIds}},
+                        {active: true}
+                    ]})
+                    .populate('user')
+                    .sort({createdAt: newestFirst ? -1 : 1})
+                    .skip((pageNum - 1) * postsPerPage)
+                    .limit(postsPerPage)
+                ;
+
+                let allPosts = await Post
+                    .find({$and: [
+                        {_id: {$in: watchlistPostIds}},
+                        {active: true}
+                    ]})
+                ;
+
+                const totalPages = Math.ceil(allPosts.length / postsPerPage);
+
+                return {
+                    posts,
+                    totalPages
+                };
+            }
+
+            throw new AuthenticationError("Not logged in");            
+        },
+
+        userInactiveWatchedPosts: async (parent, {pageNum, postsPerPage, newestFirst}, context) => {
+            if (context.user){
+                const user = await User
+                    .findById(context.user._id)
+                    .select('watchlist');
+
+                const watchlistPostIds = user.watchlist.map(post => post._id);
+                
+                const posts = await Post
+                    .find({$and: [
+                        {_id: {$in: watchlistPostIds}},
+                        {active: false}
+                    ]})
+                    .populate('user')
+                    .sort({createdAt: newestFirst ? -1 : 1})
+                    .skip((pageNum - 1) * postsPerPage)
+                    .limit(postsPerPage)
+                ;
+
+                let allPosts = await Post
+                    .find({$and: [
+                        {_id: {$in: watchlistPostIds}},
+                        {active: false}
+                    ]})
+                ;
+
+                const totalPages = Math.ceil(allPosts.length / postsPerPage);
+
+                return {
+                    posts,
+                    totalPages
+                };
+            }
+
+            throw new AuthenticationError("Not logged in");            
         }
     },
 

@@ -54,10 +54,10 @@ const typeDefs = gql`
   input FilterState{
     pageNum: Int!
     postsPerPage: Int!
+    newestFirst: Boolean!
     animalType: [String]!
     category: [String]!
     condition: [String]!
-    newestFirst: Boolean!
   }
 
 
@@ -75,6 +75,10 @@ const typeDefs = gql`
   type Query {
     me: User
     filteredPosts(filterState: FilterState!): FilterResults
+    userActivePosts(pageNum: Int!, postsPerPage: Int!, newestFirst: Boolean!): FilterResults
+    userInactivePosts(pageNum: Int!, postsPerPage: Int!, newestFirst: Boolean!): FilterResults
+    userActiveWatchedPosts(pageNum: Int!, postsPerPage: Int!, newestFirst: Boolean!): FilterResults
+    userInactiveWatchedPosts(pageNum: Int!, postsPerPage: Int!, newestFirst: Boolean!): FilterResults
     users: [User]
     user(_id: ID!): User
     posts(userId: ID): [Post]
