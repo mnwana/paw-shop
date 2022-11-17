@@ -44,7 +44,7 @@ const typeDefs = gql`
 
   input PostInput{
     title: String
-    postText: String
+    description: String
     animalType: String
     category: String
     condition: String

@@ -270,8 +270,11 @@ const resolvers = {
 
         addPost: async (parent, {postData}, context) => {
             if (context.user) {
+                const postText = postData.description;
+                delete postData.description;
                 const post = await Post.create({
                     ...postData,
+                    postText,
                     user: context.user._id,
                 });
 

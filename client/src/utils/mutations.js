@@ -25,15 +25,15 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_POST = gql`
-  mutation addPost($postText: String!, $animalType: String!, $category: String!, $condition: String!) {
-    addPost(postText: $postText, animalType: $animalType, category: $category, condition: $condition) {
+  mutation addPost($postData: PostInput!) {
+    addPost(postData: $postData) {
       _id
+      title
       postText
-      createdAt
-      userId
       animalType
       condition
       category
+      createdAt
     }
   }
 `;
@@ -48,7 +48,6 @@ export const ADD_COMMENT = gql`
       animalType
       condition
       category
-      userId
       commentCount
       watchingCount
       watching {
@@ -82,7 +81,6 @@ export const ADD_REPLY = gql`
       animalType
       condition
       category
-      userId
       commentCount
       watchingCount
       watching{

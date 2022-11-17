@@ -5,11 +5,26 @@ import {capitalize} from "../../utils/helpers";
 
 import {useStoreContext} from "../../utils/GlobalState";
 
+import {useMutation} from '@apollo/client';
+import {ADD_POST} from "../../utils/mutations";
+import {FILTERED_POSTS} from '../../utils/queries';
+
+import Auth from '../../utils/auth';
+
 import './index.css';
 
 
 // COMPONENT
 export default function PostAnItem(){
+    const [addPost] = useMutation(ADD_POST, {
+        // update: (cache, {data: {addPost}}) => {
+        //     cache.writeQuery({
+        //       query: FILTERED_POSTS,
+        //       data: {filteredPosts: {...addPost}}
+        //     });
+        // }
+    });
+
     const [{filterState}] = useStoreContext();
 
     const animalTypes = filterState
@@ -39,22 +54,35 @@ export default function PostAnItem(){
         setNewPostData(updatedPostData);
     }
 
-    function handleSubmit(e){
+
+    async function handleSubmit(e){
         e.preventDefault();
 
         newPostData.title = newPostData.title.trim();
         newPostData.description = newPostData.description.trim();
 
         if(newPostData.title && newPostData.description){
-            alert(`New post submitted:
-                Title: ${newPostData.title}
-                Description: ${newPostData.description}
-            `);
+            try{
+                const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-            setNewPostData({
-                title: '',
-                description: ''
-            });
+                if (!token){
+                    console.error('No user is logged in right now');
+                    return false;
+                  }
+
+                console.log({...newPostData});
+
+                await addPost(
+                    {variables: {postData: {...newPostData}}}
+                );
+
+                setNewPostData({
+                    title: '',
+                    description: ''
+                });
+            }catch (err){
+                console.error(err);
+            }
         }
     }
 
