@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'production')
     app.use(express.static(path.join(__dirname, '../client/build')));
 
 
-app.get('/', (req, res) => {  // For any otherwise-undefined GET requests, simply respond with the production-ready front-end code
+app.get('*', (req, res) => {  // For any otherwise-undefined GET requests, simply respond with the production-ready front-end code
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
