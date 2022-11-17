@@ -1,0 +1,27 @@
+
+#login-signup-modal .modal-content{
+    background-color: var(--light-pink);
+}
+
+#login-signup-modal .btn-group-toggle .btn.active{
+    opacity: 1 !important;
+}
+
+#login-signup-modal .btn-group-toggle .btn[for="login-toggle"],
+#login-signup-modal .btn-group-toggle .btn[for="login-toggle"].active
+{
+    background-color: var(--light-blue) !important;
+}
+
+#login-signup-modal .btn-group-toggle .btn[for="signup-toggle"],
+#login-signup-modal .btn-group-toggle .btn[for="signup-toggle"].active{
+    background-color: var(--navy-blue) !important;
+    color: white !important;
+}
+
+
+
+#signup .form-control,
+#login .form-control{
+    background-color: aliceblue;
+}

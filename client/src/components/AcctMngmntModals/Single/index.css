@@ -1,0 +1,14 @@
+
+.acct-mngmnt-modal .modal-content{
+    background-color: aliceblue !important;
+}
+
+
+.acct-mngmnt-modal form button[type="submit"]{
+    background-color: var(--navy-blue);
+    color: white;
+}
+
+.acct-mngmnt-modal form button[type="submit"][form^="delete-account"]{
+    background-color: var(--deep-red);
+}

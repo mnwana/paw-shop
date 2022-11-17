@@ -1,0 +1,15 @@
+
+.select-all-btn,
+.select-none-btn{
+    background-color: var(--peach) !important;
+}
+
+
+.filter-element input+label{
+    border-color: var(--royal-blue) !important;
+    color: var(--navy-blue) !important;
+}
+.filter-element input:checked+label{
+    color: white !important;
+    background-color: var(--navy-blue) !important; 
+}

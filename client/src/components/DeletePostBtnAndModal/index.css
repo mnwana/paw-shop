@@ -1,0 +1,16 @@
+
+.confirm-delete-post-msg{
+    color: black; 
+}
+
+.confirm-delete-yes-btn,
+.confirm-delete-yes-btn:hover{
+    background-color: var(--deep-red) !important;
+    color: white !important;
+}
+
+.confirm-delete-no-btn,
+.confirm-delete-no-btn:hover{
+    background-color: var(--royal-blue) !important;
+    color: white !important;
+}

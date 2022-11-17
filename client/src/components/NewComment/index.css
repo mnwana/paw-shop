@@ -1,0 +1,15 @@
+
+#new-comment-form input{
+    background-color: aliceblue;
+}
+
+#new-comment-form .username-meta{
+    color: var(--royal-blue-darker)
+}
+#new-comment-form .username-meta:hover{
+    color: var(--royal-blue-darker)
+}
+
+.new-comment-msg{
+    font-size: 14px;
+}

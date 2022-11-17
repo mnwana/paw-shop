@@ -1,0 +1,14 @@
+
+
+.confirm-delete-wrapper p,
+.confirm-delete-wrapper button{
+    font-size: 14px;
+}
+
+.confirm-delete-wrapper .confirm-delete-yes-btn{
+    background-color: var(--deep-red) !important;
+}
+
+.confirm-delete-wrapper .confirm-delete-no-btn{
+    background-color: var(--navy-blue) !important;
+}
