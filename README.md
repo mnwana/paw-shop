@@ -10,13 +10,15 @@ This application allows NYC residents to exchange pet products they no longer ne
 - Users can browse existing posts and comment on posts they are interested in. 
 
 ## Built with
-- HTML 
-- CSS
-- Javascript / jQuery 
 - React
-- Apollo
-- Express
-- GraphQl
+- GraphQL
+- MongoDB and Mongoose ODM
+- Bootstrap
+- CSS
+- JWT
+- Luxon
+- Git
+
 
 
 ##
